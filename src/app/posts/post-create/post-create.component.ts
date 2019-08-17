@@ -6,11 +6,14 @@ import { Component, OnInit } from "@angular/core";
   styleUrls: ["./post-create.component.css"]
 })
 export class PostCreateComponent implements OnInit {
+
+  newPost: String;
+
   constructor() { }
 
   ngOnInit() { }
 
   onAddPostSubmit() {
-    alert("The post has been clicked.");
+    this.newPost = "This is a new user\'s post";
   }
 }

@@ -1,17 +1,16 @@
-// tslint:disable-next-line: quotemark
 import { BrowserModule } from "@angular/platform-browser";
-// tslint:disable-next-line: quotemark
 import { NgModule } from "@angular/core";
-
-// tslint:disable-next-line: quotemark
 import { AppComponent } from "./app.component";
-// tslint:disable-next-line: quotemark
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent, PostCreateComponent],
-  imports: [BrowserModule],
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
