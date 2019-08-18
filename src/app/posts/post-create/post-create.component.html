@@ -1,7 +1,18 @@
-<div class="form-group">
-  <label for="text">Text: </label>
-  <input type="textarea" [value]="data" class="form-control" #textData>
+<div class="row">
+  <div class="col-md-12 mx-auto">
+    <mat-card class="border border-info">
+      <form class="example-form">
+        <mat-form-field class="example-full-width">
+          <input matInput placeholder="Favorite food" value="Sushi">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width">
+          <input matInput type="textarea" [value]="data" class="form-control" #textData>
+        </mat-form-field>
+      </form>
+      <button (click)="onAddPostSubmit(textData)" class="btn btn-primary pull-right">Post</button>
+      <br>
+      <span class="badge badge-info">{{data}}</span>
+    </mat-card>
+  </div>
 </div>
-<button (click)="onAddPostSubmit(textData)" class="btn btn-primary pull-right">Post</button>
-<br>
-<span class="badge badge-info">{{data}}</span>
