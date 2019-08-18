@@ -7,13 +7,13 @@ import { Component, OnInit } from "@angular/core";
 })
 export class PostCreateComponent implements OnInit {
 
-  newPost: String;
+  data: String = "This is some default data.";
 
   constructor() { }
 
   ngOnInit() { }
 
-  onAddPostSubmit() {
-    this.newPost = "This is a new user\'s post";
+  onAddPostSubmit(textData: HTMLTextAreaElement) {
+    this.data = textData.value;
   }
 }

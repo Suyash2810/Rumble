@@ -1,6 +1,7 @@
 <div class="form-group">
   <label for="text">Text: </label>
-  <input type="textarea" class="form-control" [(ngModel)]="componentProperty">
+  <input type="textarea" [value]="data" class="form-control" #textData>
 </div>
-<button (click)="onAddPostSubmit()" class="btn btn-primary pull-right">Post</button>
-<p>{{componentProperty}}</p>
+<button (click)="onAddPostSubmit(textData)" class="btn btn-primary pull-right">Post</button>
+<br>
+<span class="badge badge-info">{{data}}</span>
