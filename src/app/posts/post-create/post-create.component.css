@@ -12,3 +12,7 @@
   width: 50%;
   text-align: center;
 }
+
+#post_create_component_row {
+  margin-top: 1rem;
+}
