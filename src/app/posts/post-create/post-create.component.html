@@ -3,17 +3,19 @@
     <mat-card class="border border-info">
       <form (ngSubmit)="onSubmit()" #f="ngForm">
         <mat-form-field class="example-full-width">
-          <label for="username">Title</label>
-          <input matInput type="text" id="title" ngModel name="title" required>
+          <label for="title">Title</label>
+          <input matInput type="text" id="title" ngModel name="title" required #title="ngModel" minlength="3">
         </mat-form-field>
-
+        <mat-error *ngIf="!title.valid && title.touched">
+          Title is not valid. Enter a valid title.
+        </mat-error>
         <mat-form-field class="example-full-width">
-          <div class="form-group">
-            <input matInput type="email" id="content" ngModel name="content" required>
-          </div>
+          <label for="content">Content</label>
+          <input matInput type="email" id="content" ngModel name="content" required #content="ngModel">
         </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Post</button>
-        <br>
+        <mat-error *ngIf="!content.valid && content.touched">Enter the content</mat-error>
+        <br><br>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Post</button>
       </form>
     </mat-card>
   </div>
