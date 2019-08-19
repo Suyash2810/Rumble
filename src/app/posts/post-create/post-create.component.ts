@@ -8,8 +8,8 @@ import { Component, OnInit, EventEmitter, Output } from "@angular/core";
 })
 export class PostCreateComponent implements OnInit {
 
-  title: String = "";
-  content: String = "";
+  title: String = " ";
+  content: String = " ";
   @Output() postData = new EventEmitter<{ title: String, content: String }>();
 
   constructor() { }

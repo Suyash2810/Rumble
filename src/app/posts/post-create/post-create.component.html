@@ -3,11 +3,11 @@
     <mat-card class="border border-info">
       <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Title" [(ngModel)]="title">
+          <input matInput placeholder="Title" [(ngModel)]="title" name="enteredTitle">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="textarea" placeholder="Content" [(ngModel)]="content">
+          <input matInput type="textarea" placeholder="Content" [(ngModel)]="content" name="enteredContent">
         </mat-form-field>
       </form>
       <button (click)="onAddPostSubmit()" mat-raised-button color="primary">Post</button>

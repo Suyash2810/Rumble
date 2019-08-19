@@ -1,16 +1,12 @@
-<div class="container-fluid" style="margin:0;padding:0;width:100%;">
-  <div class="row">
-    <div class="col-md-12">
-      <app-header></app-header>
-    </div>
-  </div>
-</div>
+<app-header></app-header>
+<br>
+
 <div class="container-fluid" id="main_container">
   <div class="row">
     <div class="col-md-12">
-      <app-post-create></app-post-create>
+      <app-post-create (postData)="onAddPosts($event)"></app-post-create>
       <br>
-      <app-post-list></app-post-list>
+      <app-post-list [postsInList]="posts"></app-post-list>
     </div>
   </div>
 </div>
