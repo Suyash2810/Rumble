@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from "@angular/core";
-
+import { PostModel, Post } from '../post.model';
 
 @Component({
   selector: "app-post-create",
@@ -10,13 +10,13 @@ export class PostCreateComponent implements OnInit {
 
   title: String = " ";
   content: String = " ";
-  @Output() postData = new EventEmitter<{ title: String, content: String }>();
+  @Output() postData = new EventEmitter<Post>();
 
   constructor() { }
 
   ngOnInit() { }
 
   onAddPostSubmit() {
-    this.postData.emit({ title: this.title, content: this.content });
+    this.postData.emit(new PostModel(this.title, this.content));
   }
 }
