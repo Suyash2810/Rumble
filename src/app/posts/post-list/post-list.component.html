@@ -1,31 +1,16 @@
-<mat-accordion>
-  <mat-expansion-panel>
+<mat-accordion multi="true" *ngIf="posts.length > 0; else noPostsBlock">
+  <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        Personal data
+        {{post.title}}
       </mat-panel-title>
       <mat-panel-description>
-        Type your name and age
+        Content Below
       </mat-panel-description>
     </mat-expansion-panel-header>
-
-    <mat-form-field>
-      <input matInput placeholder="First name">
-    </mat-form-field>
-
-    <mat-form-field>
-      <input matInput placeholder="Age">
-    </mat-form-field>
-  </mat-expansion-panel>
-  <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-    <mat-expansion-panel-header>
-      <mat-panel-title>
-        Self aware panel
-      </mat-panel-title>
-      <mat-panel-description>
-        Currently I am {{panelOpenState ? 'open' : 'closed'}}
-      </mat-panel-description>
-    </mat-expansion-panel-header>
-    <p>I'm visible because I am open</p>
+    {{post.content}}
   </mat-expansion-panel>
 </mat-accordion>
+<ng-template #noPostsBlock>
+  <p class="noPostMessage mat-body-1">No posts have been added.</p>
+</ng-template>

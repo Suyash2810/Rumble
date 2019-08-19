@@ -3,14 +3,14 @@
     <mat-card class="border border-info">
       <form class="example-form">
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Favorite food" value="Sushi">
+          <input matInput placeholder="Title" [(ngModel)]="title">
         </mat-form-field>
 
         <mat-form-field class="example-full-width">
-          <input matInput type="textarea" [value]="data" class="form-control" #textData>
+          <input matInput type="textarea" placeholder="Content" [(ngModel)]="content">
         </mat-form-field>
       </form>
-      <button (click)="onAddPostSubmit(textData)" mat-raised-button color="primary">Post</button>
+      <button (click)="onAddPostSubmit()" mat-raised-button color="primary">Post</button>
       <br>
       <span class="badge badge-info">{{data}}</span>
     </mat-card>
