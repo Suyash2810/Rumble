@@ -1,6 +1,6 @@
-import { Component, OnInit, EventEmitter, Output, ViewChild } from "@angular/core";
-import { PostModel, Post } from '../post.model';
+import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
+import { PostService } from "../posts.service";
 
 @Component({
   selector: "app-post-create",
@@ -13,15 +13,13 @@ export class PostCreateComponent implements OnInit {
   content: String = " ";
   @ViewChild('f') postForm: NgForm;
 
-  @Output() postData = new EventEmitter<Post>();
-
-  constructor() { }
+  constructor(private postService: PostService) { }
 
   ngOnInit() { }
 
   onSubmit() {
     this.title = this.postForm.value.title;
     this.content = this.postForm.value.content;
-    this.postData.emit(new PostModel(this.title, this.content));
+    this.postService.addPost(this.title, this.content);
   }
 }
