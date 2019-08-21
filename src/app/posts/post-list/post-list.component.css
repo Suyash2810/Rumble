@@ -1,7 +1,12 @@
 mat-expansion-panel {
   width: 50%;
+  margin: 0 auto;
 }
 
 .noPostMessage {
   text-align: center;
+}
+
+mat-accordion {
+  margin: 1rem auto;
 }

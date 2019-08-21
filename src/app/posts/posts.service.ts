@@ -19,6 +19,7 @@ export class PostService {
             .subscribe(
                 (posts) => {
                     this.posts = posts.content;
+                    this.nextUpdatedPost.next([...this.posts]);
                 }
             )
     }

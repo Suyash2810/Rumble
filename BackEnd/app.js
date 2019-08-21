@@ -1,6 +1,13 @@
 const express = require('express');
 const app = express();
 
+app.use((request, response, next) => {
+  response.setHeader('Access-Control-Allow-Origin', '*');
+  response.setHeader('Acces-Control-Allow-Headers', 'Origin, X-Requested-With', 'Content-Type', 'Accept');
+  response.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE, OPTIONS');
+  next();
+});
+
 app.get('/', (request, response) => {
 
   response.send({
@@ -13,22 +20,22 @@ app.get('/posts', (request, response) => {
 
   const sampleData = [{
       id: "ujhyye987t3sd",
-      title: "Title1",
+      title: "Silence",
       content: "This is an example of content."
     },
     {
       id: "gdstger3535df",
-      title: "Title2",
+      title: "Alienation",
       content: "This is an example of content."
     },
     {
       id: "3t5467rgvdhf",
-      title: "Title3",
+      title: "Confinement",
       content: "This is an example of content."
     },
     {
       id: "762t5ru3vrhf",
-      title: "Title1",
+      title: "Darkness",
       content: "This is an example of content."
     }
   ];
