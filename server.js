@@ -1,16 +1,10 @@
-const express = require('express');
-const app = express();
+const http = require('http');
+var app = require('./BackEnd/app');
+
+var server = http.createServer(app);
 
 const port = process.env.PORT || 3000;
 
-
-app.get('/', (request, response) => {
-
-  response.send({
-    Success: "The server is listening at port."
-  });
-});
-
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`The server is listening at port ${port}`);
-})
+});
