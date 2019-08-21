@@ -29,8 +29,15 @@ export class PostService {
     }
 
     addPost(title: String, content: String) {
-        let post: Post = new PostModel(null, title, content);
-        this.posts.push(post);
-        this.nextUpdatedPost.next([...this.posts]);
+        let postData: Post = new PostModel(null, title, content);
+        type responseType = { message: String, post: Post };
+        this.httpClient.post<responseType>('http://localhost:3000/posts', postData)
+            .subscribe(
+                (post) => {
+                    console.log(post);
+                    this.posts.push(postData);
+                    this.nextUpdatedPost.next([...this.posts]);
+                }
+            )
     }
 }
