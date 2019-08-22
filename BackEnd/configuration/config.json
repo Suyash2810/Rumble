@@ -1,0 +1,12 @@
+{
+  "test": {
+    "PORT": "3000",
+    "MONGODB_URI": "mongodb://localhost:27017/SPAmeanAppTest",
+    "JWT_SECRET": "sfhgduksyfshgfkdsgfhgsafhgdfkdsdgfsjfdkgy"
+  },
+  "development": {
+    "PORT": "3000",
+    "MONGODB_URI": "mongodb://localhost:27017/SPAmeanApp",
+    "JWT_SECRET": "sfhgdukssdfjhdsfgshgfhdhsgsdgfsjfdkgyffgu"
+  }
+}
