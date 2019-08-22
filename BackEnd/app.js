@@ -12,6 +12,10 @@ const {
   mongoose
 } = require('./mongoose/mongoose');
 
+const {
+  Post
+} = require('./models/post');
+
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
   extended: false
