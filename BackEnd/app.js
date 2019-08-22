@@ -36,33 +36,13 @@ app.get('/', (request, response) => {
   });
 });
 
-app.get('/posts', (request, response) => {
+app.get('/posts', async (request, response) => {
 
-  const sampleData = [{
-      id: "ujhyye987t3sd",
-      title: "Silence",
-      content: "This is an example of content."
-    },
-    {
-      id: "gdstger3535df",
-      title: "Alienation",
-      content: "This is an example of content."
-    },
-    {
-      id: "3t5467rgvdhf",
-      title: "Confinement",
-      content: "This is an example of content."
-    },
-    {
-      id: "762t5ru3vrhf",
-      title: "Darkness",
-      content: "This is an example of content."
-    }
-  ];
+  let posts = await Post.find({});
 
   response.json({
     status: "The data was sent successfully.",
-    content: sampleData
+    content: posts
   });
 });
 
