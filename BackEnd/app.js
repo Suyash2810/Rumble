@@ -1,7 +1,16 @@
+require('./configuration/config');
 const express = require('express');
 const app = express();
 const body_parser = require('body-parser');
 const _ = require('lodash');
+
+const {
+  mongodb
+} = require('mongodb');
+
+const {
+  mongoose
+} = require('./mongoose/mongoose');
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
