@@ -68,11 +68,35 @@ app.get('/posts', (request, response) => {
 
 app.post('/posts', (request, response) => {
 
-  let post = _.pick(request.body, ['id', 'title', 'content']);
-  response.status(201).json({
-    message: "The data has been saved successfully.",
-    post: post
-  });
+  let body = _.pick(request.body, ['title', 'content']);
+
+  let postBody = {
+    title: body.title,
+    content: body.content
+  }
+
+  let post = new Post(postBody);
+
+  post.save().then(
+    (result) => {
+      if (!result) {
+        response.send({
+          error: "Something went wrong."
+        })
+      } else {
+        response.status(201).send({
+          message: "The data was stored successfully",
+          post: result
+        })
+      }
+    }
+  ).catch(
+    (error) => {
+      response.send({
+        error: error
+      })
+    }
+  )
 })
 
 module.exports = app
