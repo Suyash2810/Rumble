@@ -5,9 +5,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha BackEnd/testing/*.test.js --timeout 50000",
+    "test-watch": "nodemon --exec \"npm test\""
   },
   "private": true,
   "dependencies": {
@@ -43,6 +44,7 @@
     "@types/jasmine": "~2.8.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
+    "chai": "^4.2.0",
     "codelyzer": "~4.3.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
@@ -51,7 +53,10 @@
     "karma-coverage-istanbul-reporter": "~2.0.1",
     "karma-jasmine": "~1.1.2",
     "karma-jasmine-html-reporter": "^0.2.2",
+    "mocha": "^6.2.0",
     "protractor": "~5.4.0",
+    "sinon": "^7.4.1",
+    "supertest": "^4.0.2",
     "ts-node": "~7.0.0",
     "tslint": "~5.11.0",
     "typescript": "~2.9.2"
