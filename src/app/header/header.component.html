@@ -1,1 +1,11 @@
-<mat-toolbar color="primary">My App</mat-toolbar>
+<mat-toolbar color="primary">
+  <span id="header">
+    <a routerLink="/">Home</a>
+  </span>
+
+  <span class="spacer"></span>
+
+  <ul class="nav navbar-nav float-right" id="navigation">
+    <li><a mat-button routerLinkActive="mat-accent active" routerLink="/create">New Post</a></li>
+  </ul>
+</mat-toolbar>
