@@ -62,6 +62,9 @@ export class PostService {
             .subscribe(
                 (result) => {
                     console.log(result);
+                    const updatedPosts = this.posts.filter(post => post.id !== id);
+                    this.posts = updatedPosts;
+                    this.nextUpdatedPost.next([...this.posts]);
                 }
             );
     }
