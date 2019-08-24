@@ -77,6 +77,24 @@ app.post('/posts', (request, response) => {
       })
     }
   )
-})
+});
+
+app.delete('/posts/:id', (request, response) => {
+
+  let id = request.params.id;
+
+  Post.findByIdAndDelete(id)
+    .then(
+      (result) => {
+        if (result) {
+          console.log(result);
+          response.status(200).send(result);
+        } else {
+          response.status.send({
+            err: "Post could not be deleted."
+          });
+        }
+      });
+});
 
 module.exports = app

@@ -28,12 +28,4 @@ describe("Post Model Testing", () => {
     expect(post).to.have.property('content').to.equal("foofoo");
     done();
   });
-
-  // it("should return errors for property not mentioned in the schema.", (done) => {
-  //     let post = new Post({
-  //         id:"3456",
-  //         title:"foo",
-  //         content: "foofoo"
-  //     });
-  // })
 });

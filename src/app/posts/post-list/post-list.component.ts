@@ -24,6 +24,10 @@ export class PostListComponent implements OnInit, OnDestroy {
     )
   }
 
+  onDelete(id: String) {
+    this.postService.deletePost(id);
+  }
+
   ngOnDestroy() {
     this.postsUpdated.unsubscribe();
   }

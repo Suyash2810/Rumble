@@ -56,4 +56,13 @@ export class PostService {
                 }
             )
     }
+
+    deletePost(id: String) {
+        this.httpClient.delete('http://localhost:3000/posts/' + id)
+            .subscribe(
+                (result) => {
+                    console.log(result);
+                }
+            );
+    }
 }
