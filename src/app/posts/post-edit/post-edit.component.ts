@@ -15,12 +15,13 @@ export class PostEditComponent implements OnInit {
 
   constructor(private postService: PostService) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   onSubmit() {
-    this.title = this.postForm.value.title;
+    /* this.title = this.postForm.value.title;
     this.content = this.postForm.value.content;
     this.postService.addPost(this.title, this.content);
-    this.postForm.reset();
+    this.postForm.reset(); */
   }
 }

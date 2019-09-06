@@ -10,6 +10,7 @@ export class PostService {
 
     private posts: Array<Post> = [];
     private nextUpdatedPost = new Subject<Array<Post>>();
+    private nextSinglePost = new Subject<Post>();
 
     constructor(private httpClient: HttpClient) {
     }
@@ -36,6 +37,31 @@ export class PostService {
                 (transformedPostData) => {
                     this.posts = transformedPostData;
                     this.nextUpdatedPost.next([...this.posts]);
+                }
+            )
+    }
+
+    getPost(id: String) {
+        type receivedPostType = { success: String, post: any };
+        this.httpClient.get<receivedPostType>(`http://localhost:3000/post/${id}`)
+            .pipe(
+                map(
+                    (data) => {
+                        return data.post.map(
+                            (post) => {
+                                return {
+                                    id: post._id,
+                                    title: post.title,
+                                    content: post.content
+                                }
+                            }
+                        )
+                    }
+                )
+            )
+            .subscribe(
+                (transformedPost) => {
+                    this.nextSinglePost.next(transformedPost);
                 }
             )
     }

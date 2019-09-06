@@ -79,6 +79,24 @@ app.post('/posts', (request, response) => {
   )
 });
 
+app.get('/post/:id', async (request, response) => {
+
+  let id = request.params.id;
+
+  let post = await Post.findById(id);
+
+  if (post) {
+    response.status(200).send({
+      success: "The post has been fetched from the database.",
+      post: post
+    })
+  } else {
+    response.send({
+      err: "The post could not be fetched from the database. Error has been encountered."
+    })
+  }
+})
+
 app.delete('/posts/:id', (request, response) => {
 
   let id = request.params.id;
