@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { PostService } from "../posts.service";
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: "app-post-create",
@@ -13,7 +14,7 @@ export class PostCreateComponent implements OnInit {
   content: String = " ";
   @ViewChild('f') postForm: NgForm;
 
-  constructor(private postService: PostService) { }
+  constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() { }
 
@@ -22,5 +23,6 @@ export class PostCreateComponent implements OnInit {
     this.content = this.postForm.value.content;
     this.postService.addPost(this.title, this.content);
     this.postForm.reset();
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 }

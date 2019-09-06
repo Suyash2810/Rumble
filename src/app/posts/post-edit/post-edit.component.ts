@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { PostService } from '../posts.service';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from '../post.model';
 
@@ -18,7 +18,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   requestedPost: Subscription;
   @ViewChild('f') postForm: NgForm;
 
-  constructor(private postService: PostService, private route: ActivatedRoute) { }
+  constructor(private postService: PostService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -42,6 +42,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     this.contentData = this.postForm.value.content;
     this.postService.updatePost(this.id, this.titleData, this.contentData);
     this.postForm.reset();
+    this.router.navigate(['/']);
   }
 
   ngOnDestroy() {
