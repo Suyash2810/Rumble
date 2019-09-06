@@ -86,7 +86,6 @@ app.get('/post/:id', async (request, response) => {
   let post = await Post.findById(id);
 
   if (post) {
-    console.log(post);
     response.status(200).send({
       success: "The post has been fetched from the database.",
       post: post
@@ -114,6 +113,33 @@ app.delete('/posts/:id', (request, response) => {
           });
         }
       });
+});
+
+app.patch('/posts/:id', (request, response) => {
+
+  let id = request.params.id;
+  let postBody = request.body;
+  console.log(postBody);
+
+  Post.findOneAndUpdate({
+    _id: id
+  }, {
+    $set: postBody
+  }, {
+    new: true
+  }).then(
+    (result) => {
+      response.status(200).send({
+        success: "Post has been updated.",
+        post: result
+      })
+    }
+  ).catch(
+    (error) => {
+      response.send(error);
+    }
+  );
+
 });
 
 module.exports = app

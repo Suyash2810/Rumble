@@ -94,11 +94,42 @@ export class PostService {
         this.httpClient.delete('http://localhost:3000/posts/' + id)
             .subscribe(
                 (result) => {
-                    console.log(result);
                     const updatedPosts = this.posts.filter(post => post.id !== id);
                     this.posts = updatedPosts;
                     this.nextUpdatedPost.next([...this.posts]);
                 }
             );
+    }
+
+    updatePost(id: String, title: String, content: String) {
+
+        const postData = {
+            title: title,
+            content: content
+        }
+
+        type updateResponseType = { success: String, post: any };
+
+        this.httpClient.patch<updateResponseType>('http://localhost:3000/posts/' + id, postData)
+            .pipe(
+                map(
+                    (result) => {
+                        console.log(result);
+                        return {
+                            id: result.post._id,
+                            title: result.post.title,
+                            content: result.post.content
+                        }
+                    }
+                )
+            )
+            .subscribe(
+                (transformedPost) => {
+                    const updatedPosts = this.posts.filter(post => post.id !== id);
+                    updatedPosts.push(transformedPost);
+                    this.posts = updatedPosts;
+                    this.nextUpdatedPost.next([...this.posts]);
+                }
+            )
     }
 }

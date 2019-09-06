@@ -33,16 +33,15 @@ export class PostEditComponent implements OnInit, OnDestroy {
       (post: Post) => {
         this.titleData = post.title;
         this.contentData = post.content;
-        console.log(post);
       }
     );
   }
 
   onSubmit() {
-    // this.title = this.postForm.value.title;
-    // this.content = this.postForm.value.content;
-    // this.postService.addPost(this.title, this.content);
-    // this.postForm.reset();
+    this.titleData = this.postForm.value.title;
+    this.contentData = this.postForm.value.content;
+    this.postService.updatePost(this.id, this.titleData, this.contentData);
+    this.postForm.reset();
   }
 
   ngOnDestroy() {
