@@ -9,9 +9,10 @@ import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from "./app-routing.module";
+import { PostEditComponent } from './posts/post-edit/post-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, PostCreateComponent, HeaderComponent, PostListComponent],
+  declarations: [AppComponent, PostCreateComponent, HeaderComponent, PostListComponent, PostEditComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
