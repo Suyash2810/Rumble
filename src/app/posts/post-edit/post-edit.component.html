@@ -1,3 +1,22 @@
-<p>
-  post-edit works!
-</p>
+<div class="row" id="post_create_component_row">
+  <div class="col-md-12">
+    <mat-card class="border border-info">
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <mat-form-field class="example-full-width">
+          <label for="title">Title</label>
+          <input matInput type="text" id="title" ngModel name="title" required #title="ngModel" minlength="3">
+        </mat-form-field>
+        <mat-error *ngIf="!title.valid && title.touched">
+          Title is not valid. Enter a valid title.
+        </mat-error>
+        <mat-form-field class="example-full-width">
+          <label for="content">Content</label>
+          <input matInput type="email" id="content" ngModel name="content" required #content="ngModel">
+        </mat-form-field>
+        <mat-error *ngIf="!content.valid && content.touched">Enter the content</mat-error>
+        <br><br>
+        <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Post</button>
+      </form>
+    </mat-card>
+  </div>
+</div>

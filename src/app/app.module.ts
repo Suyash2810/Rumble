@@ -12,7 +12,13 @@ import { AppRoutingModule } from "./app-routing.module";
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
 
 @NgModule({
-  declarations: [AppComponent, PostCreateComponent, HeaderComponent, PostListComponent, PostEditComponent],
+  declarations: [
+    AppComponent,
+    PostCreateComponent,
+    HeaderComponent,
+    PostListComponent,
+    PostEditComponent
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
