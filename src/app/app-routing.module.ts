@@ -7,7 +7,7 @@ import { PostEditComponent } from "./posts/post-edit/post-edit.component";
 const appRoutes: Routes = [
     { path: '', component: PostListComponent },
     { path: 'create', component: PostCreateComponent },
-    { path: 'edit/:id', component: PostEditComponent }
+    { path: 'edit/:postID', component: PostEditComponent }
 ];
 
 @NgModule({

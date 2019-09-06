@@ -9,6 +9,7 @@ import { map } from 'rxjs/operators';
 export class PostService {
 
     private posts: Array<Post> = [];
+    private post: Post;
     private nextUpdatedPost = new Subject<Array<Post>>();
     private nextSinglePost = new Subject<Post>();
 
@@ -41,29 +42,30 @@ export class PostService {
             )
     }
 
-    getPost(id: String) {
+    getPost(id: any) {
         type receivedPostType = { success: String, post: any };
         this.httpClient.get<receivedPostType>(`http://localhost:3000/post/${id}`)
             .pipe(
                 map(
                     (data) => {
-                        return data.post.map(
-                            (post) => {
-                                return {
-                                    id: post._id,
-                                    title: post.title,
-                                    content: post.content
-                                }
-                            }
-                        )
+                        return {
+                            id: data.post._id,
+                            title: data.post.title,
+                            content: data.post.content
+                        }
                     }
                 )
             )
             .subscribe(
                 (transformedPost) => {
-                    this.nextSinglePost.next(transformedPost);
+                    this.post = transformedPost;
+                    this.nextSinglePost.next({ ...this.post });
                 }
             )
+    }
+
+    getOnePost() {
+        return this.nextSinglePost.asObservable();
     }
 
     getUpdatedPosts() {

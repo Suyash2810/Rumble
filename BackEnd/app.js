@@ -86,6 +86,7 @@ app.get('/post/:id', async (request, response) => {
   let post = await Post.findById(id);
 
   if (post) {
+    console.log(post);
     response.status(200).send({
       success: "The post has been fetched from the database.",
       post: post
