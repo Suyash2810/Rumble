@@ -11,9 +11,9 @@ import { mimeType } from './mime-type.validator';
 })
 export class PostCreateComponent implements OnInit {
 
-  title: String = " ";
-  content: String = " ";
-  previewImage: String = " ";
+  title: string = " ";
+  content: string = " ";
+  previewImage: string = " ";
   form: FormGroup;
 
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
@@ -33,7 +33,7 @@ export class PostCreateComponent implements OnInit {
     this.form.get('image').updateValueAndValidity();
     const reader = new FileReader();
     reader.onload = () => {
-      this.previewImage = (reader.result as String);
+      this.previewImage = (reader.result as string);
     }
     reader.readAsDataURL(file);
   }
@@ -41,7 +41,7 @@ export class PostCreateComponent implements OnInit {
   onSubmit() {
     this.title = this.form.value.title;
     this.content = this.form.value.content;
-    this.postService.addPost(this.title, this.content);
+    this.postService.addPost(this.title, this.content, this.form.value.image);
     this.form.reset();
     this.router.navigate(['..'], { relativeTo: this.route });
   }

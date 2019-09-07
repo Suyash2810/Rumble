@@ -72,9 +72,14 @@ export class PostService {
         return this.nextUpdatedPost.asObservable();
     }
 
-    addPost(title: String, content: String) {
-        let postData: Post = new PostModel(null, title, content);
-        type responseType = { message: String, post: any };
+    addPost(title: string, content: string, image: File) {
+        // let postData: Post = new PostModel(null, title, content);
+        let postData = new FormData();
+        postData.append("title", title);
+        postData.append("content", content);
+        postData.append("image", image, title);
+
+        type responseType = { message: string, post: any };
         this.httpClient.post<responseType>('http://localhost:3000/posts', postData)
             .subscribe(
                 (result) => {

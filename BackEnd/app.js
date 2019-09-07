@@ -44,7 +44,7 @@ const storage = multer.diskStorage({
       error = null;
     }
 
-    callback(error, '/BackEnd/images');
+    callback(error, './BackEnd/images');
   },
   filename: (request, file, callback) => {
     const filename = file.originalname.toLowerCase().split(' ').join('_');
@@ -54,7 +54,7 @@ const storage = multer.diskStorage({
 })
 
 
-app.get('/', multer(storage).single('image'), (request, response) => {
+app.get('/', (request, response) => {
 
   response.send({
     success: "The server is listening at port.",
@@ -72,7 +72,9 @@ app.get('/posts', async (request, response) => {
   });
 });
 
-app.post('/posts', (request, response) => {
+app.post('/posts', multer({
+  storage: storage
+}).single('image'), (request, response) => {
 
   let body = _.pick(request.body, ['title', 'content']);
 
