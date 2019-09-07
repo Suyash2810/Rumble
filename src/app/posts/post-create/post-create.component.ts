@@ -12,6 +12,7 @@ export class PostCreateComponent implements OnInit {
 
   title: String = " ";
   content: String = " ";
+  previewImage: String = " ";
   form: FormGroup;
 
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
@@ -29,8 +30,11 @@ export class PostCreateComponent implements OnInit {
     const file = (event.target as HTMLInputElement).files[0];
     this.form.patchValue({ image: file });
     this.form.get('image').updateValueAndValidity();
-    console.log(this.form);
-    console.log(file);
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.previewImage = (reader.result as String);
+    }
+    reader.readAsDataURL(file);
   }
 
   onSubmit() {

@@ -13,6 +13,9 @@
           <button mat-stroked-button type="button" (click)="filePicker.click()">Upload Image</button>
           <input type="file" #filePicker (change)="uploadImage($event)">
         </div>
+        <div id="imagePreview" *ngIf="previewImage !== ' ' && previewImage !== null">
+          <img [src]="previewImage" [alt]="form.value.title">
+        </div>
         <mat-form-field class="example-full-width">
           <label for="content">Content</label>
           <input matInput type="text" [formControlName]="'content'">
