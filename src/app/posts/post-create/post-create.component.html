@@ -11,7 +11,7 @@
         </mat-error>
         <div>
           <button mat-stroked-button type="button" (click)="filePicker.click()">Upload Image</button>
-          <input type="file" #filePicker>
+          <input type="file" #filePicker (change)="uploadImage($event)">
         </div>
         <mat-form-field class="example-full-width">
           <label for="content">Content</label>
