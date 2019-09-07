@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormGroup, FormControl, Validators } from '@angular/forms';
 import { PostService } from '../posts.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -17,11 +17,17 @@ export class PostEditComponent implements OnInit, OnDestroy {
   contentData: String;
   requestedPost: Subscription;
   isLoading: Boolean = false;
-  @ViewChild('f') postForm: NgForm;
+  form: FormGroup;
 
   constructor(private postService: PostService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+
+    this.form = new FormGroup({
+      title: new FormControl(null, { validators: [Validators.required] }),
+      content: new FormControl(null, { validators: [Validators.required] })
+    });
+
     this.isLoading = true;
     this.route.params
       .subscribe(
@@ -41,10 +47,10 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.titleData = this.postForm.value.title;
-    this.contentData = this.postForm.value.content;
+    this.titleData = this.form.value.title;
+    this.contentData = this.form.value.content;
     this.postService.updatePost(this.id, this.titleData, this.contentData);
-    this.postForm.reset();
+    this.form.reset();
     this.router.navigate(['/']);
   }
 

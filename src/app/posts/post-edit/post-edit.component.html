@@ -2,21 +2,19 @@
   <div class="col-md-12">
     <mat-card class="border border-info">
       <mat-spinner *ngIf="isLoading"></mat-spinner>
-      <form (ngSubmit)="onSubmit()" #f="ngForm">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
         <mat-form-field class="example-full-width">
           <label for="title">Title</label>
-          <input matInput type="text" id="title" ngModel name="title" required #title="ngModel" minlength="3"
-            value="{{titleData}}">
+          <input matInput type="text" name="title" formControlName="title" value="{{titleData}}">
         </mat-form-field>
-        <mat-error *ngIf="!title.valid && title.touched">
+        <mat-error *ngIf="!form.get('title').valid && form.get('title').touched">
           Update the title.
         </mat-error>
         <mat-form-field class="example-full-width">
           <label for="content">Content</label>
-          <input matInput type="email" id="content" ngModel name="content" required #content="ngModel"
-            value="{{contentData}}">
+          <input matInput type="text" name="content" formControlName="content" value="{{contentData}}">
         </mat-form-field>
-        <mat-error *ngIf="!content.valid && content.touched">Update the content</mat-error>
+        <mat-error *ngIf="!form.get('content').valid && form.get('content').touched">Update the content</mat-error>
         <br><br>
         <button mat-raised-button color="primary" type="submit">Edit</button>
       </form>

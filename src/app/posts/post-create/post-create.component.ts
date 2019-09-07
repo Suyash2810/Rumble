@@ -1,5 +1,5 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { NgForm } from "@angular/forms";
+import { Component, OnInit } from "@angular/core";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { PostService } from "../posts.service";
 import { ActivatedRoute, Router } from "@angular/router";
 
@@ -12,17 +12,23 @@ export class PostCreateComponent implements OnInit {
 
   title: String = " ";
   content: String = " ";
-  @ViewChild('f') postForm: NgForm;
+  form: FormGroup;
 
   constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+
+    this.form = new FormGroup({
+      title: new FormControl(null, { validators: [Validators.required] }),
+      content: new FormControl(null, { validators: [Validators.required] })
+    })
+  }
 
   onSubmit() {
-    this.title = this.postForm.value.title;
-    this.content = this.postForm.value.content;
+    this.title = this.form.value.title;
+    this.content = this.form.value.content;
     this.postService.addPost(this.title, this.content);
-    this.postForm.reset();
+    this.form.reset();
     this.router.navigate(['..'], { relativeTo: this.route });
   }
 }

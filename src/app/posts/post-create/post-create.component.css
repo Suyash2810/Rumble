@@ -11,3 +11,7 @@
 mat-card {
   margin: 1rem auto;
 }
+
+input[type="file"] {
+  visibility: hidden;
+}
