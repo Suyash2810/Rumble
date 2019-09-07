@@ -16,11 +16,13 @@ export class PostEditComponent implements OnInit, OnDestroy {
   titleData: String;
   contentData: String;
   requestedPost: Subscription;
+  isLoading: Boolean = false;
   @ViewChild('f') postForm: NgForm;
 
   constructor(private postService: PostService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
+    this.isLoading = true;
     this.route.params
       .subscribe(
         (params: Params) => {
@@ -33,6 +35,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
       (post: Post) => {
         this.titleData = post.title;
         this.contentData = post.content;
+        this.isLoading = false;
       }
     );
   }

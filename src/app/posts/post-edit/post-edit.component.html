@@ -1,6 +1,7 @@
 <div class="row" id="post_create_component_row">
   <div class="col-md-12">
     <mat-card class="border border-info">
+      <mat-spinner *ngIf="isLoading"></mat-spinner>
       <form (ngSubmit)="onSubmit()" #f="ngForm">
         <mat-form-field class="example-full-width">
           <label for="title">Title</label>
@@ -8,16 +9,16 @@
             value="{{titleData}}">
         </mat-form-field>
         <mat-error *ngIf="!title.valid && title.touched">
-          Title is not valid. Enter a valid title.
+          Update the title.
         </mat-error>
         <mat-form-field class="example-full-width">
           <label for="content">Content</label>
           <input matInput type="email" id="content" ngModel name="content" required #content="ngModel"
             value="{{contentData}}">
         </mat-form-field>
-        <mat-error *ngIf="!content.valid && content.touched">Enter the content</mat-error>
+        <mat-error *ngIf="!content.valid && content.touched">Update the content</mat-error>
         <br><br>
-        <button mat-raised-button color="primary" type="submit" [disabled]="!f.valid">Post</button>
+        <button mat-raised-button color="primary" type="submit">Edit</button>
       </form>
     </mat-card>
   </div>

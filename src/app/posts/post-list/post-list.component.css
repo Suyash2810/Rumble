@@ -10,3 +10,7 @@ mat-expansion-panel {
 mat-accordion {
   margin: 1rem auto;
 }
+
+mat-spinner {
+  margin: auto;
+}
