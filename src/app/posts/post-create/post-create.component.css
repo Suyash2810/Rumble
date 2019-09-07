@@ -24,7 +24,3 @@ input[type="file"] {
 #imagePreview img {
   max-height: 100%;
 }
-
-#uploadBtn {
-  margin: auto;
-}
