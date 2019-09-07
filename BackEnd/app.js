@@ -16,6 +16,8 @@ const {
   Post
 } = require('./models/post');
 
+const multer = require('multer');
+
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
   extended: false
@@ -28,7 +30,31 @@ app.use((request, response, next) => {
   next();
 });
 
-app.get('/', (request, response) => {
+const MIME_TYPE_MAP = {
+  "image/png": "png",
+  "image/jpeg": "jpg",
+  "image/jpg": "jpg"
+}
+
+const storage = multer.diskStorage({
+  destination: (request, file, callback) => {
+    const isValid = MIME_TYPE_MAP[file.mimetype];
+    let error = new Error("MIME type error.");
+    if (isValid) {
+      error = null;
+    }
+
+    callback(error, '/BackEnd/images');
+  },
+  filename: (request, file, callback) => {
+    const filename = file.originalname.toLowerCase().split(' ').join('_');
+    const ext = MIME_TYPE_MAP[file.mimetype];
+    callback(null, filename + "_" + Date.now() + "." + ext);
+  }
+})
+
+
+app.get('/', multer(storage).single('image'), (request, response) => {
 
   response.send({
     success: "The server is listening at port.",
