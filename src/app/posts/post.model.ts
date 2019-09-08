@@ -1,18 +1,21 @@
 export interface Post {
-    id: String,
-    title: String,
-    content: String
+    id: string,
+    title: string,
+    content: string,
+    imagePath: string
 }
 
 export class PostModel implements Post {
 
-    title: String;
-    content: String;
-    id: String;
+    title: string;
+    content: string;
+    id: string;
+    imagePath: string;
 
-    constructor(id: String, title: String, content: String) {
+    constructor(id: string, title: string, content: string, imagePath: string) {
         this.title = title;
         this.content = content;
         this.id = id;
+        this.imagePath = imagePath;
     }
 }

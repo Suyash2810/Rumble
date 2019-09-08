@@ -30,6 +30,8 @@ app.use((request, response, next) => {
   next();
 });
 
+app.use(express.static(__dirname + "/public"));
+
 const MIME_TYPE_MAP = {
   "image/png": "png",
   "image/jpeg": "jpg",
@@ -44,7 +46,7 @@ const storage = multer.diskStorage({
       error = null;
     }
 
-    callback(error, './BackEnd/images');
+    callback(error, './BackEnd/public/images');
   },
   filename: (request, file, callback) => {
     const filename = file.originalname.toLowerCase().split(' ').join('_');
@@ -77,10 +79,12 @@ app.post('/posts', multer({
 }).single('image'), (request, response) => {
 
   let body = _.pick(request.body, ['title', 'content']);
+  const url = request.protocol + "://" + request.get("host");
 
   let postBody = {
     title: body.title,
-    content: body.content
+    content: body.content,
+    imagePath: url + "/images/" + request.file.filename
   }
 
   let post = new Post(postBody);
@@ -94,7 +98,12 @@ app.post('/posts', multer({
       } else {
         response.status(201).send({
           message: "The data was stored successfully",
-          post: result
+          post: {
+            id: result._id,
+            title: result.title,
+            content: result.content,
+            imagePath: result.imagePath
+          }
         })
       }
     }

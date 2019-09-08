@@ -51,7 +51,8 @@ export class PostService {
                         return {
                             id: data.post._id,
                             title: data.post.title,
-                            content: data.post.content
+                            content: data.post.content,
+                            imagePath: data.post.imagePath
                         }
                     }
                 )
@@ -79,17 +80,19 @@ export class PostService {
         postData.append("content", content);
         postData.append("image", image, title);
 
-        type responseType = { message: string, post: any };
+        type responseType = { message: string, post: Post };
         this.httpClient.post<responseType>('http://localhost:3000/posts', postData)
             .subscribe(
                 (result) => {
                     console.log(result.post);
-                    let post: Post = {
-                        id: result.post._id,
+                    const postSave: Post = {
+                        id: result.post.id,
                         title: result.post.title,
-                        content: result.post.content
-                    };
-                    this.posts.push(post);
+                        content: result.post.content,
+                        imagePath: result.post.imagePath
+                    }
+
+                    this.posts.push(postSave);
                     this.nextUpdatedPost.next([...this.posts]);
                 }
             )
@@ -123,7 +126,8 @@ export class PostService {
                         return {
                             id: result.post._id,
                             title: result.post.title,
-                            content: result.post.content
+                            content: result.post.content,
+                            imagePath: null
                         }
                     }
                 )
