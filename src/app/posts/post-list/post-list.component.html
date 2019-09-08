@@ -10,7 +10,8 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     {{post.content}}
-
+    <img [src]="post.imagePath" alt="post.title" width="100px" height="100px" class="img-responsive float-right">
+    <div style="clear: both;"></div>
     <mat-action-row>
       <button mat-button color="accent" [routerLink]="['/edit',post.id]">Edit</button>
       <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button>
