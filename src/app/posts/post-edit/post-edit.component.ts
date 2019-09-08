@@ -4,6 +4,7 @@ import { PostService } from '../posts.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from '../post.model';
+import { mimeType } from '../post-create/mime-type.validator';
 
 @Component({
   selector: 'app-post-edit',
@@ -12,9 +13,10 @@ import { Post } from '../post.model';
 })
 export class PostEditComponent implements OnInit, OnDestroy {
 
-  id: String;
-  titleData: String;
-  contentData: String;
+  id: string;
+  titleData: string;
+  contentData: string;
+  imagePreview: string;
   requestedPost: Subscription;
   isLoading: Boolean = false;
   form: FormGroup;
@@ -25,7 +27,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
 
     this.form = new FormGroup({
       title: new FormControl(null, { validators: [Validators.required] }),
-      content: new FormControl(null, { validators: [Validators.required] })
+      content: new FormControl(null, { validators: [Validators.required] }),
+      image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
     });
 
     this.isLoading = true;
@@ -54,6 +57,17 @@ export class PostEditComponent implements OnInit, OnDestroy {
     this.router.navigate(['/']);
   }
 
+  onUpload(event: Event) {
+    const file = (event.target as HTMLInputElement).files[0];
+    this.form.patchValue({ image: file });
+    this.form.get('image').updateValueAndValidity();
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = (reader.result as string)
+    }
+    reader.readAsDataURL(file);
+  }
+  
   ngOnDestroy() {
     this.requestedPost.unsubscribe();
   }

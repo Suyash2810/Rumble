@@ -27,7 +27,8 @@ export class PostService {
                                 return {
                                     id: post._id,
                                     title: post.title,
-                                    content: post.content
+                                    content: post.content,
+                                    imagePath: post.imagePath
                                 }
                             }
                         )

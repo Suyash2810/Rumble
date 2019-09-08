@@ -10,6 +10,13 @@
         <mat-error *ngIf="!form.get('title').valid && form.get('title').touched">
           Update the title.
         </mat-error>
+        <div>
+          <button mat-stroked-button type="button" (click)="fileUploader.click()">Upload File</button>
+          <input type="file" (change)="onUpload($event)" #fileUploader>
+        </div>
+        <div id="imagePreview" *ngIf="imagePreview !== ' ' && imagePreview !== null && form.get('image').valid">
+          <img [src]="imagePreview" [alt]="form.value.title">
+        </div>
         <mat-form-field class="example-full-width">
           <label for="content">Content</label>
           <input matInput type="text" name="content" formControlName="content" value="{{contentData}}">
