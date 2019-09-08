@@ -11,6 +11,11 @@
           Update the title.
         </mat-error>
         <div>
+          <code>Current Image</code>
+          <br>
+          <img [src]="imageData" [alt]="form.value.title" width="100px" height="100px" class="img-responsive">
+        </div>
+        <div>
           <button mat-stroked-button type="button" (click)="fileUploader.click()">Upload File</button>
           <input type="file" (change)="onUpload($event)" #fileUploader>
         </div>

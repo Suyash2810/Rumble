@@ -16,6 +16,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   id: string;
   titleData: string;
   contentData: string;
+  imageData: string;
   imagePreview: string;
   requestedPost: Subscription;
   isLoading: Boolean = false;
@@ -44,6 +45,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
       (post: Post) => {
         this.titleData = post.title;
         this.contentData = post.content;
+        this.imageData = post.imagePath;
         this.isLoading = false;
       }
     );
@@ -67,7 +69,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     }
     reader.readAsDataURL(file);
   }
-  
+
   ngOnDestroy() {
     this.requestedPost.unsubscribe();
   }
