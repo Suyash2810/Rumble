@@ -110,14 +110,14 @@ export class PostService {
             );
     }
 
-    updatePost(id: String, title: String, content: String) {
+    updatePost(id: string, title: string, content: string, image: File) {
 
-        const postData = {
-            title: title,
-            content: content
-        }
+        const postData = new FormData();
+        postData.append("title", title);
+        postData.append("content", content);
+        postData.append("image", image);
 
-        type updateResponseType = { success: String, post: any };
+        type updateResponseType = { success: string, post: any };
 
         this.httpClient.patch<updateResponseType>('http://localhost:3000/posts/' + id, postData)
             .pipe(
@@ -128,7 +128,7 @@ export class PostService {
                             id: result.post._id,
                             title: result.post.title,
                             content: result.post.content,
-                            imagePath: null
+                            imagePath: result.post.imagePath
                         }
                     }
                 )

@@ -152,10 +152,18 @@ app.delete('/posts/:id', (request, response) => {
       });
 });
 
-app.patch('/posts/:id', (request, response) => {
+app.patch('/posts/:id', multer({
+  storage: storage
+}).single('image'), (request, response) => {
 
   let id = request.params.id;
-  let postBody = request.body;
+  let body = _.pick(request.body, ['title', 'content']);
+  const url = request.protocol + "://" + request.get("host");
+
+  let postBody = {
+    ...body,
+    imagePath: url + "/images/" + request.file.filename
+  }
   console.log(postBody);
 
   Post.findOneAndUpdate({
