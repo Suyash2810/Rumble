@@ -66,12 +66,23 @@ app.get('/', (request, response) => {
 
 app.get('/posts', async (request, response) => {
 
-  let posts = await Post.find({});
+  const pageSize = +request.query.pagesize;
+  const currentPage = +request.query.page;
+  const query = Post.find({});
+  if (pageSize && currentPage) {
+    query
+      .skip(pageSize * (currentPage - 1))
+      .limit(pageSize);
+  }
 
-  response.json({
-    status: "The data was sent successfully.",
-    content: posts
-  });
+  query.then(
+    (posts) => {
+      response.json({
+        status: "The data was sent successfully",
+        content: posts
+      })
+    }
+  )
 });
 
 app.post('/posts', multer({
