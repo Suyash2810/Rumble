@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
 import { PostService } from '../posts.service';
+import { PageEvent } from "@angular/material";
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,6 +14,9 @@ export class PostListComponent implements OnInit, OnDestroy {
   posts: Array<Post> = [];
   postsUpdated: Subscription;
   isLoading: Boolean = false;
+  totalPosts: number = 10;
+  postPerPage: number = 2;
+  postSize: Array<number> = [1, 2, 5, 10];
 
   constructor(private postService: PostService) { }
 
@@ -29,6 +33,10 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   onDelete(id: String) {
     this.postService.deletePost(id);
+  }
+
+  pageUpdateFunc(page: PageEvent) {
+    console.log(page);
   }
 
   ngOnDestroy() {

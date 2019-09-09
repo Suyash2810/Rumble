@@ -23,6 +23,16 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion>
+<br>
+<div id="paginator">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3" style="margin:auto;">
+      <mat-paginator [length]="totalPosts" [pageSize]="postPerPage" [pageSizeOptions]="postSize"
+        (page)="pageUpdateFunc($event)">
+      </mat-paginator>
+    </div>
+  </div>
+</div>
 <ng-template #noPostsBlock>
   <p class="noPostMessage mat-body-1">No posts have been added.</p>
 </ng-template>

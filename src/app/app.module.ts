@@ -4,7 +4,15 @@ import { AppComponent } from "./app.component";
 import { PostCreateComponent } from "./posts/post-create/post-create.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MatInputModule, MatCardModule, MatToolbarModule, MatExpansionModule, MatButtonModule, MatProgressSpinnerModule } from '@angular/material';
+import {
+  MatInputModule,
+  MatCardModule,
+  MatToolbarModule,
+  MatExpansionModule,
+  MatButtonModule,
+  MatProgressSpinnerModule,
+  MatPaginatorModule
+} from '@angular/material';
 import { HeaderComponent } from './header/header.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -31,6 +39,7 @@ import { PostEditComponent } from './posts/post-edit/post-edit.component';
     MatExpansionModule,
     MatButtonModule,
     MatProgressSpinnerModule,
+    MatPaginatorModule,
     HttpClientModule
   ],
   providers: [],
