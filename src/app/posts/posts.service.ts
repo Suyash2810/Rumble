@@ -108,15 +108,18 @@ export class PostService {
     }
 
     deletePost(id: String) {
-        this.httpClient.delete('http://localhost:3000/posts/' + id)
+        return this.httpClient.delete('http://localhost:3000/posts/' + id);
+        /* 
             .subscribe(
                 (result) => {
-                    // const updatedPosts = this.posts.filter(post => post.id !== id);
-                    // this.posts = updatedPosts;
-                    // this.nextUpdatedPost.next([...this.posts]);
+                    const updatedPosts = this.posts.filter(post => post.id !== id);
+                    this.posts = updatedPosts;
+                    this.nextUpdatedPost.next([...this.posts]);
                     console.log(result);
                 }
-            );
+            )
+        */
+        //Previous subscription procedure used.
     }
 
     updatePost(id: string, title: string, content: string, image: File) {
