@@ -16,9 +16,12 @@ export class PostService {
     constructor(private httpClient: HttpClient) {
     }
 
-    getPosts() {
+    getPosts(pageSize: number, currentPageIndex: number) {
+        const pagesize = pageSize;
+        const page = currentPageIndex;
+        const queryParams = `?pagesize=${pagesize}&page=${page}`;
         type recievedPostType = { status: String, content: any };
-        this.httpClient.get<recievedPostType>('http://localhost:3000/posts')
+        this.httpClient.get<recievedPostType>('http://localhost:3000/posts' + queryParams)
             .pipe(
                 map(
                     (posts) => {
