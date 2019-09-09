@@ -26,8 +26,9 @@ export class PostListComponent implements OnInit, OnDestroy {
     console.log(this.postPerPage + " " + this.currentIndex);
     this.postService.getPosts(this.postPerPage, this.currentIndex);
     this.postsUpdated = this.postService.getUpdatedPosts().subscribe(
-      (posts: Array<Post>) => {
-        this.posts = posts;
+      (data: { posts: Array<Post>, postsCount: number }) => {
+        this.posts = data.posts;
+        this.totalPosts = data.postsCount;
         this.isLoading = false;
       }
     )
@@ -44,8 +45,9 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.isLoading = true;
     this.postService.getPosts(this.postPerPage, this.currentIndex);
     this.postsUpdated = this.postService.getUpdatedPosts().subscribe(
-      (posts: Array<Post>) => {
-        this.posts = posts;
+      (data: { posts: Array<Post>, postsCount: number }) => {
+        this.posts = data.posts;
+        this.totalPosts = data.postsCount;
         this.isLoading = false;
       }
     )

@@ -10,7 +10,7 @@ export class PostService {
 
     private posts: Array<Post> = [];
     private post: Post;
-    private nextUpdatedPost = new Subject<Array<Post>>();
+    private nextUpdatedPost = new Subject<{ posts: Array<Post>, postsCount: number }>();
     private nextSinglePost = new Subject<Post>();
 
     constructor(private httpClient: HttpClient) {
@@ -20,28 +20,33 @@ export class PostService {
         const pagesize = pageSize;
         const page = currentPageIndex;
         const queryParams = `?pagesize=${pagesize}&page=${page}`;
-        type recievedPostType = { status: String, content: any };
+        type recievedPostType = { status: string, content: any, maxPosts: number };
         this.httpClient.get<recievedPostType>('http://localhost:3000/posts' + queryParams)
             .pipe(
                 map(
                     (posts) => {
-                        return posts.content.map(
-                            (post) => {
-                                return {
-                                    id: post._id,
-                                    title: post.title,
-                                    content: post.content,
-                                    imagePath: post.imagePath
+                        console.log(posts.maxPosts);
+                        return {
+                            posts: posts.content.map(
+                                (post) => {
+                                    return {
+                                        id: post._id,
+                                        title: post.title,
+                                        content: post.content,
+                                        imagePath: post.imagePath
+                                    }
                                 }
-                            }
-                        )
+                            ),
+                            maxposts: posts.maxPosts
+                        }
                     }
                 )
             )
             .subscribe(
                 (transformedPostData) => {
-                    this.posts = transformedPostData;
-                    this.nextUpdatedPost.next([...this.posts]);
+                    this.posts = transformedPostData.posts;
+                    console.log(transformedPostData.maxposts);
+                    this.nextUpdatedPost.next({ posts: [...this.posts], postsCount: transformedPostData.maxposts });
                 }
             )
     }
@@ -89,15 +94,15 @@ export class PostService {
             .subscribe(
                 (result) => {
                     console.log(result.post);
-                    const postSave: Post = {
-                        id: result.post.id,
-                        title: result.post.title,
-                        content: result.post.content,
-                        imagePath: result.post.imagePath
-                    }
+                    // const postSave: Post = {
+                    //     id: result.post.id,
+                    //     title: result.post.title,
+                    //     content: result.post.content,
+                    //     imagePath: result.post.imagePath
+                    // }
 
-                    this.posts.push(postSave);
-                    this.nextUpdatedPost.next([...this.posts]);
+                    // this.posts.push(postSave);
+                    // this.nextUpdatedPost.next([...this.posts]);
                 }
             )
     }
@@ -106,9 +111,10 @@ export class PostService {
         this.httpClient.delete('http://localhost:3000/posts/' + id)
             .subscribe(
                 (result) => {
-                    const updatedPosts = this.posts.filter(post => post.id !== id);
-                    this.posts = updatedPosts;
-                    this.nextUpdatedPost.next([...this.posts]);
+                    // const updatedPosts = this.posts.filter(post => post.id !== id);
+                    // this.posts = updatedPosts;
+                    // this.nextUpdatedPost.next([...this.posts]);
+                    console.log(result);
                 }
             );
     }
@@ -138,10 +144,11 @@ export class PostService {
             )
             .subscribe(
                 (transformedPost) => {
-                    const updatedPosts = this.posts.filter(post => post.id !== id);
-                    updatedPosts.push(transformedPost);
-                    this.posts = updatedPosts;
-                    this.nextUpdatedPost.next([...this.posts]);
+                    // const updatedPosts = this.posts.filter(post => post.id !== id);
+                    // updatedPosts.push(transformedPost);
+                    // this.posts = updatedPosts;
+                    // this.nextUpdatedPost.next([...this.posts]);
+                    console.log(transformedPost);
                 }
             )
     }

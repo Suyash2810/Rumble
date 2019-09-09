@@ -69,20 +69,31 @@ app.get('/posts', async (request, response) => {
   const pageSize = +request.query.pagesize;
   const currentPage = +request.query.page;
   const query = Post.find({});
+  var fetchedPosts;
+
   if (pageSize && currentPage) {
     query
       .skip(pageSize * (currentPage - 1))
       .limit(pageSize);
   }
 
-  query.then(
-    (posts) => {
-      response.json({
-        status: "The data was sent successfully",
-        content: posts
-      })
-    }
-  )
+  query
+    .then(
+      (posts) => {
+        fetchedPosts = posts;
+        return Post.count();
+      }
+    )
+    .then(
+      (count) => {
+        console.log("Total number of posts in the database are: " + count);
+        response.json({
+          status: "The data was sent successfully",
+          content: fetchedPosts,
+          maxPosts: count
+        })
+      }
+    )
 });
 
 app.post('/posts', multer({
