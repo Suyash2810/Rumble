@@ -1,20 +1,23 @@
 <div class="row" id="sign_in">
   <div class="col-md-12">
     <mat-card class="border border-info">
-      <form>
+      <form (submit)="onSubmit()" #f="ngForm">
         <mat-form-field class="example-full-width">
           <label for="email">Email</label>
-          <input matInput type="email">
+          <input matInput type="email" id="email" name="email" ngModel #emailCheck="ngModel" required minlength="6">
         </mat-form-field>
-        <!-- <mat-error *ngIf="">
-          Title is not valid. Enter a valid title.
-        </mat-error> -->
+        <mat-error *ngIf="!emailCheck.valid && emailCheck.touched">
+          Email is not valid. Enter again.
+        </mat-error>
 
         <mat-form-field class="example-full-width">
           <label for="password">Password</label>
-          <input matInput type="password">
+          <input matInput type="password" id="password" name="password" ngModel #passwordCheck="ngModel" required
+            minlength="6">
         </mat-form-field>
-
+        <mat-error *ngIf="!passwordCheck.valid && passwordCheck.touched">
+          Password is not valid. Enter again.
+        </mat-error>
         <br><br>
         <button mat-raised-button color="primary" type="submit">Login</button>
       </form>

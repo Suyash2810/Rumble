@@ -86,7 +86,7 @@ app.get('/posts', async (request, response) => {
     )
     .then(
       (count) => {
-        console.log("Total number of posts in the database are: " + count);
+
         response.json({
           status: "The data was sent successfully",
           content: fetchedPosts,
