@@ -18,6 +18,8 @@ import { PostListComponent } from './posts/post-list/post-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from "./app-routing.module";
 import { PostEditComponent } from './posts/post-edit/post-edit.component';
+import { SigninComponent } from './auth/signin/signin.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +27,9 @@ import { PostEditComponent } from './posts/post-edit/post-edit.component';
     PostCreateComponent,
     HeaderComponent,
     PostListComponent,
-    PostEditComponent
+    PostEditComponent,
+    SigninComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,
