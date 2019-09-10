@@ -15,6 +15,10 @@ schema
   .is().not().oneOf(['Passw0rd', 'Password123', 'Password']); // Blacklist these values
 
 var userSchema = new mongoose.Schema({
+  username: {
+    type: String,
+    required: true
+  },
   email: {
     type: String,
     required: true,
@@ -37,11 +41,11 @@ var userSchema = new mongoose.Schema({
   }
 });
 
-userSchema.method.toJSON = function () {
+userSchema.methods.toJSON = function () {
   var user = this;
 
   let userObj = user.toObject();
-  let userBody = _.pick(userObj, ['_id', 'email']);
+  let userBody = _.pick(userObj, ['_id', 'username', 'email']);
 
   return userBody;
 }

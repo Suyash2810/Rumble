@@ -3,6 +3,14 @@
     <mat-card class="border border-info">
       <form (submit)="onSubmit()" #f="ngForm">
         <mat-form-field class="example-full-width">
+          <label for="username">Username</label>
+          <input matInput type="text" id="username" name="username" ngModel #usernameCheck="ngModel" required
+            minlength="6">
+        </mat-form-field>
+        <mat-error *ngIf="!usernameCheck.valid && usernameCheck.touched">
+          Username is not valid. Enter again.
+        </mat-error>
+        <mat-form-field class="example-full-width">
           <label for="email">Email</label>
           <input matInput type="email" id="email" name="email" ngModel #emailCheck="ngModel" required minlength="6">
         </mat-form-field>

@@ -219,7 +219,7 @@ app.patch('/posts/:id', multer({
 
 app.post('/user', (request, response) => {
 
-  let body = _.pick(request.body, ['email', 'password']);
+  let body = _.pick(request.body, ['username', 'email', 'password']);
   let user = new User(body);
 
   user.save().then(
