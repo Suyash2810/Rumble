@@ -13,6 +13,14 @@
   text-decoration: none;
 }
 
+ul {
+  display: inline;
+}
+
+ul li {
+  float: left;
+}
+
 .spacer {
   flex: 1 1 auto;
 }

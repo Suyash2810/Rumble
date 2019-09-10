@@ -1,0 +1,13 @@
+.example-full-width {
+  width: 100%;
+}
+
+.mat-card {
+  width: 50%;
+  text-align: center;
+}
+
+#sign_in,
+mat-card {
+  margin: 1rem auto;
+}

@@ -1,3 +1,23 @@
-<p>
-  signin works!
-</p>
+<div class="row" id="sign_in">
+  <div class="col-md-12">
+    <mat-card class="border border-info">
+      <form>
+        <mat-form-field class="example-full-width">
+          <label for="email">Email</label>
+          <input matInput type="email">
+        </mat-form-field>
+        <!-- <mat-error *ngIf="">
+          Title is not valid. Enter a valid title.
+        </mat-error> -->
+
+        <mat-form-field class="example-full-width">
+          <label for="password">Password</label>
+          <input matInput type="password">
+        </mat-form-field>
+
+        <br><br>
+        <button mat-raised-button color="primary" type="submit">Login</button>
+      </form>
+    </mat-card>
+  </div>
+</div>
