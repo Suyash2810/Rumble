@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { map } from 'rxjs/operators';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-signup',
@@ -26,10 +28,22 @@ export class SignupComponent implements OnInit {
     this.password = this.form.value.password;
     this.username = this.form.value.username;
 
-    this.authService.createUser(this.username, this.email, this.password).subscribe(
-      (data) => {
-        console.log(data);
-      }
+    this.authService.createUser(this.username, this.email, this.password).pipe(
+      map(
+        (data) => {
+          return {
+            id: data.user._id,
+            username: data.user.username,
+            email: data.user.email
+          }
+        }
+      )
     )
+      .subscribe(
+        (transformedUserData) => {
+          let user: User = transformedUserData;
+          console.log(user);
+        }
+      )
   }
 }
