@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 var passwordValidator = require('password-validator');
+const bcrypt = require('bcrypt');
+const _ = require('lodash');
 
 var schema = new passwordValidator();
 schema
@@ -32,6 +34,31 @@ var userSchema = new mongoose.Schema({
       },
       message: "Password is not valid. The password of min length 6 must have an uppercase, lowercase letter and a digit with no spaces in between."
     }
+  }
+});
+
+userSchema.method.toJSON = function () {
+  var user = this;
+
+  let userObj = user.toObject();
+  let userBody = _.pick(userObj, ['_id', 'email']);
+
+  return userBody;
+}
+
+userSchema.pre('save', function (next) {
+  var user = this;
+
+  if (user.isModified('password')) {
+
+    bcrypt.genSalt(10, function (err, salt) {
+      bcrypt.hash(user.password, salt, function (err, hash) {
+        user.password = hash;
+        next();
+      });
+    });
+  } else {
+    next();
   }
 })
 
