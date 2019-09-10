@@ -64,6 +64,8 @@ app.get('/', (request, response) => {
   });
 });
 
+// ------------------------------Post Requests---------------------------------------//
+
 app.get('/posts', async (request, response) => {
 
   const pageSize = +request.query.pagesize;
@@ -208,5 +210,23 @@ app.patch('/posts/:id', multer({
   );
 
 });
+
+// ------------------------------User Requests---------------------------------------//
+
+app.post('/user', (request, response) => {
+
+  let body = _.pick(request.body, ['email', 'password']);
+  let user = new User(body);
+
+  user.save().then(
+    (result) => {
+      response.status(200).send({
+        success: "The data was saved successfully",
+        user: result
+      })
+    }
+  )
+});
+
 
 module.exports = app
