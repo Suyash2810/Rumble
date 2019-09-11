@@ -21,6 +21,7 @@ const {
 } = require('./models/user');
 
 const multer = require('multer');
+const jwt = require('jsonwebtoken');
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
@@ -231,6 +232,34 @@ app.post('/user', (request, response) => {
     }
   )
 });
+
+app.post('/auth/login', (request, response) => {
+
+  let body = _.pick(request.body, ['email', 'password']);
+
+  User.findUserWithEmailAndPassword(body.email, body.password).then(
+    (user) => {
+
+      let access = 'auth';
+      let token = jwt.sign({
+        _id: user._id.toHexString(),
+        access
+      }, process.env.JWT_SECRET).toString();
+
+      console.log(token);
+      response.cookie('authAccess', token);
+      response.status(200).send({
+        success: "The user has been logged in successfully",
+        user: user
+      });
+
+    }
+  ).catch(
+    (error) => {
+      console.log(error);
+    }
+  )
+})
 
 
 module.exports = app

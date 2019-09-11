@@ -64,7 +64,39 @@ userSchema.pre('save', function (next) {
   } else {
     next();
   }
-})
+});
+
+
+userSchema.statics.findUserWithEmailAndPassword = function (email, password) {
+  var User = this;
+
+  return User.findOne({
+    email: email
+  }).then(
+    (user) => {
+      if (!user) {
+        return Promise.reject("User was not found in the database.");
+      } else {
+
+        return new Promise(
+          (resolve, reject) => {
+            bcrypt.compare(password, user.password, (err, result) => {
+              if (result) {
+                resolve(user);
+              } else {
+                reject(err);
+              }
+            })
+          }
+        )
+      }
+    }
+  ).catch(
+    (err) => {
+      return Promise.reject(err);
+    }
+  )
+}
 
 const User = mongoose.model("User", userSchema);
 

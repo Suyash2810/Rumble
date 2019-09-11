@@ -15,4 +15,14 @@ export class AuthService {
 
         return this.http.post<responseType>('http://localhost:3000/user', data);
     }
+
+    loginUser(email: string, password: string) {
+        type responseType = { success: string, user: any };
+
+        let body = {
+            email, password
+        };
+
+        return this.http.post<responseType>('http://localhost:3000/auth/login', body);
+    }
 }
