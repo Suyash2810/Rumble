@@ -6,7 +6,13 @@ import { AuthUserModel, AuthUser } from "./authUser.model";
 
 export class AuthService {
 
+    private token: string;
+
     constructor(private http: HttpClient) { }
+
+    getToken() {
+        return this.token;
+    }
 
     createUser(username: string, email: string, password: string) {
 
@@ -23,6 +29,13 @@ export class AuthService {
             email, password
         };
 
-        return this.http.post<responseType>('http://localhost:3000/auth/login', body);
+        return this.http.post<responseType>('http://localhost:3000/auth/login', body)
+            .subscribe(
+                (data) => {
+                    const token = data.token;
+                    this.token = token;
+                    console.log(data);
+                }
+            )
     }
 }

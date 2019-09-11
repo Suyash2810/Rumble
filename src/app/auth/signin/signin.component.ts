@@ -24,11 +24,7 @@ export class SigninComponent implements OnInit {
     this.email = this.form.value.email;
     this.password = this.form.value.password;
 
-    this.authService.loginUser(this.email, this.password).subscribe(
-      (data) => {
-        console.log(data);
-      }
-    )
+    this.authService.loginUser(this.email, this.password);
   }
 
 }
