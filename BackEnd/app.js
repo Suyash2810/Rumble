@@ -23,6 +23,10 @@ const {
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
 
+const {
+  authorization
+} = require('./middleware/authorization');
+
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
   extended: false
@@ -103,7 +107,7 @@ app.get('/posts', async (request, response) => {
     )
 });
 
-app.post('/posts', multer({
+app.post('/posts', authorization, multer({
   storage: storage
 }).single('image'), (request, response) => {
 
@@ -163,7 +167,7 @@ app.get('/post/:id', async (request, response) => {
   }
 })
 
-app.delete('/posts/:id', (request, response) => {
+app.delete('/posts/:id', authorization, (request, response) => {
 
   let id = request.params.id;
 
@@ -181,7 +185,7 @@ app.delete('/posts/:id', (request, response) => {
       });
 });
 
-app.patch('/posts/:id', multer({
+app.patch('/posts/:id', authorization, multer({
   storage: storage
 }).single('image'), (request, response) => {
 
@@ -246,11 +250,10 @@ app.post('/auth/login', (request, response) => {
         access
       }, process.env.JWT_SECRET).toString();
 
-      console.log(token);
-      response.cookie('authAccess', token);
       response.status(200).send({
         success: "The user has been logged in successfully",
-        user: user
+        user: user,
+        token: token
       });
 
     }

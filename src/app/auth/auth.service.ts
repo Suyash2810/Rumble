@@ -17,7 +17,7 @@ export class AuthService {
     }
 
     loginUser(email: string, password: string) {
-        type responseType = { success: string, user: any };
+        type responseType = { success: string, user: any, token: string };
 
         let body = {
             email, password
