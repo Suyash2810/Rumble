@@ -14,3 +14,7 @@ mat-accordion {
 mat-spinner {
   margin: auto;
 }
+
+.view {
+  display: none;
+}

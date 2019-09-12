@@ -9,6 +9,7 @@ export class AuthService {
 
     private token: string;
     private authenticatedListener = new Subject<boolean>();
+    isAuthenticated: boolean = false;
 
     constructor(private http: HttpClient) { }
 
@@ -18,6 +19,10 @@ export class AuthService {
 
     getAuthenticatedListener() {
         return this.authenticatedListener.asObservable();
+    }
+
+    getAuth() {
+        return this.isAuthenticated;
     }
 
     createUser(username: string, email: string, password: string) {
@@ -41,7 +46,11 @@ export class AuthService {
                     const token = data.token;
                     this.token = token;
                     console.log(data);
-                    this.authenticatedListener.next(true);
+                    if(token)
+                    {
+                        this.isAuthenticated = true;
+                        this.authenticatedListener.next(true);
+                    }
                 }
             )
     }
