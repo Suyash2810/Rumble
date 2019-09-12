@@ -12,6 +12,6 @@
     </li>
     <li><a mat-button routerLinkActive="mat-accent active" routerLink="/register"
         [ngClass]="{view: loggedIn}">Register</a></li>
-    <li><button mat-button [ngClass]="{view: !loggedIn}">Logout</button></li>
+    <li><button mat-button [ngClass]="{view: !loggedIn}" (click)="logout()">Logout</button></li>
   </ul>
 </mat-toolbar>

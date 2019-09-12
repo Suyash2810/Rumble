@@ -45,4 +45,9 @@ export class AuthService {
                 }
             )
     }
+
+    logoutUser() {
+        this.token = null;
+        this.authenticatedListener.next(false);
+    }
 }

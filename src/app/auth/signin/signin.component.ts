@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 
 @Component({
@@ -14,7 +15,7 @@ export class SigninComponent implements OnInit {
   password: string;
   @ViewChild('f') form: NgForm;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -25,6 +26,7 @@ export class SigninComponent implements OnInit {
     this.password = this.form.value.password;
 
     this.authService.loginUser(this.email, this.password);
+    this.router.navigate(['/'], { relativeTo: this.route });
   }
 
 }
