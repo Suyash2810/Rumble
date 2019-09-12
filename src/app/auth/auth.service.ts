@@ -10,6 +10,7 @@ export class AuthService {
     private token: string;
     private authenticatedListener = new Subject<boolean>();
     isAuthenticated: boolean = false;
+    tokenTimer: any;
 
     constructor(private http: HttpClient) { }
 
@@ -34,7 +35,7 @@ export class AuthService {
     }
 
     loginUser(email: string, password: string) {
-        type responseType = { success: string, user: any, token: string };
+        type responseType = { success: string, user: any, token: string, expiresIn: number };
 
         let body = {
             email, password
@@ -47,6 +48,14 @@ export class AuthService {
                     this.token = token;
                     console.log(data);
                     if (token) {
+                        const expiresIn = data.expiresIn;
+
+                        this.tokenTimer = setTimeout(
+                            () => {
+                                this.logoutUser();
+                            },
+                            expiresIn * 1000
+                        )
                         this.isAuthenticated = true;
                         this.authenticatedListener.next(true);
                     }
@@ -58,5 +67,6 @@ export class AuthService {
         this.token = null;
         this.isAuthenticated = false;
         this.authenticatedListener.next(false);
+        clearTimeout(this.tokenTimer);
     }
 }

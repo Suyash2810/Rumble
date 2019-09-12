@@ -248,12 +248,15 @@ app.post('/auth/login', (request, response) => {
       let token = jwt.sign({
         _id: user._id.toHexString(),
         access
-      }, process.env.JWT_SECRET).toString();
+      }, process.env.JWT_SECRET, {
+        expiresIn: '1h'
+      }).toString();
 
       response.status(200).send({
         success: "The user has been logged in successfully",
         user: user,
-        token: token
+        token: token,
+        expiresIn: 3600
       });
 
     }
