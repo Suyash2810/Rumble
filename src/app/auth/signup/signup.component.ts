@@ -3,6 +3,7 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { map } from 'rxjs/operators';
 import { User } from '../user.model';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -17,7 +18,7 @@ export class SignupComponent implements OnInit {
 
   @ViewChild('f') form: NgForm;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -44,6 +45,8 @@ export class SignupComponent implements OnInit {
           let user: User = transformedUserData;
           console.log(user);
         }
-      )
+      );
+
+    this.router.navigate(['../login'], { relativeTo: this.route });
   }
 }

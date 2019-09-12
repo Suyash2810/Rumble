@@ -3,6 +3,7 @@ import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { PostService } from "../posts.service";
 import { ActivatedRoute, Router } from "@angular/router";
 import { mimeType } from './mime-type.validator';
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-post-create",
@@ -15,8 +16,9 @@ export class PostCreateComponent implements OnInit {
   content: string = " ";
   previewImage: string = " ";
   form: FormGroup;
+  loggedIn: boolean = false;
 
-  constructor(private postService: PostService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private postService: PostService, private router: Router, private route: ActivatedRoute, private authService: AuthService) { }
 
   ngOnInit() {
 
@@ -24,7 +26,20 @@ export class PostCreateComponent implements OnInit {
       title: new FormControl(null, { validators: [Validators.required] }),
       content: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
-    })
+    });
+
+    this.loggedIn = this.authService.getAuth();
+    this.authService.getAuthenticatedListener().subscribe(
+      (logged) => {
+        if (logged) {
+          this.loggedIn = true;
+        }
+      }
+    )
+
+    if (!this.loggedIn) {
+      this.router.navigate(['/'], { relativeTo: this.route });
+    }
   }
 
   uploadImage(event: Event) {
