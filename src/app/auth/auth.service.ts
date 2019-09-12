@@ -46,15 +46,9 @@ export class AuthService {
                 (data) => {
                     const token = data.token;
                     this.token = token;
-                    console.log(data);
                     const expiresIn = data.expiresIn;
                     if (token) {
-                        this.tokenTimer = setTimeout(
-                            () => {
-                                this.logoutUser();
-                            },
-                            expiresIn * 1000
-                        );
+                        this.setAuthTimer(expiresIn);
                         const timeNow = new Date();
                         const expiryTime = new Date(timeNow.getTime() + expiresIn * 1000);
                         this.setAuthData(token, expiryTime);
@@ -64,6 +58,31 @@ export class AuthService {
                     }
                 }
             )
+    }
+
+    autoUpdateAuthUser() {
+        const dataFromStorage = this.getAuthData();
+        if (dataFromStorage) {
+            const nowTime = new Date();
+            const validTime = dataFromStorage.expiresIn.getTime() - nowTime.getDate();
+            if (validTime > 0) {
+                this.token = dataFromStorage.token;
+                this.isAuthenticated = true;
+                this.setAuthTimer(validTime / 1000);
+                this.authenticatedListener.next(true);
+            }
+        } else {
+            return;
+        }
+    }
+
+    setAuthTimer(duration: number) {
+        this.tokenTimer = setTimeout(
+            () => {
+                this.logoutUser();
+            },
+            duration * 1000
+        );
     }
 
     logoutUser() {
@@ -82,5 +101,19 @@ export class AuthService {
     private removeAuthData() {
         localStorage.removeItem('token');
         localStorage.removeItem('expiresIn');
+    }
+
+    private getAuthData() {
+        const token = localStorage.getItem('token');
+        const expiresIn = localStorage.getItem('expiresIn');
+
+        if (!token || !expiresIn) {
+            return;
+        }
+
+        return {
+            token: token,
+            expiresIn: new Date(expiresIn)
+        }
     }
 }

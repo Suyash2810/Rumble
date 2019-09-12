@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+    this.loggedIn = this.authService.getAuth();
     this.authenticatedSubscription = this.authService.getAuthenticatedListener().subscribe(
       (logged) => {
         if (logged) {
@@ -28,7 +29,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   logout() {
     this.authService.logoutUser();
     this.loggedIn = this.authService.getAuth();
-    console.log(this.loggedIn);
     this.authenticatedSubscription = this.authService.getAuthenticatedListener().subscribe(
       (logged) => {
         if (!logged) {
@@ -37,7 +37,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       }
     );
 
-    this.router.navigate(['/'], {relativeTo: this.route});
+    this.router.navigate(['/'], { relativeTo: this.route });
   }
 
   ngOnDestroy() {

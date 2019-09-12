@@ -25,7 +25,6 @@ export class PostService {
             .pipe(
                 map(
                     (posts) => {
-                        console.log(posts.maxPosts);
                         return {
                             posts: posts.content.map(
                                 (post) => {
@@ -45,7 +44,6 @@ export class PostService {
             .subscribe(
                 (transformedPostData) => {
                     this.posts = transformedPostData.posts;
-                    console.log(transformedPostData.maxposts);
                     this.nextUpdatedPost.next({ posts: [...this.posts], postsCount: transformedPostData.maxposts });
                 }
             )

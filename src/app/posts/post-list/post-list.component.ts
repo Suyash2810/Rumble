@@ -26,7 +26,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isLoading = true;
-    console.log(this.postPerPage + " " + this.currentIndex);
+
     this.postService.getPosts(this.postPerPage, this.currentIndex);
     this.postsUpdated = this.postService.getUpdatedPosts().subscribe(
       (data: { posts: Array<Post>, postsCount: number }) => {
@@ -55,7 +55,6 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   pageUpdateFunc(page: PageEvent) {
-    console.log(page);
     this.postPerPage = page.pageSize;
     this.currentIndex = page.pageIndex + 1;
     this.isLoading = true;
