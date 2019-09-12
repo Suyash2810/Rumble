@@ -46,8 +46,7 @@ export class AuthService {
                     const token = data.token;
                     this.token = token;
                     console.log(data);
-                    if(token)
-                    {
+                    if (token) {
                         this.isAuthenticated = true;
                         this.authenticatedListener.next(true);
                     }
@@ -57,6 +56,7 @@ export class AuthService {
 
     logoutUser() {
         this.token = null;
+        this.isAuthenticated = false;
         this.authenticatedListener.next(false);
     }
 }
