@@ -86,12 +86,12 @@ export class PostService {
         postData.append("title", title);
         postData.append("content", content);
         postData.append("image", image, title);
-
-        type responseType = { message: string, post: Post };
+        console.log(postData);
+        type responseType = { message: string, post: any };
         this.httpClient.post<responseType>('http://localhost:3000/posts', postData)
             .subscribe(
                 (result) => {
-                    console.log(result.post);
+                    console.log(result);
                     // const postSave: Post = {
                     //     id: result.post.id,
                     //     title: result.post.title,

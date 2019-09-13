@@ -12,6 +12,10 @@ var postSchema = new mongoose.Schema({
   imagePath: {
     required: true,
     type: String
+  },
+  creator_id: {
+    required: true,
+    type: String
   }
 })
 

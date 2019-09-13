@@ -114,10 +114,13 @@ app.post('/posts', authorization, multer({
   let body = _.pick(request.body, ['title', 'content']);
   const url = request.protocol + "://" + request.get("host");
 
+  let id = request.user._id.toString();
+
   let postBody = {
     title: body.title,
     content: body.content,
-    imagePath: url + "/images/" + request.file.filename
+    imagePath: url + "/images/" + request.file.filename,
+    creator_id: id
   }
 
   let post = new Post(postBody);
@@ -135,7 +138,8 @@ app.post('/posts', authorization, multer({
             id: result._id,
             title: result.title,
             content: result.content,
-            imagePath: result.imagePath
+            imagePath: result.imagePath,
+            creator_id: id
           }
         })
       }
