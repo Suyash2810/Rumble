@@ -17,7 +17,7 @@
     </p>
 
     <!-- <div style="clear: both;"></div> -->
-    <mat-action-row [ngClass]="{view: !loggedIn}">
+    <mat-action-row [ngClass]="{view: !loggedIn}" *ngIf="post.creator_id == userId">
       <button mat-button color="accent" [routerLink]="['/edit',post.id]">Edit</button>
       <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button>
     </mat-action-row>

@@ -9,7 +9,7 @@ export class AuthService {
 
     private token: string;
     private authenticatedListener = new Subject<boolean>();
-    private currentUserId: string;
+    private userId: string;
     isAuthenticated: boolean = false;
     tokenTimer: any;
 
@@ -28,7 +28,7 @@ export class AuthService {
     }
 
     getCurrentUserId() {
-        return this.currentUserId;
+        return this.userId;
     }
 
     createUser(username: string, email: string, password: string) {
@@ -52,14 +52,13 @@ export class AuthService {
                     const token = data.token;
                     this.token = token;
                     const expiresIn = data.expiresIn;
-                    console.log(data.creator_id);
-                    this.currentUserId = data.creator_id;
+                    this.userId = data.creator_id;
 
                     if (token) {
                         this.setAuthTimer(expiresIn);
                         const timeNow = new Date();
                         const expiryTime = new Date(timeNow.getTime() + expiresIn * 1000);
-                        this.setAuthData(token, expiryTime, this.currentUserId);
+                        this.setAuthData(token, expiryTime, data.creator_id);
 
                         this.isAuthenticated = true;
                         this.authenticatedListener.next(true);
@@ -76,7 +75,8 @@ export class AuthService {
             if (validTime > 0) {
                 this.token = dataFromStorage.token;
                 this.isAuthenticated = true;
-                this.currentUserId = dataFromStorage.userId;
+                this.userId = dataFromStorage.userId;
+
                 this.setAuthTimer(validTime / 1000);
                 this.authenticatedListener.next(true);
             }
@@ -98,7 +98,7 @@ export class AuthService {
         this.token = null;
         this.isAuthenticated = false;
         this.authenticatedListener.next(false);
-        this.currentUserId = null;
+        this.userId = null;
         clearTimeout(this.tokenTimer);
         this.removeAuthData();
     }
