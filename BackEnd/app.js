@@ -174,15 +174,19 @@ app.get('/post/:id', async (request, response) => {
 app.delete('/posts/:id', authorization, (request, response) => {
 
   let id = request.params.id;
+  let userId = request.user._id;
 
-  Post.findByIdAndDelete(id)
+  Post.findOneAndDelete({
+      _id: id,
+      creator_id: userId
+    })
     .then(
       (result) => {
         if (result) {
           console.log(result);
           response.status(200).send(result);
         } else {
-          response.status.send({
+          response.status(401).send({
             err: "Post could not be deleted."
           });
         }
