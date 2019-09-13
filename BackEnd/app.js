@@ -268,11 +268,14 @@ app.post('/auth/login', (request, response) => {
         expiresIn: '1h'
       }).toString();
 
+      let userId = user._id.toString();
+
       response.status(200).send({
         success: "The user has been logged in successfully",
         user: user,
         token: token,
-        expiresIn: 3600
+        expiresIn: 3600,
+        creator_id: userId
       });
 
     }
