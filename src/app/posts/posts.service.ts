@@ -1,4 +1,4 @@
-import { Post, PostModel } from './post.model';
+import { Post } from './post.model';
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
@@ -32,7 +32,8 @@ export class PostService {
                                         id: post._id,
                                         title: post.title,
                                         content: post.content,
-                                        imagePath: post.imagePath
+                                        imagePath: post.imagePath,
+                                        creator_id: post.creator_id
                                     }
                                 }
                             ),
@@ -59,7 +60,8 @@ export class PostService {
                             id: data.post._id,
                             title: data.post.title,
                             content: data.post.content,
-                            imagePath: data.post.imagePath
+                            imagePath: data.post.imagePath,
+                            creator_id: data.post.creator_id
                         }
                     }
                 )
@@ -86,7 +88,7 @@ export class PostService {
         postData.append("title", title);
         postData.append("content", content);
         postData.append("image", image, title);
-        console.log(postData);
+
         type responseType = { message: string, post: any };
         this.httpClient.post<responseType>('http://localhost:3000/posts', postData)
             .subscribe(
@@ -138,7 +140,8 @@ export class PostService {
                             id: result.post._id,
                             title: result.post.title,
                             content: result.post.content,
-                            imagePath: result.post.imagePath
+                            imagePath: result.post.imagePath,
+                            creator_id: result.post.creator_id
                         }
                     }
                 )

@@ -194,6 +194,8 @@ app.patch('/posts/:id', authorization, multer({
 }).single('image'), (request, response) => {
 
   let id = request.params.id;
+  let userId = request.user._id;
+
   let body = _.pick(request.body, ['title', 'content']);
   const url = request.protocol + "://" + request.get("host");
 
@@ -201,20 +203,26 @@ app.patch('/posts/:id', authorization, multer({
     ...body,
     imagePath: url + "/images/" + request.file.filename
   }
-  console.log(postBody);
 
   Post.findOneAndUpdate({
-    _id: id
+    _id: id,
+    creator_id: userId
   }, {
     $set: postBody
   }, {
     new: true
   }).then(
     (result) => {
-      response.status(200).send({
-        success: "Post has been updated.",
-        post: result
-      })
+      if (result) {
+        response.status(200).send({
+          success: "Post has been updated.",
+          post: result
+        })
+      } else {
+        response.status(401).send({
+          error: "The user cannot edit this post."
+        });
+      }
     }
   ).catch(
     (error) => {
