@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthUserModel, AuthUser } from "./authUser.model";
 import { Subject } from 'rxjs';
+import { MatDialog } from '@angular/material';
+import { ErrorComponent } from '../error/error.component';
 
 @Injectable({ providedIn: 'root' })
 
@@ -13,7 +15,7 @@ export class AuthService {
     isAuthenticated: boolean = false;
     tokenTimer: any;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, public dialog: MatDialog) { }
 
     getToken() {
         return this.token;
@@ -65,7 +67,12 @@ export class AuthService {
                     }
                 },
                 error => {
-                    console.log(error);
+                    const errorMessage = error.error.status;
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: errorMessage
+                        }
+                    });
                 }
             )
     }

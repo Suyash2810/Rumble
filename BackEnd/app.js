@@ -105,6 +105,13 @@ app.get('/posts', async (request, response) => {
         })
       }
     )
+    .catch(
+      (err) => {
+        response.status(400).send({
+          error: err
+        })
+      }
+    )
 });
 
 app.post('/posts', authorization, multer({
@@ -117,8 +124,8 @@ app.post('/posts', authorization, multer({
   let id = request.user._id.toString();
 
   let postBody = {
-    title: body.title,
-    content: body.content,
+    title: body.title !== 'null' ? body.title : undefined,
+    content: body.content !== 'null' ? body.content : undefined,
     imagePath: url + "/images/" + request.file.filename,
     creator_id: id
   }
@@ -127,26 +134,20 @@ app.post('/posts', authorization, multer({
 
   post.save().then(
     (result) => {
-      if (!result) {
-        response.send({
-          error: "Something went wrong."
-        })
-      } else {
-        response.status(201).send({
-          message: "The data was stored successfully",
-          post: {
-            id: result._id,
-            title: result.title,
-            content: result.content,
-            imagePath: result.imagePath,
-            creator_id: id
-          }
-        })
-      }
+      response.status(201).send({
+        message: "The data was stored successfully",
+        post: {
+          id: result._id,
+          title: result.title,
+          content: result.content,
+          imagePath: result.imagePath,
+          creator_id: id
+        }
+      })
     }
   ).catch(
     (error) => {
-      response.send({
+      response.status(400).send({
         error: error
       })
     }

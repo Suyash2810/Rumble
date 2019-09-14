@@ -41,7 +41,7 @@ export class PostCreateComponent implements OnInit {
 
   onSubmit() {
     this.title = this.form.value.title;
-    this.content = this.form.value.content;
+    this.content = this.form.value.content === null ? null : this.form.value.content;
     this.postService.addPost(this.title, this.content, this.form.value.image);
     this.form.reset();
     this.router.navigate(['..'], { relativeTo: this.route });

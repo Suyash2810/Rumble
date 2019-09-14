@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { ErrorComponent } from '../error/error.component';
 
 @Injectable({ providedIn: 'root' })
 
@@ -13,7 +15,7 @@ export class PostService {
     private nextUpdatedPost = new Subject<{ posts: Array<Post>, postsCount: number }>();
     private nextSinglePost = new Subject<Post>();
 
-    constructor(private httpClient: HttpClient) {
+    constructor(private httpClient: HttpClient, public dialog: MatDialog) {
     }
 
     getPosts(pageSize: number, currentPageIndex: number) {
@@ -83,10 +85,16 @@ export class PostService {
     }
 
     addPost(title: string, content: string, image: File) {
-        // let postData: Post = new PostModel(null, title, content);
+
         let postData = new FormData();
-        postData.append("title", title);
-        postData.append("content", content);
+        if (title !== null) {
+            postData.append("title", title);
+        }
+
+        if (content !== null) {
+            postData.append("content", content);
+        }
+
         postData.append("image", image, title);
 
         type responseType = { message: string, post: any };
@@ -94,15 +102,20 @@ export class PostService {
             .subscribe(
                 (result) => {
                     console.log(result);
-                    // const postSave: Post = {
-                    //     id: result.post.id,
-                    //     title: result.post.title,
-                    //     content: result.post.content,
-                    //     imagePath: result.post.imagePath
-                    // }
-
-                    // this.posts.push(postSave);
-                    // this.nextUpdatedPost.next([...this.posts]);
+                },
+                error => {
+                    let errorPath = error.error.error.errors;
+                    let message = ``;
+                    Object.keys(errorPath).forEach(
+                        (key) => {
+                            message += errorPath[key].message + ` `;
+                        }
+                    );
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: message
+                        }
+                    })
                 }
             )
     }

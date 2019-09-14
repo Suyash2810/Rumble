@@ -20,7 +20,9 @@
           <label for="content">Content</label>
           <input matInput type="text" [formControlName]="'content'">
         </mat-form-field>
-
+        <mat-error *ngIf="!form.get('content').valid && form.get('content').touched">
+          Content is not valid. Enter valid content.
+        </mat-error>
         <br><br>
         <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">Post</button>
       </form>
