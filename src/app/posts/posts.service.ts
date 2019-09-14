@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { ErrorComponent } from '../error/error.component';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 
@@ -15,7 +16,7 @@ export class PostService {
     private nextUpdatedPost = new Subject<{ posts: Array<Post>, postsCount: number }>();
     private nextSinglePost = new Subject<Post>();
 
-    constructor(private httpClient: HttpClient, public dialog: MatDialog) {
+    constructor(private httpClient: HttpClient, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     }
 
     getPosts(pageSize: number, currentPageIndex: number) {
@@ -72,6 +73,15 @@ export class PostService {
                 (transformedPost) => {
                     this.post = transformedPost;
                     this.nextSinglePost.next({ ...this.post });
+                },
+                error => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: "The post cannot be retreived or does not exist."
+                        }
+                    });
+
+                    this.router.navigate(['/'], { relativeTo: this.route });
                 }
             )
     }

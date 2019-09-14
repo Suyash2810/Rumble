@@ -154,22 +154,24 @@ app.post('/posts', authorization, multer({
   )
 });
 
-app.get('/post/:id', async (request, response) => {
+app.get('/post/:id', (request, response) => {
 
   let id = request.params.id;
 
-  let post = await Post.findById(id);
-
-  if (post) {
-    response.status(200).send({
-      success: "The post has been fetched from the database.",
-      post: post
-    })
-  } else {
-    response.send({
-      err: "The post could not be fetched from the database. Error has been encountered."
-    })
-  }
+  Post.findById(id).then(
+    (post) => {
+      response.status(200).send({
+        success: "The post has been fetched from the database.",
+        post: post
+      })
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      })
+    }
+  )
 })
 
 app.delete('/posts/:id', authorization, (request, response) => {
@@ -204,9 +206,17 @@ app.patch('/posts/:id', authorization, multer({
   let body = _.pick(request.body, ['title', 'content']);
   const url = request.protocol + "://" + request.get("host");
 
-  let postBody = {
-    ...body,
-    imagePath: url + "/images/" + request.file.filename
+  let postBody;
+
+  if (request.file) {
+    postBody = {
+      ...body,
+      imagePath: url + "/images/" + request.file.filename
+    }
+  } else {
+    postBody = {
+      ...body
+    }
   }
 
   Post.findOneAndUpdate({
@@ -231,7 +241,9 @@ app.patch('/posts/:id', authorization, multer({
     }
   ).catch(
     (error) => {
-      response.send(error);
+      response.status(400).send({
+        error: error
+      });
     }
   );
 
