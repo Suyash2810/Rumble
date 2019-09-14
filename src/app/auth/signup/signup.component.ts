@@ -3,6 +3,8 @@ import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { User } from '../user.model';
+import { MatDialog } from '@angular/material';
+import { ErrorComponent } from 'src/app/error/error.component';
 
 @Component({
   selector: 'app-signup',
@@ -18,7 +20,7 @@ export class SignupComponent implements OnInit {
 
   @ViewChild('f') form: NgForm;
 
-  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private authService: AuthService, private router: Router, private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -42,6 +44,7 @@ export class SignupComponent implements OnInit {
             this.errMsg = "This email has already been registered.";
           }
         }
+        this.dialog.open(ErrorComponent);
         console.log(this.errMsg);
         this.form.reset();
       }
