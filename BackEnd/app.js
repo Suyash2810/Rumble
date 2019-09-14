@@ -260,7 +260,6 @@ app.post('/user', (request, response) => {
   ).catch(
     (error) => {
       response.status(400).send({
-        status: "This email has already been registered.",
         error: error
       })
     }

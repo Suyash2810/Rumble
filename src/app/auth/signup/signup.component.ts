@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
-import { map } from 'rxjs/operators';
-import { User } from '../user.model';
 import { Router, ActivatedRoute } from '@angular/router';
+import { User } from '../user.model';
 
 @Component({
   selector: 'app-signup',
@@ -15,6 +14,7 @@ export class SignupComponent implements OnInit {
   email: string;
   password: string;
   username: string;
+  errMsg: string;
 
   @ViewChild('f') form: NgForm;
 
@@ -29,8 +29,22 @@ export class SignupComponent implements OnInit {
     this.password = this.form.value.password;
     this.username = this.form.value.username;
 
-    this.authService.createUser(this.username, this.email, this.password);
-
-    this.router.navigate(['../login'], { relativeTo: this.route });
+    this.authService.createUser(this.username, this.email, this.password).subscribe(
+      result => {
+        console.log(result.user);
+        this.router.navigate(['../login'], { relativeTo: this.route });
+      },
+      error => {
+        if (error.error.error.message) {
+          this.errMsg = error.error.error.message;
+        } else {
+          if (error.error.error.code == 11000) {
+            this.errMsg = "This email has already been registered.";
+          }
+        }
+        console.log(this.errMsg);
+        this.form.reset();
+      }
+    );
   }
 }

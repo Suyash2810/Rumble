@@ -36,14 +36,7 @@ export class AuthService {
         type responseType = { status: string, user: any };
         let data: AuthUser = new AuthUserModel(username, email, password);
 
-        this.http.post<responseType>('http://localhost:3000/user', data).subscribe(
-            result => {
-                console.log(result);
-            },
-            error => {
-                console.log("There was some error that was encountered.", error);
-            }
-        )
+        return this.http.post<responseType>('http://localhost:3000/user', data);
     }
 
     loginUser(email: string, password: string) {
@@ -53,7 +46,7 @@ export class AuthService {
             email, password
         };
 
-        return this.http.post<responseType>('http://localhost:3000/auth/login', body)
+        this.http.post<responseType>('http://localhost:3000/auth/login', body)
             .subscribe(
                 (data) => {
                     const token = data.token;
