@@ -15,7 +15,6 @@ export class SignupComponent implements OnInit {
   email: string;
   password: string;
   username: string;
-  user: User;
 
   @ViewChild('f') form: NgForm;
 
@@ -30,26 +29,7 @@ export class SignupComponent implements OnInit {
     this.password = this.form.value.password;
     this.username = this.form.value.username;
 
-    this.authService.createUser(this.username, this.email, this.password).pipe(
-      map(
-        (data) => {
-          return {
-            userData: {
-              id: data.user._id,
-              username: data.user.username,
-              email: data.user.email
-            },
-            status: data.status
-          }
-        }
-      )
-    )
-      .subscribe(
-        (transformedUserData) => {
-          this.user = transformedUserData.userData;
-          console.log(this.user, transformedUserData.status);
-        }
-      );
+    this.authService.createUser(this.username, this.email, this.password);
 
     this.router.navigate(['../login'], { relativeTo: this.route });
   }

@@ -36,7 +36,14 @@ export class AuthService {
         type responseType = { status: string, user: any };
         let data: AuthUser = new AuthUserModel(username, email, password);
 
-        return this.http.post<responseType>('http://localhost:3000/user', data);
+        this.http.post<responseType>('http://localhost:3000/user', data).subscribe(
+            result => {
+                console.log(result);
+            },
+            error => {
+                console.log("There was some error that was encountered.", error);
+            }
+        )
     }
 
     loginUser(email: string, password: string) {
@@ -63,6 +70,9 @@ export class AuthService {
                         this.isAuthenticated = true;
                         this.authenticatedListener.next(true);
                     }
+                },
+                error => {
+                    console.log(error);
                 }
             )
     }
