@@ -28,7 +28,7 @@ const authorization = (request, response, next) => {
     });
   } else {
     let userToken = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(userToken);
+
     let id = userToken._id;
 
     User.findById(id).then(

@@ -52,8 +52,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.titleData = this.form.value.title;
-    this.contentData = this.form.value.content;
+    this.titleData = this.form.value.title !== null ? this.form.value.title : this.titleData;
+    this.contentData = this.form.value.content !== null ? this.form.value.content : this.contentData;
     this.postService.updatePost(this.id, this.titleData, this.contentData, this.form.value.image);
     this.form.reset();
     this.router.navigate(['/']);
