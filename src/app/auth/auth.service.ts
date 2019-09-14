@@ -33,7 +33,7 @@ export class AuthService {
 
     createUser(username: string, email: string, password: string) {
 
-        type responseType = { success: string, user: any };
+        type responseType = { status: string, user: any };
         let data: AuthUser = new AuthUserModel(username, email, password);
 
         return this.http.post<responseType>('http://localhost:3000/user', data);

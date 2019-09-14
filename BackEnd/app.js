@@ -245,9 +245,23 @@ app.post('/user', (request, response) => {
 
   user.save().then(
     (result) => {
-      response.status(200).send({
-        success: "The data was saved successfully",
-        user: result
+      if (result) {
+        response.status(200).send({
+          status: "The data was saved successfully",
+          user: result
+        })
+      } else {
+        response.status(400).send({
+          status: "An error was encountered. Please try again.",
+          user: null
+        })
+      }
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        status: "This email has already been registered.",
+        error: error
       })
     }
   )

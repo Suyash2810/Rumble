@@ -15,6 +15,7 @@ export class SignupComponent implements OnInit {
   email: string;
   password: string;
   username: string;
+  user: User;
 
   @ViewChild('f') form: NgForm;
 
@@ -33,17 +34,20 @@ export class SignupComponent implements OnInit {
       map(
         (data) => {
           return {
-            id: data.user._id,
-            username: data.user.username,
-            email: data.user.email
+            userData: {
+              id: data.user._id,
+              username: data.user.username,
+              email: data.user.email
+            },
+            status: data.status
           }
         }
       )
     )
       .subscribe(
         (transformedUserData) => {
-          let user: User = transformedUserData;
-          console.log(user);
+          this.user = transformedUserData.userData;
+          console.log(this.user, transformedUserData.status);
         }
       );
 
