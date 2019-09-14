@@ -44,7 +44,11 @@ export class SignupComponent implements OnInit {
             this.errMsg = "This email has already been registered.";
           }
         }
-        this.dialog.open(ErrorComponent);
+        this.dialog.open(ErrorComponent, {
+          data: {
+            message: this.errMsg
+          }
+        });
         console.log(this.errMsg);
         this.form.reset();
       }
