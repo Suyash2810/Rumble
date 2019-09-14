@@ -111,6 +111,11 @@ export class AuthService {
         this.userId = null;
         clearTimeout(this.tokenTimer);
         this.removeAuthData();
+        this.dialog.open(ErrorComponent, {
+            data: {
+                message: "You have been logged out."
+            }
+        })
     }
 
     private setAuthData(token: string, expiresIn: Date, currentUserId: string) {

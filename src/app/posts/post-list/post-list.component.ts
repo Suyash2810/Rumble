@@ -1,9 +1,11 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Post } from '../post.model';
 import { PostService } from '../posts.service';
-import { PageEvent } from "@angular/material";
+import { PageEvent, MatDialog } from "@angular/material";
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
+import { ErrorComponent } from 'src/app/error/error.component';
 
 @Component({
   selector: 'app-post-list',
@@ -23,7 +25,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   authenticationSubscription: Subscription;
   userId: string;
 
-  constructor(private postService: PostService, private authService: AuthService) { }
+  constructor(private postService: PostService, private authService: AuthService,
+    private router: Router, private route: ActivatedRoute, public dialog: MatDialog) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -51,11 +54,35 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   onDelete(id: String) {
+
     this.postService.deletePost(id).subscribe(
-      () => {
+      (result) => {
         this.postService.getPosts(this.postPerPage, this.currentIndex);
+        console.log(result);
+      },
+      error => {
+        this.dialog.open(ErrorComponent, {
+          data: {
+            message: "Unauthorized user. Data cannot be deleted."
+          }
+        })
       }
     );
+  }
+
+  onEditCheck(postId: string, creatorId: string) {
+
+    if (creatorId == this.userId) {
+      this.router.navigate(['edit', postId], { relativeTo: this.route });
+    } else {
+      this.dialog.open(ErrorComponent, {
+        data: {
+          message: "Unauthorized user. Cannot edit the post."
+        }
+      });
+
+      this.router.navigate(['/']);
+    }
   }
 
   pageUpdateFunc(page: PageEvent) {
