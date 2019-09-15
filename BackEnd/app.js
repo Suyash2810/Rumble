@@ -12,9 +12,6 @@ const {
   mongoose
 } = require('./mongoose/mongoose');
 
-const multer = require('multer');
-
-
 const {
   authorization
 } = require('./middleware/authorization');
@@ -36,29 +33,7 @@ app.use((request, response, next) => {
 
 app.use(express.static(__dirname + "/public"));
 
-const MIME_TYPE_MAP = {
-  "image/png": "png",
-  "image/jpeg": "jpg",
-  "image/jpg": "jpg"
-}
-
-const storage = multer.diskStorage({
-  destination: (request, file, callback) => {
-    const isValid = MIME_TYPE_MAP[file.mimetype];
-    let error = new Error("MIME type error.");
-    if (isValid) {
-      error = null;
-    }
-
-    callback(error, './BackEnd/public/images');
-  },
-  filename: (request, file, callback) => {
-    const filename = file.originalname.toLowerCase().split(' ').join('_');
-    const ext = MIME_TYPE_MAP[file.mimetype];
-    callback(null, filename + "_" + Date.now() + "." + ext);
-  }
-})
-
+const multerFileExtract = require('./middleware/multerFilePath');
 
 app.get('/', (request, response) => {
 
@@ -72,17 +47,13 @@ app.get('/', (request, response) => {
 
 app.get('/posts', PostController.getPosts);
 
-app.post('/posts', authorization, multer({
-  storage: storage
-}).single('image'), PostController.savePost);
+app.post('/posts', authorization, multerFileExtract, PostController.savePost);
 
 app.get('/post/:id', PostController.getPostById);
 
 app.delete('/posts/:id', authorization, PostController.deletePost);
 
-app.patch('/posts/:id', authorization, multer({
-  storage: storage
-}).single('image'), PostController.updatePost);
+app.patch('/posts/:id', authorization, multerFileExtract, PostController.updatePost);
 
 // ------------------------------User Requests---------------------------------------//
 
