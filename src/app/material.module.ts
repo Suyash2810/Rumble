@@ -19,7 +19,7 @@ import {
         MatButtonModule,
         MatProgressSpinnerModule,
         MatPaginatorModule,
-        MatDialogModule,
+        MatDialogModule
     ],
     exports: [
         MatInputModule,
@@ -29,7 +29,7 @@ import {
         MatButtonModule,
         MatProgressSpinnerModule,
         MatPaginatorModule,
-        MatDialogModule,
+        MatDialogModule
     ]
 })
 
