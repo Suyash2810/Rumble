@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { PostService } from '../posts.service';
+import { AuthService } from 'src/app/auth/auth.service';
+import { Router, ActivatedRoute, Params } from '@angular/router';
+import { Post } from '../post.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-post-view',
@@ -7,9 +12,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostViewComponent implements OnInit {
 
-  constructor() { }
+  postId: string;
+  post: Post;
+  PostSubs: Subscription;
+  isLoading: boolean = true;
+
+  constructor(private postService: PostService, private authService: AuthService,
+    private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.postId = params['postID'];
+      }
+    );
+
+    this.postService.getPost(this.postId);
+    this.PostSubs = this.postService.getOnePost().subscribe(
+      (post: Post) => {
+        this.post = post;
+        this.isLoading = false;
+      }
+    );
   }
 
 }

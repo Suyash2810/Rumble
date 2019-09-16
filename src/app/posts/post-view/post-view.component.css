@@ -1,0 +1,38 @@
+#header_image {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+#image_header img {
+  background-attachment: fixed;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
+
+mat-spinner {
+  margin: auto;
+}
+
+#header_row {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#content_row {
+  margin-top: 70px;
+}
+
+#post_content {
+  text-align: center;
+}
+
+#header_title {
+  margin-top: 20%;
+}
+
+#content {
+  text-align: center;
+}
