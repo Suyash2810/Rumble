@@ -6,12 +6,14 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from "../material.module";
+import { PostViewComponent } from './post-view/post-view.component';
 
 @NgModule({
     declarations: [
         PostCreateComponent,
         PostEditComponent,
-        PostListComponent
+        PostListComponent,
+        PostViewComponent
     ],
     imports: [
         CommonModule,
