@@ -99,6 +99,10 @@ export class PostListComponent implements OnInit, OnDestroy {
     )
   }
 
+  onViewPost(id: string) {
+    this.router.navigate(['view', id], { relativeTo: this.route });
+  }
+
   ngOnDestroy() {
     this.postsUpdated.unsubscribe();
     this.authenticationSubscription.unsubscribe();
