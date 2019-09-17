@@ -11,14 +11,13 @@ import { ErrorComponent } from "./error/error.component";
 import { MaterialModule } from "./material.module";
 import { PostsModule } from "./posts/posts.module";
 import { AuthModule } from "./auth/auth.module";
-import { DropdownDirective } from './Shared_module/dropdown.directive';
+import { SharedModule } from "./shared/shared.module";
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ErrorComponent,
-    DropdownDirective
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +25,7 @@ import { DropdownDirective } from './Shared_module/dropdown.directive';
     ReactiveFormsModule,
     FormsModule,
     BrowserAnimationsModule,
+    SharedModule,
     AuthModule,
     PostsModule,
     HttpClientModule,
