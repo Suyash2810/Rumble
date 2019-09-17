@@ -11,12 +11,14 @@ import { ErrorComponent } from "./error/error.component";
 import { MaterialModule } from "./material.module";
 import { PostsModule } from "./posts/posts.module";
 import { AuthModule } from "./auth/auth.module";
+import { DropdownDirective } from './Shared_module/dropdown.directive';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ErrorComponent
+    ErrorComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
