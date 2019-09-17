@@ -22,3 +22,8 @@ mat-spinner {
 .card-columns {
   float: left;
 }
+
+.card-title,
+.card-text {
+  text-align: center;
+}

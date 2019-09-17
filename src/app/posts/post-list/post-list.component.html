@@ -23,11 +23,6 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion> -->
-<br>
-
-<ng-template #noPostsBlock>
-  <p class="noPostMessage mat-body-1">No posts have been added.</p>
-</ng-template>
 
 <div class="row" *ngIf="posts.length > 0 && !isLoading; else noPostsBlock">
   <div class="col-md-12 mx-auto">
@@ -39,11 +34,13 @@
           <div class="card-body">
             <h4 class="card-title">{{post.title}}</h4>
             <p class="card-text">{{post.content}}</p>
-            <br>
-            <mat-action-row [ngClass]="{view: !loggedIn}" *ngIf="post.creator_id == userId">
-              <button mat-button color="accent" (click)="onEditCheck(post.id, post.creator_id)">Edit</button>
+            <hr>
+            <mat-action-row>
+              <button mat-button color="accent" (click)="onEditCheck(post.id, post.creator_id)"
+                [ngClass]="{view: !loggedIn}" *ngIf="post.creator_id == userId">Edit</button>
+              <button mat-button color="warn" (click)="onDelete(post.id)" [ngClass]="{view: !loggedIn}"
+                *ngIf="post.creator_id == userId">Delete</button>
               <button mat-button color="accent" (click)="onViewPost(post.id)">View</button>
-              <button mat-button color="warn" (click)="onDelete(post.id)">Delete</button>
             </mat-action-row>
           </div>
         </div>
@@ -51,6 +48,11 @@
     </div>
   </div>
 </div>
+
+<ng-template #noPostsBlock>
+  <p class="noPostMessage mat-body-1">No posts have been added.</p>
+</ng-template>
+
 <div id="paginator">
   <div class="row">
     <div class="col-md-6 col-md-offset-3" style="margin:auto;">
