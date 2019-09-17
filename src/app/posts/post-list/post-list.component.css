@@ -27,3 +27,18 @@ mat-spinner {
 .card-text {
   text-align: center;
 }
+
+ul li a {
+  cursor: pointer;
+  margin-left: 15px;
+}
+
+ul li a:hover {
+  border-bottom: lightgrey 1px solid;
+  color: grey;
+
+}
+
+.dropdown {
+  float: right;
+}

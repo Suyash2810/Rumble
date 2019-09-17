@@ -36,10 +36,14 @@
             <p class="card-text">{{post.content}}</p>
             <hr>
             <mat-action-row>
-              <button mat-button color="accent" (click)="onEditCheck(post.id, post.creator_id)"
-                [ngClass]="{view: !loggedIn}" *ngIf="post.creator_id == userId">Edit</button>
-              <button mat-button color="warn" (click)="onDelete(post.id)" [ngClass]="{view: !loggedIn}"
-                *ngIf="post.creator_id == userId">Delete</button>
+              <div class="dropdown" appDropdown [ngClass]="{view: !loggedIn}" *ngIf="post.creator_id == userId">
+                <button mat-button color="accent" class="dropdown-toggle" data-toggle="dropdown">Modify</button>
+                <ul class="dropdown-menu">
+                  <li><a color="accent" (click)="onEditCheck(post.id, post.creator_id)">Edit</a>
+                  </li>
+                  <li><a color="warn" (click)="onDelete(post.id)">Delete</a></li>
+                </ul>
+              </div>
               <button mat-button color="accent" (click)="onViewPost(post.id)">View</button>
             </mat-action-row>
           </div>
