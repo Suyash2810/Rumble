@@ -33,10 +33,13 @@ export class PostService {
                                 (post) => {
                                     return {
                                         id: post._id,
+                                        username: post.username,
                                         title: post.title,
+                                        description: post.description,
                                         content: post.content,
                                         imagePath: post.imagePath,
-                                        creator_id: post.creator_id
+                                        creator_id: post.creator_id,
+                                        createdAt: post.createdAt
                                     }
                                 }
                             ),
@@ -61,10 +64,13 @@ export class PostService {
                     (data) => {
                         return {
                             id: data.post._id,
+                            username: data.post.username,
                             title: data.post.title,
+                            description: data.post.description,
                             content: data.post.content,
                             imagePath: data.post.imagePath,
-                            creator_id: data.post.creator_id
+                            creator_id: data.post.creator_id,
+                            createdAt: data.post.createdAt
                         }
                     }
                 )
