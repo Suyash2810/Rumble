@@ -9,7 +9,7 @@ var updatePost = (request, response) => {
   let id = request.params.id;
   let userId = request.user._id;
 
-  let body = _.pick(request.body, ['title', 'content']);
+  let body = _.pick(request.body, ['title', 'content', 'description']);
   const url = request.protocol + "://" + request.get("host");
 
   let postBody;
