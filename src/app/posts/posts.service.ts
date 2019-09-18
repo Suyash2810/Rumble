@@ -96,6 +96,10 @@ export class PostService {
         return this.nextSinglePost.asObservable();
     }
 
+    getUpdatedPostsStatic() {
+        return this.posts.slice();
+    }
+
     getUpdatedPosts() {
         return this.nextUpdatedPost.asObservable();
     }
