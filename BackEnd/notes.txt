@@ -1,8 +1,11 @@
 Create a home component.
 Create the core module for home and header component
 Add a text editor for create and edit post components
-Update the view component
 inform user on token expire logout
-Rectify post list component posts updation
 Create log files for user login and registers.
 Create functionality for deleting user accounts after thorough confirmation.
+Create a confirmation for deletion of a particular post by the user.
+Provide implementation of all the rich text data.
+Allow option for the user to upload the profile picture.
+Add functionality of adding images to the post content.
+Create post-view-info component which gives the information about the creator as well as the post.
