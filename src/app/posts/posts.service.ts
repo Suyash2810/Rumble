@@ -159,12 +159,13 @@ export class PostService {
         //Previous subscription procedure used.
     }
 
-    updatePost(id: string, title: string, content: string, image: File) {
+    updatePost(id: string, title: string, description: string, content: string, image: File) {
 
         const postData = new FormData();
         postData.append("title", title);
         postData.append("content", content);
         postData.append("image", image);
+        postData.append('description', description);
 
         type updateResponseType = { success: string, post: any };
 

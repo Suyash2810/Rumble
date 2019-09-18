@@ -16,6 +16,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
   id: string;
   titleData: string;
   contentData: string;
+  descriptionData: string;
   imageData: string;
   imagePreview: string;
   requestedPost: Subscription;
@@ -29,6 +30,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     this.form = new FormGroup({
       title: new FormControl(null, { validators: [Validators.required] }),
       content: new FormControl(null, { validators: [Validators.required] }),
+      description: new FormControl(null, { validators: [Validators.required] }),
       image: new FormControl(null, { validators: [Validators.required], asyncValidators: [mimeType] })
     });
 
@@ -44,6 +46,7 @@ export class PostEditComponent implements OnInit, OnDestroy {
     this.requestedPost = this.postService.getOnePost().subscribe(
       (post: Post) => {
         this.titleData = post.title;
+        this.descriptionData = post.description;
         this.contentData = post.content;
         this.imageData = post.imagePath;
         this.isLoading = false;
@@ -54,7 +57,8 @@ export class PostEditComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.titleData = this.form.value.title !== null ? this.form.value.title : this.titleData;
     this.contentData = this.form.value.content !== null ? this.form.value.content : this.contentData;
-    this.postService.updatePost(this.id, this.titleData, this.contentData, this.form.value.image);
+    this.descriptionData = this.form.value.description !== null ? this.form.value.description : this.descriptionData;
+    this.postService.updatePost(this.id, this.titleData, this.descriptionData, this.contentData, this.form.value.image);
     this.form.reset();
     this.router.navigate(['/']);
   }

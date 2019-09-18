@@ -22,6 +22,12 @@
         <div id="imagePreview" *ngIf="imagePreview !== ' ' && imagePreview !== null && form.get('image').valid">
           <img [src]="imagePreview" [alt]="form.value.title">
         </div>
+
+        <mat-form-field class="example-full-width">
+          <label for="description">Description</label>
+          <input matInput type="text" name="description" formControlName="description" value="{{descriptionData}}">
+        </mat-form-field>
+
         <mat-form-field class="example-full-width">
           <label for="content">Content</label>
           <input matInput type="text" name="content" formControlName="content" value="{{contentData}}">
