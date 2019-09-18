@@ -99,14 +99,16 @@ var getPostById = (request, response) => {
 
 var savePost = (request, response) => {
 
-  let body = _.pick(request.body, ['title', 'content']);
+  let body = _.pick(request.body, ['title', 'content', 'description', 'username']);
   const url = request.protocol + "://" + request.get("host");
 
   let id = request.user._id.toString();
 
   let postBody = {
+    username: request.user.username || body.username,
     title: body.title !== 'null' ? body.title : undefined,
     content: body.content !== 'null' ? body.content : undefined,
+    description: body.description !== 'null' ? body.description : undefined,
     imagePath: url + "/images/" + request.file.filename,
     creator_id: id
   }
@@ -119,10 +121,13 @@ var savePost = (request, response) => {
         message: "The data was stored successfully",
         post: {
           id: result._id,
+          username: result.username,
           title: result.title,
+          description: result.description,
           content: result.content,
           imagePath: result.imagePath,
-          creator_id: id
+          creator_id: id,
+          createdAt: result.createdAt
         }
       })
     }

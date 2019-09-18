@@ -100,7 +100,7 @@ export class PostService {
         return this.nextUpdatedPost.asObservable();
     }
 
-    addPost(title: string, content: string, image: File) {
+    addPost(username: string, title: string, content: string, description: string, image: File) {
 
         let postData = new FormData();
         if (title !== null) {
@@ -109,6 +109,14 @@ export class PostService {
 
         if (content !== null) {
             postData.append("content", content);
+        }
+
+        if (description !== null) {
+            postData.append('description', description);
+        }
+
+        if (username !== null) {
+            postData.append('username', username);
         }
 
         postData.append("image", image, title);

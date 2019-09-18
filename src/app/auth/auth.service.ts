@@ -12,6 +12,7 @@ export class AuthService {
     private token: string;
     private authenticatedListener = new Subject<boolean>();
     private userId: string;
+    private username: string;
     isAuthenticated: boolean = false;
     tokenTimer: any;
 
@@ -31,6 +32,10 @@ export class AuthService {
 
     getCurrentUserId() {
         return this.userId;
+    }
+
+    getCurrentUsername() {
+        return this.username;
     }
 
     createUser(username: string, email: string, password: string) {
@@ -55,6 +60,7 @@ export class AuthService {
                     this.token = token;
                     const expiresIn = data.expiresIn;
                     this.userId = data.creator_id;
+                    this.username = data.user.username;
 
                     if (token) {
                         this.setAuthTimer(expiresIn);

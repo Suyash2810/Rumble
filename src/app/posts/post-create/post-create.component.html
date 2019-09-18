@@ -17,6 +17,14 @@
           <img [src]="previewImage" [alt]="form.value.title">
         </div>
         <mat-form-field class="example-full-width">
+          <label for="description">Description</label>
+          <input matInput type="text" [formControlName]="'description'">
+        </mat-form-field>
+        <mat-error *ngIf="!form.get('description').valid && form.get('description').touched">
+          Content is not valid. Enter valid content.
+        </mat-error>
+
+        <mat-form-field class="example-full-width">
           <label for="content">Content</label>
           <input matInput type="text" [formControlName]="'content'">
         </mat-form-field>
