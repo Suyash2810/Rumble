@@ -9,3 +9,4 @@ Provide implementation of all the rich text data.
 Allow option for the user to upload the profile picture.
 Add functionality of adding images to the post content.
 Create post-view-info component which gives the information about the creator as well as the post.
+Update the test files for the models.

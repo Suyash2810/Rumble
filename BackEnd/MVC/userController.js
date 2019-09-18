@@ -1,5 +1,10 @@
 const jwt = require('jsonwebtoken');
 
+var {
+  SignInLog,
+  signUpLog
+} = require('../log_files/logFunctions/log');
+
 const {
   User
 } = require('../models/user');
@@ -12,7 +17,6 @@ var userLogin = (request, response) => {
 
   User.findUserWithEmailAndPassword(body.email, body.password).then(
     (user) => {
-
       let access = 'auth';
       let token = jwt.sign({
         _id: user._id.toHexString(),
@@ -21,7 +25,8 @@ var userLogin = (request, response) => {
         expiresIn: '1h'
       }).toString();
 
-      let userId = user._id.toString();
+      let userId = user._id;
+      SignInLog(user);
 
       response.status(200).send({
         success: "The user has been logged in successfully",
@@ -34,6 +39,7 @@ var userLogin = (request, response) => {
     }
   ).catch(
     (error) => {
+      console.log(error);
       response.status(404).send({
         status: "Email or password is invalid.",
         error: error
@@ -50,6 +56,7 @@ var createUser = (request, response) => {
   user.save().then(
     (result) => {
       if (result) {
+        signUpLog(body.username, body.email);
         response.status(200).send({
           status: "The data was saved successfully",
           user: result
