@@ -12,7 +12,7 @@
 
     <div class="row" style="margin-top:70px;">
       <div class="col-md-8 col-md-offset-2 mx-auto">
-        <p id="content" [innerHTML]="post.content">
+        <p id="content" [innerHTML]="post.content | safeHTML">
           <!-- {{post.content}} -->
         </p>
       </div>
