@@ -24,10 +24,12 @@
           Content is not valid. Enter valid content.
         </mat-error>
 
-        <mat-form-field class="example-full-width">
+        <div class="example-full-width">
           <label for="content">Content</label>
-          <input matInput type="text" [formControlName]="'content'">
-        </mat-form-field>
+          <!-- <input matInput type="text" [formControlName]="'content'"> -->
+          <ejs-richtexteditor matInput id='defaultRTE' [formControlName]="'content'" [toolbarSettings]='tools'
+            [quickToolbarSettings]='quickTools'></ejs-richtexteditor>
+        </div>
         <mat-error *ngIf="!form.get('content').valid && form.get('content').touched">
           Content is not valid. Enter valid content.
         </mat-error>

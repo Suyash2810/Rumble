@@ -12,8 +12,8 @@
 
     <div class="row" style="margin-top:70px;">
       <div class="col-md-8 col-md-offset-2 mx-auto">
-        <p id="content">
-          {{post.content}}
+        <p id="content" [innerHTML]="post.content">
+          <!-- {{post.content}} -->
         </p>
       </div>
     </div>

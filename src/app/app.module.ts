@@ -12,6 +12,7 @@ import { MaterialModule } from "./material.module";
 import { PostsModule } from "./posts/posts.module";
 import { AuthModule } from "./auth/auth.module";
 import { SharedModule } from "./shared/shared.module";
+import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { SharedModule } from "./shared/shared.module";
     AuthModule,
     PostsModule,
     HttpClientModule,
+    RichTextEditorAllModule,
     MaterialModule
   ],
   providers: [

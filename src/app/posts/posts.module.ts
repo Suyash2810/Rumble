@@ -7,6 +7,7 @@ import { CommonModule } from "@angular/common";
 import { RouterModule } from "@angular/router";
 import { MaterialModule } from "../material.module";
 import { PostViewComponent } from './post-view/post-view.component';
+import { RichTextEditorAllModule } from "@syncfusion/ej2-angular-richtexteditor";
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { PostViewComponent } from './post-view/post-view.component';
         CommonModule,
         ReactiveFormsModule,
         RouterModule,
-        MaterialModule
+        MaterialModule,
+        RichTextEditorAllModule
     ]
 })
 
