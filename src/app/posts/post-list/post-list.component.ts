@@ -73,7 +73,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   onEditCheck(postId: string, creatorId: string) {
 
     if (creatorId == this.userId) {
-      this.router.navigate(['edit', postId], { relativeTo: this.route });
+      this.router.navigate(['../', 'edit', postId], { relativeTo: this.route });
     } else {
       this.dialog.open(ErrorComponent, {
         data: {
@@ -100,7 +100,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   onViewPost(id: string) {
-    this.router.navigate(['view', id], { relativeTo: this.route });
+    this.router.navigate(['../', 'view', id], { relativeTo: this.route });
   }
 
   ngOnDestroy() {

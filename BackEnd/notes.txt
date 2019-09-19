@@ -1,4 +1,3 @@
-Create a home component.
 Create the core module for home and header component
 inform user on token expire logout
 Create functionality for deleting user accounts after thorough confirmation.
@@ -8,3 +7,4 @@ Create post-view-info component which gives the information about the creator as
 Do the testing of the User model functions and the API requests.
 Resolve the storing of images uploaded in posts content in text editor.
 Improve the functionalities in the text editor
+Add various utilities to the home component

@@ -7,9 +7,11 @@ import { SigninComponent } from "./auth/signin/signin.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { PostViewComponent } from "./posts/post-view/post-view.component";
+import { HomeComponent } from "./home/home.component";
 
 const appRoutes: Routes = [
-    { path: '', component: PostListComponent },
+    { path: '', component: HomeComponent },
+    { path: 'list', component: PostListComponent },
     { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
     { path: 'edit/:postID', component: PostEditComponent, canActivate: [AuthGuard] },
     { path: 'view/:postID', component: PostViewComponent },
