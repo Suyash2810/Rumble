@@ -5,11 +5,20 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { Post } from '../post.model';
 import { mimeType } from '../post-create/mime-type.validator';
+import {
+  ToolbarService,
+  LinkService,
+  ImageService,
+  HtmlEditorService,
+  TableService,
+  QuickToolbarService
+} from '@syncfusion/ej2-angular-richtexteditor';
 
 @Component({
   selector: 'app-post-edit',
   templateUrl: './post-edit.component.html',
-  styleUrls: ['./post-edit.component.css']
+  styleUrls: ['./post-edit.component.css'],
+  providers: [ToolbarService, LinkService, ImageService, HtmlEditorService, TableService, QuickToolbarService]
 })
 export class PostEditComponent implements OnInit, OnDestroy {
 
@@ -22,6 +31,21 @@ export class PostEditComponent implements OnInit, OnDestroy {
   requestedPost: Subscription;
   isLoading: Boolean = false;
   form: FormGroup;
+  public tools: object = {
+    items: ['Undo', 'Redo', '|',
+      'Bold', 'Italic', 'Underline', 'StrikeThrough', '|',
+      'FontName', 'FontSize', 'FontColor', 'BackgroundColor', '|',
+      'SubScript', 'SuperScript', '|',
+      'LowerCase', 'UpperCase', '|',
+      'Formats', 'Alignments', '|', 'OrderedList', 'UnorderedList', '|',
+      'Indent', 'Outdent', '|', 'CreateLink', 'CreateTable',
+      'Image', '|', 'ClearFormat', 'Print', 'SourceCode', '|', 'FullScreen']
+  };
+
+  public quickTools: object = {
+    image: [
+      'Replace', 'Align', 'Caption', 'Remove', 'InsertLink', '-', 'Display', 'AltText', 'Dimension']
+  };
 
   constructor(private postService: PostService, private route: ActivatedRoute, private router: Router) { }
 

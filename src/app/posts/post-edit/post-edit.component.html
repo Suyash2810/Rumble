@@ -28,10 +28,12 @@
           <input matInput type="text" name="description" formControlName="description" value="{{descriptionData}}">
         </mat-form-field>
 
-        <mat-form-field class="example-full-width">
+        <div class="example-full-width">
           <label for="content">Content</label>
-          <input matInput type="text" name="content" formControlName="content" value="{{contentData}}">
-        </mat-form-field>
+          <!-- <input matInput type="text" name="content" formControlName="content" value="{{contentData}}"> -->
+          <ejs-richtexteditor matInput id='defaultRTE' [formControlName]="'content'" [toolbarSettings]='tools'
+            [quickToolbarSettings]='quickTools' value="{{contentData}}"></ejs-richtexteditor>
+        </div>
         <mat-error *ngIf="!form.get('content').valid && form.get('content').touched">Update the content</mat-error>
         <br><br>
         <button mat-raised-button color="primary" type="submit">Edit</button>
