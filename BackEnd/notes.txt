@@ -4,7 +4,9 @@ Create functionality for deleting user accounts after thorough confirmation.
 Create a confirmation for deletion of a particular post by the user.
 Allow option for the user to upload the profile picture.
 Create post-view-info component which gives the information about the creator as well as the post.
-Do the testing of the User model functions and the API requests.
+Do the testing of the API requests.
 Resolve the storing of images uploaded in posts content in text editor.
 Improve the functionalities in the text editor
 Add various utilities to the home component
+Add a comment panel on post view component - Add as a sub component
+Add emoji bar to the comment panel
