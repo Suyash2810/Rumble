@@ -13,12 +13,14 @@ import { PostsModule } from "./posts/posts.module";
 import { AuthModule } from "./auth/auth.module";
 import { SharedModule } from "./shared/shared.module";
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ErrorComponent
+    ErrorComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
