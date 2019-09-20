@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import {
   ToolbarService,
   LinkService,
@@ -7,6 +7,7 @@ import {
   TableService,
   QuickToolbarService
 } from '@syncfusion/ej2-angular-richtexteditor';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-post-comment',
@@ -17,6 +18,7 @@ import {
 export class PostCommentComponent implements OnInit {
 
   comment: string = " ";
+  @ViewChild('f') form: NgForm;
 
   public tools: object = {
     items: ['Undo', 'Redo', '|',
@@ -39,4 +41,8 @@ export class PostCommentComponent implements OnInit {
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.comment = this.form.value.comment;
+    console.log(this.comment);
+  }
 }
