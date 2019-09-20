@@ -11,6 +11,7 @@ import { RichTextEditorAllModule } from "@syncfusion/ej2-angular-richtexteditor"
 import { SharedModule } from "../shared/shared.module";
 import { PostCommentComponent } from './post-view/post-comment/post-comment.component';
 
+
 @NgModule({
     declarations: [
         PostCreateComponent,

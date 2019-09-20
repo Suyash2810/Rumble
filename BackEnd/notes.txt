@@ -9,4 +9,5 @@ Resolve the storing of images uploaded in posts content in text editor.
 Improve the functionalities in the text editor
 Add various utilities to the home component
 Add a comment panel on post view component - Add as a sub component
-Add emoji bar to the comment panel
+Add emoji bar to the comment panel.
+The creator of the post should be able to disable the comment section.

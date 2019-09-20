@@ -1,0 +1,16 @@
+.card {
+  background-color: transparent;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.card-header {
+  background-color: #5E35B1;
+  height: 2.5rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.panel-body {
+  background-color: transparent;
+}
