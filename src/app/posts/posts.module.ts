@@ -10,7 +10,7 @@ import { PostViewComponent } from './post-view/post-view.component';
 import { RichTextEditorAllModule } from "@syncfusion/ej2-angular-richtexteditor";
 import { SharedModule } from "../shared/shared.module";
 import { PostCommentComponent } from './post-view/post-comment/post-comment.component';
-
+import { SubReplyCommentsComponent} from './post-view/post-comment/sub-reply-comments/sub-reply-comments.component';
 
 @NgModule({
     declarations: [
@@ -18,7 +18,8 @@ import { PostCommentComponent } from './post-view/post-comment/post-comment.comp
         PostEditComponent,
         PostListComponent,
         PostViewComponent,
-        PostCommentComponent
+        PostCommentComponent,
+        SubReplyCommentsComponent
     ],
     imports: [
         CommonModule,

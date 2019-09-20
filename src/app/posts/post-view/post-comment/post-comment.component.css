@@ -14,3 +14,8 @@
 .panel-body {
   background-color: transparent;
 }
+
+.list-group-item {
+  max-width: 600px;
+  border: none;
+}
