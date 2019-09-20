@@ -18,16 +18,29 @@
                 </p>
                 <mat-divider></mat-divider>
                 <div class="mt-3">
-                  <button mat-button color="accent">Like</button>
-                  <button mat-button color="accent">Unlike</button>
-                  <button mat-button color="accent">Reply</button>
+                  <button type="button" mat-button color="accent">Like</button>
+                  <button type="button" mat-button color="accent">Unlike</button>
+                  <button type="button" mat-button color="accent">Reply</button>
                 </div>
               </div>
             </div>
           </li>
         </ul>
       </div>
-      <div class="card-footer">This is the panel footer</div>
+      <div class="card-footer">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+          <div class="example-container">
+            <div class="example-full-width">
+              <label for="content">Comment</label>
+              <ejs-richtexteditor matInput id='defaultRTE' [toolbarSettings]='tools' [quickToolbarSettings]='quickTools'
+                name="comment" ngModel #Comment="ngModel" required></ejs-richtexteditor>
+            </div>
+            <mat-error *ngIf="!Comment.valid && Comment.touched">Please enter a valid comment!</mat-error>
+          </div>
+          <br>
+          <button mat-stroked-button color="accent" type="submit">Comment</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

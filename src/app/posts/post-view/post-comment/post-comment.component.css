@@ -29,3 +29,7 @@
   font-size: 0.7em;
   float: right;
 }
+
+.card-footer {
+  background-color: transparent;
+}
