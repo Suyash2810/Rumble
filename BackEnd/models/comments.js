@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const moment = require('moment');
+var mongoose = require('mongoose');
+var moment = require('moment');
 
 var commentSchema = new mongoose.Schema({
   username: {
@@ -24,8 +24,8 @@ var commentSchema = new mongoose.Schema({
   }
 });
 
-var Comment = mongoose.model("Comment", commentSchema);
+var Comment = mongoose.model('Comment', commentSchema);
 
-exports = {
+module.exports = {
   Comment
 }

@@ -18,6 +18,7 @@ const {
 
 const UserController = require('./MVC/userController');
 const PostController = require('./MVC/postController');
+const CommentController = require('./MVC/commentController');
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
@@ -61,5 +62,9 @@ app.post('/user', UserController.createUser);
 
 app.post('/auth/login', UserController.userLogin);
 
+
+// ------------------------------Comment Requests---------------------------------------//
+
+app.post('/comment', CommentController.saveComment);
 
 module.exports = app
