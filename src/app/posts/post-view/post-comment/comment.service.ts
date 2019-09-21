@@ -1,17 +1,27 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Comment, CommentModel } from './comment.model';
+import { Comment } from './comment.model';
 import { map } from "rxjs/operators";
+import { Subject } from "rxjs";
 
 @Injectable({ providedIn: "root" })
 
 export class CommentService {
 
+    private comments: Array<Comment> = [];
+    private commentsListener = new Subject<Array<Comment>>();
 
     constructor(private httpClient: HttpClient) { }
 
     addComment(username: string, imagePath: string, content: string, creator_id: string) {
-        let data: Comment = new CommentModel(username, imagePath, content, creator_id);
+
+        let data = {
+            username,
+            imagePath,
+            content,
+            creator_id
+        };
+
         type responseType = { status: string, comment: any };
 
         this.httpClient.post<responseType>('http://localhost:3000/comment', data)
@@ -31,7 +41,11 @@ export class CommentService {
             )
             .subscribe(
                 (transformedComment) => {
-                    console.log(transformedComment);
+                    const comment: Comment = transformedComment;
+                    this.comments.push(comment);
+                    this.commentsListener.next([...this.comments]);
+
+                    console.log(this.comments);
                 }
             );
     }

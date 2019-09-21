@@ -11,3 +11,4 @@ Add various utilities to the home component
 Add a comment panel on post view component - Add as a sub component
 Add emoji bar to the comment panel.
 The creator of the post should be able to disable the comment section.
+Update the comment model to store the post id.
