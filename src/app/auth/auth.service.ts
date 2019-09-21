@@ -66,7 +66,7 @@ export class AuthService {
                         this.setAuthTimer(expiresIn);
                         const timeNow = new Date();
                         const expiryTime = new Date(timeNow.getTime() + expiresIn * 1000);
-                        this.setAuthData(token, expiryTime, data.creator_id);
+                        this.setAuthData(token, expiryTime, data.creator_id, data.user.username);
 
                         this.isAuthenticated = true;
                         this.authenticatedListener.next(true);
@@ -92,6 +92,7 @@ export class AuthService {
                 this.token = dataFromStorage.token;
                 this.isAuthenticated = true;
                 this.userId = dataFromStorage.userId;
+                this.username = dataFromStorage.username;
 
                 this.setAuthTimer(validTime / 1000);
                 this.authenticatedListener.next(true);
@@ -124,22 +125,25 @@ export class AuthService {
         })
     }
 
-    private setAuthData(token: string, expiresIn: Date, currentUserId: string) {
+    private setAuthData(token: string, expiresIn: Date, currentUserId: string, username: string) {
         localStorage.setItem('token', token);
         localStorage.setItem('expiresIn', expiresIn.toISOString());
         localStorage.setItem('userId', currentUserId);
+        localStorage.setItem('username', username);
     }
 
     private removeAuthData() {
         localStorage.removeItem('token');
         localStorage.removeItem('expiresIn');
         localStorage.removeItem('userId');
+        localStorage.removeItem('username');
     }
 
     private getAuthData() {
         const token = localStorage.getItem('token');
         const expiresIn = localStorage.getItem('expiresIn');
         const userId = localStorage.getItem('userId');
+        const username = localStorage.getItem('username');
 
         if (!token || !expiresIn) {
             return;
@@ -148,7 +152,8 @@ export class AuthService {
         return {
             token: token,
             expiresIn: new Date(expiresIn),
-            userId: userId
+            userId: userId,
+            username: username
         }
     }
 }
