@@ -15,7 +15,7 @@
   background-color: transparent;
 }
 
-.list-group-item {
+#list-group-item {
   max-width: 600px;
   border: none;
 }

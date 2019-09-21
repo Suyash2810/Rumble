@@ -1,0 +1,36 @@
+.card {
+  background-color: transparent;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  width: 650px;
+}
+
+.card-header {
+  background-color: #5E35B1;
+  height: 2.5rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.panel-body {
+  background-color: transparent;
+}
+
+#list-group-sub-item {
+  width: 100%;
+  border: none;
+}
+
+.comment_title {
+  font-weight: 400;
+  font-size: 1.2em;
+}
+
+.title_date {
+  font-size: 0.7em;
+  float: right;
+}
+
+.card-footer {
+  background-color: transparent;
+}

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-sub-reply-comments',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubReplyCommentsComponent implements OnInit {
 
+  comment: string = " ";
+  @ViewChild('f') subform: NgForm;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSubmit() {
+    this.comment = this.subform.value.comment;
+  }
 }

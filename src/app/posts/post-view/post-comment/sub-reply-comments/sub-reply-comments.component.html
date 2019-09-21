@@ -1,3 +1,41 @@
-<p>
-  sub-reply-comments works!
-</p>
+<div class="row">
+  <div class="col-md-8 col-md-offset-2 mx-auto">
+    <div class="card">
+      <div class="card-header"></div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item" id="list-group-sub-item">
+            <div class="media p-3">
+              <img src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="John Doe"
+                class="align-self-start mr-3 rounded-circle" style="width:60px;">
+              <div class="media-body border p-4 rounded">
+                <h6 class="comment_title">Daniel Bran <code class="title_date">27th August, 2019</code></h6>
+                <mat-divider></mat-divider>
+                <p class="mt-3">
+                  Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety
+                  delighted explained perceived otherwise objection saw ten her. Doubt merit sir the right these alone
+                  keeps. By sometimes intention smallness he northward.
+                </p>
+                <mat-divider></mat-divider>
+                <div class="mt-3">
+                  <button type="button" mat-button color="accent">Like</button>
+                  <button type="button" mat-button color="accent">Unlike</button>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <div class="card-footer">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
+          <mat-form-field class="example-full-width">
+            <label for="comment">Comment</label>
+            <textarea name="comment" id="comment" rows="4" matInput ngModel #Comment="ngModel"></textarea>
+          </mat-form-field>
+          <br>
+          <button mat-stroked-button color="accent" type="submit">Comment</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
