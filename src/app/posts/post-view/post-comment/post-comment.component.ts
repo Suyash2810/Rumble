@@ -8,6 +8,8 @@ import {
   QuickToolbarService
 } from '@syncfusion/ej2-angular-richtexteditor';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/auth/auth.service';
+import { CommentService } from './comment.service';
 
 @Component({
   selector: 'app-post-comment',
@@ -18,6 +20,8 @@ import { NgForm } from '@angular/forms';
 export class PostCommentComponent implements OnInit {
 
   comment: string = " ";
+  userID: string = " ";
+  username: string = " ";
   @ViewChild('f') form: NgForm;
 
   public tools: object = {
@@ -36,13 +40,15 @@ export class PostCommentComponent implements OnInit {
       'Replace', 'Align', 'Caption', 'Remove', 'InsertLink', '-', 'Display', 'AltText', 'Dimension']
   };
 
-  constructor() { }
+  constructor(private authService: AuthService, private commentService: CommentService) { }
 
   ngOnInit() {
+    this.userID = this.authService.getCurrentUserId();
+    this.username = this.authService.getCurrentUsername();
   }
 
   onSubmit() {
     this.comment = this.form.value.comment;
-    console.log(this.comment);
+    this.commentService.addComment(this.username, null, this.comment, this.userID);
   }
 }
