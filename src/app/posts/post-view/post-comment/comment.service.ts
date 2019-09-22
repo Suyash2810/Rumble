@@ -13,6 +13,14 @@ export class CommentService {
 
     constructor(private httpClient: HttpClient) { }
 
+    getSavedComments() {
+        return this.comments;
+    }
+
+    getCommentsListener() {
+        return this.commentsListener.asObservable();
+    }
+
     addComment(username: string, imagePath: string, content: string, creator_id: string) {
 
         let data = {
