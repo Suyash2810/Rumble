@@ -73,7 +73,10 @@ export class CommentService {
             )
             .subscribe(
                 (transformedCommentData) => {
-                    console.log(transformedCommentData);
+
+                    let comments: Array<Comment> = transformedCommentData;
+                    this.comments = comments;
+                    this.commentsListener.next([...this.comments]);
                 }
             )
     }

@@ -45,6 +45,7 @@ export class PostCommentComponent implements OnInit {
   ngOnInit() {
     this.userID = this.authService.getCurrentUserId();
     this.username = this.authService.getCurrentUsername();
+    this.commentService.getComments();
   }
 
   onSubmit() {

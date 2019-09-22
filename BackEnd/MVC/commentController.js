@@ -30,6 +30,33 @@ var saveComment = (request, response) => {
   );
 }
 
+var getComments = (request, response) => {
+
+  Comment.find({}).then(
+    (result) => {
+      if (result) {
+        console.log(result);
+        response.status(200).send({
+          status: "The data has been retrieved successfully.",
+          comments: result
+        });
+      } else {
+        response.status(404).send({
+          status: "The data could not be retrived from the database.",
+          comments: null
+        });
+      }
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      })
+    }
+  )
+}
+
 module.exports = {
-  saveComment
+  saveComment,
+  getComments
 }

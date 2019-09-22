@@ -67,4 +67,6 @@ app.post('/auth/login', UserController.userLogin);
 
 app.post('/comment', CommentController.saveComment);
 
+app.get('/comment', CommentController.getComments);
+
 module.exports = app
