@@ -1,3 +1,5 @@
-mat-sidenav-container {
+#menu_row,
+#menu_column {
   padding: 0;
+  margin: 0;
 }
