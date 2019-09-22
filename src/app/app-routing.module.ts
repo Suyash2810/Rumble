@@ -7,7 +7,7 @@ import { SigninComponent } from "./auth/signin/signin.component";
 import { SignupComponent } from "./auth/signup/signup.component";
 import { AuthGuard } from "./auth/auth.guard";
 import { PostViewComponent } from "./posts/post-view/post-view.component";
-import { HomeComponent } from "./home/home.component";
+import { HomeComponent } from "./core/home/home.component";
 
 const appRoutes: Routes = [
     { path: '', component: HomeComponent },

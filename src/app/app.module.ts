@@ -3,7 +3,6 @@ import { NgModule } from "@angular/core";
 import { AppComponent } from "./app.component";
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HeaderComponent } from './header/header.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from "./app-routing.module";
 import { AuthInterceptor } from "./auth/auth_interceptor";
@@ -13,14 +12,12 @@ import { PostsModule } from "./posts/posts.module";
 import { AuthModule } from "./auth/auth.module";
 import { SharedModule } from "./shared/shared.module";
 import { RichTextEditorAllModule } from '@syncfusion/ej2-angular-richtexteditor';
-import { HomeComponent } from './home/home.component';
+import { CoreModule } from "./core/core.module";
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeaderComponent,
-    ErrorComponent,
-    HomeComponent
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +29,7 @@ import { HomeComponent } from './home/home.component';
     AuthModule,
     PostsModule,
     HttpClientModule,
+    CoreModule,
     RichTextEditorAllModule,
     MaterialModule
   ],
