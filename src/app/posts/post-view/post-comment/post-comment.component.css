@@ -33,3 +33,7 @@
 .card-footer {
   background-color: transparent;
 }
+
+mat-spinner {
+  margin: auto;
+}

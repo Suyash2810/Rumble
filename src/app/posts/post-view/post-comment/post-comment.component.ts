@@ -27,6 +27,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   @ViewChild('f') form: NgForm;
   comments: Array<Comment> = [];
   commentSubs: Subscription;
+  isLoading: boolean = true;
 
   public tools: object = {
     items: ['Undo', 'Redo', '|',
@@ -56,6 +57,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
         const comments: Array<Comment> = result;
         this.comments = comments;
         console.log(this.comments);
+        this.isLoading = false;
       }
     )
   }
@@ -65,7 +67,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
     this.commentService.addComment(this.username, null, this.comment, this.userID);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.commentSubs.unsubscribe();
   }
 }
