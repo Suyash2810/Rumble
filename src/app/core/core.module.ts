@@ -5,12 +5,14 @@ import { HomeComponent } from "./home/home.component";
 import { NgModule } from "@angular/core";
 import { MaterialModule } from "../material.module";
 import { BasicComponent } from './home/basic/basic.component';
+import { ProfileComponent } from './home/profile/profile.component';
 
 @NgModule({
     declarations: [
         HeaderComponent,
         HomeComponent,
-        BasicComponent
+        BasicComponent,
+        ProfileComponent
     ],
     imports: [
         SharedModule,
