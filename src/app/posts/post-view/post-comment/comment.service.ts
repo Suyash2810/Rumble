@@ -3,6 +3,8 @@ import { HttpClient } from "@angular/common/http";
 import { Comment } from './comment.model';
 import { map } from "rxjs/operators";
 import { Subject } from "rxjs";
+import { MatDialog } from "@angular/material";
+import { ErrorComponent } from "src/app/error/error.component";
 
 @Injectable({ providedIn: "root" })
 
@@ -11,7 +13,7 @@ export class CommentService {
     private comments: Array<Comment> = [];
     private commentsListener = new Subject<Array<Comment>>();
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private dialog: MatDialog) { }
 
     getSavedComments() {
         return this.comments;
@@ -54,6 +56,13 @@ export class CommentService {
                     this.commentsListener.next([...this.comments]);
 
                     console.log(this.comments);
+                },
+                (error) => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: error.error.error.message
+                        }
+                    })
                 }
             );
     }
@@ -85,6 +94,13 @@ export class CommentService {
                     let comments: Array<Comment> = transformedCommentData;
                     this.comments = comments;
                     this.commentsListener.next([...this.comments]);
+                },
+                (error) => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: error.error.error.message
+                        }
+                    })
                 }
             )
     }
@@ -109,6 +125,13 @@ export class CommentService {
             .subscribe(
                 (transformedComment) => {
                     console.log(transformedComment);
+                },
+                (error) => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: error.error.error.message
+                        }
+                    })
                 }
             )
     }
