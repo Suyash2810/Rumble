@@ -5,11 +5,11 @@
     <div class="card">
       <div class="card-header">
         <mat-slide-toggle class="example-margin" [checked]="checked" (change)="toggleChecked()"
-          matTooltip="Slide to Enable/Disable the comment section.">
+          matTooltip="Slide to Enable/Disable the comment section." *ngIf="postCreatorId == userID">
 
         </mat-slide-toggle>
       </div>
-      <div class="card-body">
+      <div class="card-body" *ngIf="!checked">
         <ul class="list-group">
           <li class="list-group-item" id="list-group-item" *ngFor="let comment of comments">
             <div class="media p-3">
@@ -35,7 +35,7 @@
           </li>
         </ul>
       </div>
-      <div class="card-footer">
+      <div class="card-footer" *ngIf="!checked; else disabledFooter">
         <form (ngSubmit)="onSubmit()" #f="ngForm">
           <div class="example-container">
             <div class="example-full-width">
@@ -49,6 +49,9 @@
           <button mat-stroked-button color="accent" type="submit">Comment</button>
         </form>
       </div>
+      <ng-template #disabledFooter>
+        <mat-card>Oops! The comments have been disabled by the post's owner.</mat-card>
+      </ng-template>
     </div>
   </div>
 </div>
