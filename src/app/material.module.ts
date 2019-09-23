@@ -9,7 +9,9 @@ import {
     MatPaginatorModule,
     MatDialogModule,
     MatSidenavModule,
-    MatDividerModule
+    MatDividerModule,
+    MatSlideToggleModule,
+    MatTooltipModule
 } from '@angular/material';
 
 @NgModule({
@@ -23,7 +25,9 @@ import {
         MatPaginatorModule,
         MatDialogModule,
         MatSidenavModule,
-        MatDividerModule
+        MatDividerModule,
+        MatSlideToggleModule,
+        MatTooltipModule
     ],
     exports: [
         MatInputModule,
@@ -35,7 +39,9 @@ import {
         MatPaginatorModule,
         MatDialogModule,
         MatSidenavModule,
-        MatDividerModule
+        MatDividerModule,
+        MatSlideToggleModule,
+        MatTooltipModule
     ]
 })
 

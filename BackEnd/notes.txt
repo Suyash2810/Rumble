@@ -8,12 +8,9 @@ Do the testing of the API requests.
 Resolve the storing of images uploaded in posts content in text editor.
 Improve the functionalities in the text editor
 Add various utilities to the home component
-Add a comment panel on post view component - Add as a sub component
 Add emoji bar to the comment panel.
 The creator of the post should be able to disable the comment section.
 Update the comment model to store the post id.
--->Add option for editing and deleting of comments.
 Restrict comment section for the logged in users or disable comments for not logged in users.
 Add paginator to the comment section or use autoscroll.
--->add loader animation wherever necessary.
 Work on sub components of the Home component.

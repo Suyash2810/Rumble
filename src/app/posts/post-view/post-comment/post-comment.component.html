@@ -3,7 +3,12 @@
 <div class="row" style="margin: 0;padding:0;" *ngIf="!isLoading">
   <div class="col-md-8 col-md-offset-2 mx-auto">
     <div class="card">
-      <div class="card-header"></div>
+      <div class="card-header">
+        <mat-slide-toggle class="example-margin" [checked]="checked" (change)="toggleChecked()"
+          matTooltip="Slide to Enable/Disable the comment section.">
+
+        </mat-slide-toggle>
+      </div>
       <div class="card-body">
         <ul class="list-group">
           <li class="list-group-item" id="list-group-item" *ngFor="let comment of comments">

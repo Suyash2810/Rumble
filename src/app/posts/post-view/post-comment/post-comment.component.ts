@@ -28,6 +28,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   comments: Array<Comment> = [];
   commentSubs: Subscription;
   isLoading: boolean = true;
+  checked: boolean = false;
 
   public tools: object = {
     items: ['Undo', 'Redo', '|',
@@ -65,6 +66,11 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.comment = this.form.value.comment;
     this.commentService.addComment(this.username, null, this.comment, this.userID);
+  }
+
+  toggleChecked() {
+    this.checked = !this.checked;
+    console.log(this.checked);
   }
 
   ngOnDestroy() {
