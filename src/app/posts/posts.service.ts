@@ -16,6 +16,7 @@ export class PostService {
     private nextUpdatedPost = new Subject<{ posts: Array<Post>, postsCount: number }>();
     private nextSinglePost = new Subject<Post>();
 
+
     constructor(private httpClient: HttpClient, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     }
 
@@ -96,6 +97,10 @@ export class PostService {
 
     getOnePost() {
         return this.nextSinglePost.asObservable();
+    }
+
+    getOnePostStatic() {
+        return this.post;
     }
 
     getUpdatedPostsStatic() {
@@ -219,7 +224,11 @@ export class PostService {
                     console.log(transformedData);
                 },
                 (error) => {
-                    console.log(error);
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: error.error.error.message
+                        }
+                    })
                 }
             );
     }

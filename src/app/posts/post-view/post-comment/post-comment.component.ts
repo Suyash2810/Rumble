@@ -76,8 +76,9 @@ export class PostCommentComponent implements OnInit, OnDestroy {
     this.postService.getOnePost().subscribe(
       (post) => {
         this.postCreatorId = post.creator_id;
+        this.checked = post.commentStatus;
       }
-    )
+    );
   }
 
   onSubmit() {
