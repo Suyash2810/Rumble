@@ -9,9 +9,8 @@ Resolve the storing of images uploaded in posts content in text editor.
 Improve the functionalities in the text editor
 Add various utilities to the home component
 Add emoji bar to the comment panel.
-The creator of the post should be able to disable the comment section.
-Update the comment model to store the post id.
 Restrict comment section for the logged in users or disable comments for not logged in users.
 Add paginator to the comment section or use autoscroll.
 Work on sub components of the Home component.
-Store the enabled/disabled status of the comment panel in the database. (Post Model has to be manipulated. Every post will have a status for comments being enabled or disabled. Patch request.)
+Clear the editor after submit
+Further let the user know if there are no comments yet.

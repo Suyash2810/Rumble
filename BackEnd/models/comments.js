@@ -21,6 +21,10 @@ var commentSchema = new mongoose.Schema({
   creator_id: {
     type: String,
     required: true
+  },
+  postId: {
+    required: true,
+    type: String
   }
 });
 

@@ -23,13 +23,14 @@ export class CommentService {
         return this.commentsListener.asObservable();
     }
 
-    addComment(username: string, imagePath: string, content: string, creator_id: string) {
+    addComment(username: string, imagePath: string, content: string, creator_id: string, postId: string) {
 
         let data = {
             username,
             imagePath,
             content,
-            creator_id
+            creator_id,
+            postId
         };
 
         type responseType = { status: string, comment: any };
@@ -44,7 +45,8 @@ export class CommentService {
                             imagePath: data.comment.imagePath,
                             content: data.comment.content,
                             createdAt: data.comment.createdAt,
-                            creator_id: data.comment.creator_id
+                            creator_id: data.comment.creator_id,
+                            postId: data.comment.postId
                         }
                     }
                 )
@@ -67,9 +69,9 @@ export class CommentService {
             );
     }
 
-    getComments() {
+    getComments(postId: string) {
         type responseType = { status: string, comments: any };
-        this.httpClient.get<responseType>('http://localhost:3000/comment')
+        this.httpClient.get<responseType>('http://localhost:3000/comment/' + postId)
             .pipe(
                 map(
                     (data) => {
@@ -81,7 +83,8 @@ export class CommentService {
                                     imagePath: comment.imagePath,
                                     content: comment.content,
                                     createdAt: comment.createdAt,
-                                    creator_id: comment.creator_id
+                                    creator_id: comment.creator_id,
+                                    postId: comment.postId
                                 }
                             }
                         )
@@ -117,7 +120,8 @@ export class CommentService {
                             imagePath: data.comment.imagePath,
                             content: data.comment.content,
                             createdAt: data.comment.createdAt,
-                            creator_id: data.comment.creator_id
+                            creator_id: data.comment.creator_id,
+                            postId: data.comment.postId
                         }
                     }
                 )

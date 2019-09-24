@@ -55,7 +55,14 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userID = this.authService.getCurrentUserId();
     this.username = this.authService.getCurrentUsername();
-    this.commentService.getComments();
+
+    this.route.params.subscribe(
+      (params: Params) => {
+        this.postID = params['postID'];
+      }
+    );
+
+    this.commentService.getComments(this.postID);
     this.comments = this.commentService.getSavedComments();
     this.commentSubs = this.commentService.getCommentsListener().subscribe(
       (result) => {
@@ -63,12 +70,6 @@ export class PostCommentComponent implements OnInit, OnDestroy {
         this.comments = comments;
         console.log(this.comments);
         this.isLoading = false;
-      }
-    );
-
-    this.route.params.subscribe(
-      (params: Params) => {
-        this.postID = params['postID'];
       }
     );
 
@@ -83,7 +84,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.comment = this.form.value.comment;
-    this.commentService.addComment(this.username, null, this.comment, this.userID);
+    this.commentService.addComment(this.username, null, this.comment, this.userID, this.postID);
   }
 
   toggleChecked() {

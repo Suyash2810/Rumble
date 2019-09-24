@@ -4,5 +4,6 @@ export interface Comment {
     imagePath: string;
     creator_id: string;
     content: string;
-    createdAt: string
+    createdAt: string;
+    postId: string;
 }

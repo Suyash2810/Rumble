@@ -6,7 +6,7 @@ const {
 
 var saveComment = (request, response) => {
 
-  let commentbody = _.pick(request.body, ['username', 'imagePath', 'content', 'creator_id']);
+  let commentbody = _.pick(request.body, ['username', 'imagePath', 'content', 'creator_id', 'postId']);
   commentbody.imagePath = "Not implemented yet.";
 
   console.log(commentbody);
@@ -32,7 +32,11 @@ var saveComment = (request, response) => {
 
 var getComments = (request, response) => {
 
-  Comment.find({}).then(
+  let postId = request.params.postId;
+
+  Comment.find({
+    postId: postId
+  }).then(
     (result) => {
       if (result) {
         console.log(result);
