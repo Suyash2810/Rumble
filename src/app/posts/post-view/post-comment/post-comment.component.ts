@@ -87,7 +87,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
 
   toggleChecked() {
     this.checked = !this.checked;
-    console.log(this.checked);
+    this.postService.commentStatus(this.checked, this.postID, this.postCreatorId);
   }
 
   ngOnDestroy() {

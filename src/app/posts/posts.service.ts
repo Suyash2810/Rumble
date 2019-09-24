@@ -186,7 +186,38 @@ export class PostService {
             )
     }
 
-    commentStatus(status: boolean) {
+    commentStatus(status: boolean, postID: string, postCreatorID: string) {
 
+        type responseType = { status: string, post: any };
+
+        let data = {
+            commentStatus: status,
+            postID: postID,
+            postCreatorID: postCreatorID
+        }
+
+        this.httpClient.patch<responseType>('http://localhost:3000/post/commentStatus', data)
+            .pipe(
+                map(
+                    (data) => {
+                        return {
+                            id: data.post._id,
+                            username: data.post.username,
+                            title: data.post.title,
+                            description: data.post.description,
+                            content: data.post.content,
+                            imagePath: data.post.imagePath,
+                            creator_id: data.post.creator_id,
+                            createdAt: data.post.createdAt,
+                            commentStatus: data.post.commentStatus
+                        }
+                    }
+                )
+            )
+            .subscribe(
+                (transformedData) => {
+                    console.log(transformedData);
+                }
+            );
     }
 }
