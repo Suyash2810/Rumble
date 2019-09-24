@@ -56,6 +56,8 @@ app.delete('/posts/:id', authorization, PostController.deletePost);
 
 app.patch('/posts/:id', authorization, multerFileExtract, PostController.updatePost);
 
+app.patch('/post/commentStatus', authorization, PostController.updateCommentStatus);
+
 // ------------------------------User Requests---------------------------------------//
 
 app.post('/user', UserController.createUser);

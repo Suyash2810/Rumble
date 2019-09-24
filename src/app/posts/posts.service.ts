@@ -217,6 +217,9 @@ export class PostService {
             .subscribe(
                 (transformedData) => {
                     console.log(transformedData);
+                },
+                (error) => {
+                    console.log(error);
                 }
             );
     }

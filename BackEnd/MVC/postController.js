@@ -180,10 +180,44 @@ var getPosts = async (request, response) => {
     )
 }
 
+updateCommentStatus = (request, response) => {
+
+  let body = _.pick(request.body, ['commentStatus', 'postID', 'postCreatorID']);
+  console.log(body);
+
+  let updateBody = {
+    commentStatus: body.commentStatus
+  }
+
+  Post.findOneAndUpdate({
+    _id: body.postID,
+    creator_id: body.postCreatorID
+  }, {
+    $set: updateBody
+  }, {
+    new: true
+  }).then(
+    (result) => {
+      console.log(result);
+      response.status(200).send({
+        status: "The data has been successfully saved.",
+        post: result
+      });
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      })
+    }
+  )
+}
+
 module.exports = {
   updatePost,
   deletePost,
   getPostById,
   savePost,
-  getPosts
+  getPosts,
+  updateCommentStatus
 }
