@@ -39,7 +39,8 @@ export class PostService {
                                         content: post.content,
                                         imagePath: post.imagePath,
                                         creator_id: post.creator_id,
-                                        createdAt: post.createdAt
+                                        createdAt: post.createdAt,
+                                        commentStatus: post.commentStatus
                                     }
                                 }
                             ),
@@ -70,7 +71,8 @@ export class PostService {
                             content: data.post.content,
                             imagePath: data.post.imagePath,
                             creator_id: data.post.creator_id,
-                            createdAt: data.post.createdAt
+                            createdAt: data.post.createdAt,
+                            commentStatus: data.post.commentStatus
                         }
                     }
                 )
@@ -182,5 +184,9 @@ export class PostService {
                     console.log(transformedPost);
                 }
             )
+    }
+
+    commentStatus(status: boolean) {
+
     }
 }

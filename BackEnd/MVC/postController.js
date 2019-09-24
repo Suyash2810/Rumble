@@ -110,7 +110,8 @@ var savePost = (request, response) => {
     content: body.content !== 'null' ? body.content : undefined,
     description: body.description !== 'null' ? body.description : undefined,
     imagePath: url + "/images/" + request.file.filename,
-    creator_id: id
+    creator_id: id,
+    commentStatus: true
   }
 
   let post = new Post(postBody);

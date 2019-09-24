@@ -6,7 +6,8 @@ export interface Post {
     content: string,
     imagePath: string,
     creator_id: string,
-    createdAt: string
+    createdAt: string,
+    commentStatus: boolean
 }
 
 export class PostModel implements Post {
@@ -19,8 +20,9 @@ export class PostModel implements Post {
     username: string;
     description: string;
     createdAt: string;
+    commentStatus: boolean;
 
-    constructor(id: string, username: string, title: string, description: string, content: string, imagePath: string, creator_id: string, createdAt: string) {
+    constructor(id: string, username: string, title: string, description: string, content: string, imagePath: string, creator_id: string, createdAt: string, commentStatus: boolean) {
         this.title = title;
         this.content = content;
         this.id = id;
@@ -29,5 +31,6 @@ export class PostModel implements Post {
         this.creator_id = creator_id;
         this.description = description;
         this.createdAt = createdAt;
+        this.commentStatus = commentStatus;
     }
 }

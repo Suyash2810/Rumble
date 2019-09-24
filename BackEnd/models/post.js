@@ -29,6 +29,10 @@ var postSchema = new mongoose.Schema({
   createdAt: {
     type: String,
     default: moment().format("MMM Do YY")
+  },
+  commentStatus: {
+    type: Boolean,
+    required: true
   }
 })
 
