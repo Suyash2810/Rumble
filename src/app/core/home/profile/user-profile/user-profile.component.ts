@@ -8,7 +8,9 @@ import { NgForm } from '@angular/forms';
 })
 export class UserProfileComponent implements OnInit {
 
-  imagePreview: any;
+  imagePreview: string;
+  file: File;
+
   @ViewChild('f') form: NgForm;
 
   constructor() { }
@@ -18,5 +20,16 @@ export class UserProfileComponent implements OnInit {
 
   onSubmit() {
 
+  }
+
+  imageUpload(event: Event) {
+    this.file = (event.target as HTMLInputElement).files[0];
+    this.form.value.image = this.file;
+    const reader = new FileReader();
+    reader.onload = () => {
+      this.imagePreview = (reader.result as string);
+    }
+
+    reader.readAsDataURL(this.file);
   }
 }

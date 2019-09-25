@@ -10,10 +10,14 @@
           <div class="col-md-12">
             <mat-card class="border border-info">
               <form (submit)="onSubmit()" #f="ngForm">
-                <mat-form-field class="example-full-width">
+                <div>
                   <button mat-raised-button color="primary" type="button" (click)="filePicker.click()">Upload</button>
-                  <input type="file" (change)="imageUpload($event)" #filePicker>
-                </mat-form-field>
+                  <input type="file" name="image" (change)="imageUpload($event)" #filePicker>
+                </div>
+                <br>
+                <div *ngIf="imagePreview">
+                  <img [src]="imagePreview" alt="Image" width="180px" height="180px" class="img-fluid img-thumbnail">
+                </div>
                 <br>
                 <button mat-raised-button color="primary" type="submit">Update</button>
               </form>
