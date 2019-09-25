@@ -21,14 +21,17 @@
       </div>
 
       <mat-list role="list">
-        <mat-list-item role="listitem"><a><i class="fa fa-user"></i> &nbsp; Profile</a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['user-profile']"><i class="fa fa-user"></i> &nbsp; Profile</a>
+        </mat-list-item>
         <mat-list-item role="listitem"><a><i class="fa fa-edit"></i> &nbsp; Account</a></mat-list-item>
         <mat-list-item role="listitem"><a><i class="fa fa-paper-plane"></i> &nbsp; My Posts</a></mat-list-item>
       </mat-list>
 
+      <mat-divider></mat-divider>
+
     </mat-drawer-container>
   </div>
   <div class="col-md-8">
-    This is the sub component loaded as per the sidenav
+    <router-outlet></router-outlet>
   </div>
 </div>

@@ -8,6 +8,8 @@ import { BasicComponent } from './home/basic/basic.component';
 import { ProfileComponent } from './home/profile/profile.component';
 import { ContactComponent } from './home/contact/contact.component';
 import { UserProfileComponent } from './home/profile/user-profile/user-profile.component';
+import { UserAccountComponent } from './home/profile/user-account/user-account.component';
+import { UserPostsComponent } from './home/profile/user-posts/user-posts.component';
 
 @NgModule({
     declarations: [
@@ -16,7 +18,9 @@ import { UserProfileComponent } from './home/profile/user-profile/user-profile.c
         BasicComponent,
         ProfileComponent,
         ContactComponent,
-        UserProfileComponent
+        UserProfileComponent,
+        UserAccountComponent,
+        UserPostsComponent
     ],
     imports: [
         SharedModule,

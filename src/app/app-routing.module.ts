@@ -11,12 +11,17 @@ import { HomeComponent } from "./core/home/home.component";
 import { BasicComponent } from "./core/home/basic/basic.component";
 import { ProfileComponent } from "./core/home/profile/profile.component";
 import { ContactComponent } from "./core/home/contact/contact.component";
+import { UserProfileComponent } from './core/home/profile/user-profile/user-profile.component';
 
 const appRoutes: Routes = [
     {
         path: '', component: HomeComponent, children: [
             { path: '', component: BasicComponent },
-            { path: 'profile', component: ProfileComponent },
+            {
+                path: 'profile', component: ProfileComponent, children: [
+                    { path: 'user-profile', component: UserProfileComponent }
+                ]
+            },
             { path: 'contact', component: ContactComponent }
         ]
     },
