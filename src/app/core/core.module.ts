@@ -10,6 +10,7 @@ import { ContactComponent } from './home/contact/contact.component';
 import { UserProfileComponent } from './home/profile/user-profile/user-profile.component';
 import { UserAccountComponent } from './home/profile/user-account/user-account.component';
 import { UserPostsComponent } from './home/profile/user-posts/user-posts.component';
+import {FormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -25,7 +26,8 @@ import { UserPostsComponent } from './home/profile/user-posts/user-posts.compone
     imports: [
         SharedModule,
         AppRoutingModule,
-        MaterialModule
+        MaterialModule,
+        FormsModule
     ],
     exports: [
         AppRoutingModule,

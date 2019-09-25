@@ -1,3 +1,26 @@
-<p>
-  user-profile works!
-</p>
+<div class="row" style="margin: 0; padding: 0;margin-top: 10px;">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-header">
+
+      </div>
+      <div class="card-body">
+        <h4 id="user_profile_header">Upload Image.</h4>
+        <div class="row" style="margin: 0; padding: 0; margin-top:30px;">
+          <div class="col-md-12">
+            <mat-card class="border border-info">
+              <form (submit)="onSubmit()" #f="ngForm">
+                <mat-form-field class="example-full-width">
+                  <button mat-raised-button color="primary" type="button" (click)="filePicker.click()">Upload</button>
+                  <input type="file" (change)="imageUpload($event)" #filePicker>
+                </mat-form-field>
+                <br>
+                <button mat-raised-button color="primary" type="submit">Update</button>
+              </form>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

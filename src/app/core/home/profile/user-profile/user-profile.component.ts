@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-user-profile',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserProfileComponent implements OnInit {
 
+  imagePreview: any;
+  @ViewChild('f') form: NgForm;
+
   constructor() { }
 
   ngOnInit() {
   }
 
+  onSubmit() {
+
+  }
 }
