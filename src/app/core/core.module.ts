@@ -7,6 +7,7 @@ import { MaterialModule } from "../material.module";
 import { BasicComponent } from './home/basic/basic.component';
 import { ProfileComponent } from './home/profile/profile.component';
 import { ContactComponent } from './home/contact/contact.component';
+import { UserProfileComponent } from './home/profile/user-profile/user-profile.component';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { ContactComponent } from './home/contact/contact.component';
         HomeComponent,
         BasicComponent,
         ProfileComponent,
-        ContactComponent
+        ContactComponent,
+        UserProfileComponent
     ],
     imports: [
         SharedModule,
