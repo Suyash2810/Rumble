@@ -19,3 +19,26 @@
   height: 180px;
   width: 100%;
 }
+
+
+#username,
+#userEmail {
+  color: white;
+  font-weight: 100;
+}
+
+#username {
+  font-size: 16px;
+}
+
+#userEmail {
+  font-size: 14px;
+}
+
+mat-list {
+  background-color: white;
+}
+
+mat-list-item {
+  border: 1px solid whitesmoke;
+}
