@@ -12,6 +12,8 @@ import { BasicComponent } from "./core/home/basic/basic.component";
 import { ProfileComponent } from "./core/home/profile/profile.component";
 import { ContactComponent } from "./core/home/contact/contact.component";
 import { UserProfileComponent } from './core/home/profile/user-profile/user-profile.component';
+import { UserAccountComponent } from "./core/home/profile/user-account/user-account.component";
+import { UserPostsComponent } from "./core/home/profile/user-posts/user-posts.component";
 
 const appRoutes: Routes = [
     {
@@ -19,7 +21,9 @@ const appRoutes: Routes = [
             { path: '', component: BasicComponent },
             {
                 path: 'profile', component: ProfileComponent, children: [
-                    { path: 'user-profile', component: UserProfileComponent }
+                    { path: 'user-profile', component: UserProfileComponent },
+                    { path: 'user-account', component: UserAccountComponent },
+                    { path: 'user-posts', component: UserPostsComponent }
                 ]
             },
             { path: 'contact', component: ContactComponent }

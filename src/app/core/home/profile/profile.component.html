@@ -23,8 +23,10 @@
       <mat-list role="list">
         <mat-list-item role="listitem"><a [routerLink]="['user-profile']"><i class="fa fa-user"></i> &nbsp; Profile</a>
         </mat-list-item>
-        <mat-list-item role="listitem"><a><i class="fa fa-edit"></i> &nbsp; Account</a></mat-list-item>
-        <mat-list-item role="listitem"><a><i class="fa fa-paper-plane"></i> &nbsp; My Posts</a></mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['user-account']"><i class="fa fa-edit"></i> &nbsp; Account</a>
+        </mat-list-item>
+        <mat-list-item role="listitem"><a [routerLink]="['user-posts']"><i class="fa fa-paper-plane"></i> &nbsp; My
+            Posts</a></mat-list-item>
       </mat-list>
 
       <mat-divider></mat-divider>
