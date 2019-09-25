@@ -4,6 +4,7 @@ import { AuthUserModel, AuthUser } from "./authUser.model";
 import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { ErrorComponent } from '../error/error.component';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 
@@ -155,5 +156,28 @@ export class AuthService {
             userId: userId,
             username: username
         }
+    }
+
+    getUserInfo(id: string) {
+
+        type responseType = { status: string, user: any };
+
+        this.http.get<responseType>('http://localhost:3000/getUser/' + id)
+            .pipe(
+                map(
+                    (result) => {
+                        return {
+                            id: result.user._id,
+                            username: result.user.username,
+                            email: result.user.email
+                        }
+                    }
+                )
+            )
+            .subscribe(
+                (transformedData) => {
+                    console.log(transformedData);
+                }
+            )
     }
 }

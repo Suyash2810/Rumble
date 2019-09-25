@@ -34,6 +34,9 @@
             <!-- <app-sub-reply-comments></app-sub-reply-comments> -->
           </li>
         </ul>
+        <mat-card *ngIf="comments.length == 0" class="border border-danger">
+          <p class="text-center">No comments have been posted yet.</p>
+        </mat-card>
       </div>
       <div class="card-footer" *ngIf="!checked; else disabledFooter">
         <form (ngSubmit)="onSubmit()" #f="ngForm">

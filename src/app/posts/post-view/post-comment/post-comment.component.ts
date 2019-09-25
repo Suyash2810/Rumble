@@ -85,6 +85,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   onSubmit() {
     this.comment = this.form.value.comment;
     this.commentService.addComment(this.username, null, this.comment, this.userID, this.postID);
+    this.form.reset();
   }
 
   toggleChecked() {
