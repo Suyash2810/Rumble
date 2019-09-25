@@ -77,7 +77,28 @@ var createUser = (request, response) => {
   )
 }
 
+var getUserInfo = (request, response) => {
+
+  let Id = request.user._id;
+
+  User.findById(Id).then(
+    (user) => {
+      response.status(200).send({
+        status: "The user has been successfully",
+        user: user
+      })
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      })
+    }
+  )
+}
+
 module.exports = {
   userLogin,
-  createUser
+  createUser,
+  getUserInfo
 }

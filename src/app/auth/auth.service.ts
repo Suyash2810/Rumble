@@ -158,26 +158,12 @@ export class AuthService {
         }
     }
 
-    getUserInfo(id: string) {
+    getUserInfo() {
 
         type responseType = { status: string, user: any };
 
-        this.http.get<responseType>('http://localhost:3000/getUser/' + id)
-            .pipe(
-                map(
-                    (result) => {
-                        return {
-                            id: result.user._id,
-                            username: result.user.username,
-                            email: result.user.email
-                        }
-                    }
-                )
-            )
-            .subscribe(
-                (transformedData) => {
-                    console.log(transformedData);
-                }
-            )
+        return this.http.get<responseType>('http://localhost:3000/getUser');
     }
+
+
 }

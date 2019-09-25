@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
+import { User } from 'src/app/auth/user.model';
+import { MatDialog } from '@angular/material';
+import { ErrorComponent } from 'src/app/error/error.component';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +11,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  username: string = " ";
+  email: string = " ";
+
+  constructor(private authService: AuthService, private dialog: MatDialog) { }
 
   ngOnInit() {
+
+    this.authService.getUserInfo().subscribe(
+      (data: { status: string, user: any }) => {
+        this.username = data.user.username;
+        this.email = data.user.email;
+        console.log(data);
+      },
+      (error) => {
+        this.dialog.open(ErrorComponent, {
+          data: {
+            message: error.error.error.message
+          }
+        });
+      }
+    )
   }
 
 }

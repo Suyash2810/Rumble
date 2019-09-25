@@ -64,6 +64,7 @@ app.post('/user', UserController.createUser);
 
 app.post('/auth/login', UserController.userLogin);
 
+app.get('/getUser', authorization, UserController.getUserInfo);
 
 // ------------------------------Comment Requests---------------------------------------//
 
