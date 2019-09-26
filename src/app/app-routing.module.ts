@@ -21,7 +21,7 @@ const appRoutes: Routes = [
             { path: '', component: BasicComponent },
             {
                 path: 'profile', component: ProfileComponent, children: [
-                    { path: 'user-profile', component: UserProfileComponent },
+                    { path: '', component: UserProfileComponent },
                     { path: 'user-account', component: UserAccountComponent },
                     { path: 'user-posts', component: UserPostsComponent }
                 ]
