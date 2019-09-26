@@ -167,7 +167,7 @@ export class AuthService {
 
 
     updateUserImage(id: string, image: File) {
-        
+
         let formData = new FormData();
         formData.append('image', image);
 
@@ -189,6 +189,13 @@ export class AuthService {
             .subscribe(
                 (transformedUserData) => {
                     console.log(transformedUserData);
+                },
+                (error) => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: "Please upload a valid Image."
+                        }
+                    })
                 }
             )
     }

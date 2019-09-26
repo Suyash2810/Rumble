@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -12,6 +13,8 @@ export class UserProfileComponent implements OnInit {
   imagePreview: string;
   file: File;
   userId: string;
+  imagePath: string;
+  userSub: Subscription;
 
   @ViewChild('f') form: NgForm;
 
@@ -19,6 +22,11 @@ export class UserProfileComponent implements OnInit {
 
   ngOnInit() {
     this.userId = this.authService.getCurrentUserId();
+    this.authService.getUserInfo().subscribe(
+      (data) => {
+        this.imagePath = data.user.imagePath;
+      }
+    )
   }
 
   onSubmit() {
