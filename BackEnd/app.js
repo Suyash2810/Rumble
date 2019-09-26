@@ -59,6 +59,8 @@ app.patch('/posts/:id', authorization, multerFileExtract, PostController.updateP
 
 app.patch('/post/commentStatus', authorization, PostController.updateCommentStatus);
 
+app.get('/getUserPosts', authorization, PostController.getPostsByUserId);
+
 // ------------------------------User Requests---------------------------------------//
 
 app.post('/user', UserController.createUser);

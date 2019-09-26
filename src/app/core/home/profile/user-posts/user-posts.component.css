@@ -1,14 +1,13 @@
 .card-header {
-    background-color: #0097A7;
-  }
-  
-  #user_profile_header {
-    text-align: center;
-    font-weight: 100;
-  }
-  
-  mat-card {
-    width: 600px;
-    margin: auto;
-  }
-  
+  background-color: #0097A7;
+}
+
+#user_profile_header {
+  text-align: center;
+  font-weight: 100;
+}
+
+mat-card {
+  width: 70%;
+  margin: auto;
+}

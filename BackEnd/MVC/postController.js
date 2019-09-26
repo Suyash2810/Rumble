@@ -213,11 +213,35 @@ updateCommentStatus = (request, response) => {
   )
 }
 
+getPostsByUserId = (request, response) => {
+
+  let id = request.user._id;
+
+  Post.find({
+      creator_id: id
+    }).then(
+      (posts) => {
+        response.status(200).send({
+          status: "Posts have been fetched successfully",
+          posts: posts
+        });
+      }
+    )
+    .catch(
+      (error) => {
+        response.status(400).send({
+          error: error
+        });
+      }
+    );
+}
+
 module.exports = {
   updatePost,
   deletePost,
   getPostById,
   savePost,
   getPosts,
-  updateCommentStatus
+  updateCommentStatus,
+  getPostsByUserId
 }

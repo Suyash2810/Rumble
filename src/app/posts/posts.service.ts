@@ -15,7 +15,8 @@ export class PostService {
     private post: Post;
     private nextUpdatedPost = new Subject<{ posts: Array<Post>, postsCount: number }>();
     private nextSinglePost = new Subject<Post>();
-
+    private UsersPosts: Array<Post> = [];
+    private UsersPostsListener = new Subject<Array<Post>>();
 
     constructor(private httpClient: HttpClient, public dialog: MatDialog, private router: Router, private route: ActivatedRoute) {
     }
@@ -231,5 +232,47 @@ export class PostService {
                     })
                 }
             );
+    }
+
+    getPostByCreatorId() {
+
+        type responseType = { status: string, posts: any };
+
+        this.httpClient.get<responseType>("http://localhost:3000/getUserPosts")
+            .pipe(
+                map(
+                    (result) => {
+                        return result.posts.map(
+                            (post) => {
+                                return {
+                                    id: post._id,
+                                    username: post.username,
+                                    title: post.title,
+                                    description: post.description,
+                                    content: post.content,
+                                    imagePath: post.imagePath,
+                                    creator_id: post.creator_id,
+                                    createdAt: post.createdAt,
+                                    commentStatus: post.commentStatus
+                                }
+                            }
+                        )
+                    }
+                )
+            )
+            .subscribe(
+                (transformedPosts) => {
+                    this.UsersPosts = transformedPosts;
+                    this.UsersPostsListener.next([...this.UsersPosts]);
+                }
+            )
+    }
+
+    getStaticUsersPosts() {
+        return this.UsersPosts;
+    }
+
+    getUsersPostListener() {
+        return this.UsersPostsListener.asObservable();
     }
 }
