@@ -13,6 +13,7 @@ export class ProfileComponent implements OnInit {
 
   username: string = " ";
   email: string = " ";
+  imagePath: string = " ";
 
   constructor(private authService: AuthService, private dialog: MatDialog) { }
 
@@ -22,6 +23,7 @@ export class ProfileComponent implements OnInit {
       (data: { status: string, user: any }) => {
         this.username = data.user.username;
         this.email = data.user.email;
+        this.imagePath = data.user.imagePath
         console.log(data);
       },
       (error) => {

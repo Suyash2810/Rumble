@@ -35,6 +35,7 @@ app.use((request, response, next) => {
 app.use(express.static(__dirname + "/public"));
 
 const multerFileExtract = require('./middleware/multerFilePath');
+const multerUserImageExtract = require('./middleware/multeruserImage');
 
 app.get('/', (request, response) => {
 
@@ -65,6 +66,8 @@ app.post('/user', UserController.createUser);
 app.post('/auth/login', UserController.userLogin);
 
 app.get('/getUser', authorization, UserController.getUserInfo);
+
+app.patch('/updateUserImage/:userId', authorization, multerUserImageExtract, UserController.updateUserImage);
 
 // ------------------------------Comment Requests---------------------------------------//
 

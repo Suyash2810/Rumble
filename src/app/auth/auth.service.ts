@@ -166,4 +166,30 @@ export class AuthService {
     }
 
 
+    updateUserImage(id: string, image: File) {
+        
+        let formData = new FormData();
+        formData.append('image', image);
+
+        type responseType = { status: string, user: any };
+
+        this.http.patch<responseType>("http://localhost:3000/updateUserImage/" + id, formData)
+            .pipe(
+                map(
+                    (data) => {
+                        return {
+                            id: data.user._id,
+                            username: data.user.username,
+                            email: data.user.email,
+                            imagePath: data.user.imagePath
+                        }
+                    }
+                )
+            )
+            .subscribe(
+                (transformedUserData) => {
+                    console.log(transformedUserData);
+                }
+            )
+    }
 }

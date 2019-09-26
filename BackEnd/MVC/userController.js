@@ -97,8 +97,42 @@ var getUserInfo = (request, response) => {
   )
 }
 
+var updateUserImage = (request, response) => {
+
+  let id = request.params.userId;
+  let protocol = request.protocol;
+  let host = request.get("host");
+  let url = protocol + "://" + host;
+  let updateBody = {
+    imagePath: url + "/images/userImages/" + request.file.filename
+  }
+
+  User.findOneAndUpdate({
+      _id: id
+    }, {
+      $set: updateBody
+    }, {
+      new: true
+    }).then(
+      (result) => {
+        response.status(200).send({
+          status: "The image has been updated successfully.",
+          user: result
+        })
+      }
+    )
+    .catch(
+      (error) => {
+        response.status(400).send({
+          error: error
+        })
+      }
+    )
+}
+
 module.exports = {
   userLogin,
   createUser,
-  getUserInfo
+  getUserInfo,
+  updateUserImage
 }

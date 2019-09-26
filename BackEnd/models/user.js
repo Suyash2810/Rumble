@@ -39,6 +39,10 @@ var userSchema = new mongoose.Schema({
       },
       message: "Password is not valid. The password of min length 6 must have an uppercase, lowercase letter and a digit with no spaces in between."
     }
+  },
+  imagePath: {
+    type: String,
+    default: null
   }
 });
 
@@ -46,7 +50,7 @@ userSchema.methods.toJSON = function () {
   var user = this;
 
   let userObj = user.toObject();
-  let userBody = _.pick(userObj, ['_id', 'username', 'email']);
+  let userBody = _.pick(userObj, ['_id', 'username', 'email', 'imagePath']);
 
   return userBody;
 }
