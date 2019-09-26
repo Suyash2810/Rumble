@@ -6,3 +6,24 @@
   text-align: center;
   font-weight: 100;
 }
+
+.card-title {
+  text-align: center;
+  color: #FF0266;
+  font-weight: 100;
+  font-size: 16px;
+  text-transform: uppercase;
+}
+
+#navigate_button {
+  width: 25px;
+  height: 25px;
+}
+
+#card_body {
+  background-color: #212121;
+}
+
+mat-spinner {
+  margin: auto;
+}
