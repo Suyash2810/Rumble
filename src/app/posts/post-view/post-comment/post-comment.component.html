@@ -38,7 +38,7 @@
           <p class="text-center">No comments have been posted yet.</p>
         </mat-card>
       </div>
-      <div class="card-footer" *ngIf="!checked; else disabledFooter">
+      <div class="card-footer" *ngIf="!checked && isAuthenticated; else disabledFooter">
         <form (ngSubmit)="onSubmit()" #f="ngForm">
           <div class="example-container">
             <div class="example-full-width">
@@ -53,7 +53,9 @@
         </form>
       </div>
       <ng-template #disabledFooter>
-        <mat-card>Oops! The comments have been disabled by the post's owner.</mat-card>
+        <mat-card class="text-center" style="background-color: #B71C1C; color: white;">Oops! The comments have been
+          restricted.
+        </mat-card>
       </ng-template>
     </div>
   </div>

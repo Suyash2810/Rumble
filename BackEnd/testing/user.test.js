@@ -23,12 +23,14 @@ describe("Testing User Model", () => {
     const user = new User({
       username: "foo",
       email: "foo@gmail.com",
-      password: "foofoo"
+      password: "foofoo",
+      imagePath: "foo/foo"
     });
 
     expect(user).to.have.property('username').to.equal('foo');
     expect(user).to.have.property('email').to.equal('foo@gmail.com');
     expect(user).to.have.property('password').to.equal('foofoo');
+    expect(user).to.have.property('imagePath').to.equal('foo/foo');
     done();
   });
 });

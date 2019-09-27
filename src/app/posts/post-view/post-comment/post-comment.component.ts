@@ -33,6 +33,8 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   checked: boolean = false;
   postID: string = " ";
   postCreatorId: string = " ";
+  isAuthenticated: boolean = false;
+  authSub: Subscription;
 
   public tools: object = {
     items: ['Undo', 'Redo', '|',
@@ -80,6 +82,13 @@ export class PostCommentComponent implements OnInit, OnDestroy {
         this.checked = post.commentStatus;
       }
     );
+
+    this.isAuthenticated = this.authService.getAuth();
+    this.authSub = this.authService.getAuthenticatedListener().subscribe(
+      (auth: boolean) => {
+        this.isAuthenticated = auth;
+      }
+    )
   }
 
   onSubmit() {
