@@ -1,0 +1,17 @@
+.card {
+  background-color: transparent;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+.card-header {
+  background-color: #1A237E;
+  height: 2.5rem;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#navigation_btn {
+  max-width: 20px;
+  max-height: 20px;
+}

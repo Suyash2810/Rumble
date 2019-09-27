@@ -12,6 +12,8 @@ export class CommentService {
 
     private comments: Array<Comment> = [];
     private commentsListener = new Subject<Array<Comment>>();
+    private comment: Comment;
+    private commentListener = new Subject<Comment>();
 
     constructor(private httpClient: HttpClient, private dialog: MatDialog) { }
 
@@ -127,8 +129,10 @@ export class CommentService {
                 )
             )
             .subscribe(
-                (transformedComment) => {
+                (transformedComment: Comment) => {
                     console.log(transformedComment);
+                    this.comment = transformedComment;
+                    this.commentListener.next(this.comment);
                 },
                 (error) => {
                     this.dialog.open(ErrorComponent, {
@@ -138,5 +142,13 @@ export class CommentService {
                     })
                 }
             )
+    }
+
+    getStaticComment() {
+        return this.comment;
+    }
+
+    getCommentListener() {
+        return this.commentListener.asObservable();
     }
 }
