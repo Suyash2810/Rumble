@@ -5,7 +5,19 @@
         <button mat-mini-fab id="navigation_btn" (click)="navigate()"></button>
       </div>
       <div class="card-body">
-
+        <mat-card>
+          <form (ngSubmit)="onSubmit()" #f="ngForm">
+            <div class="example-full-width">
+              <label for="content">Content</label>
+              <ejs-richtexteditor matInput id='defaultRTE' [toolbarSettings]='tools' [quickToolbarSettings]='quickTools'
+                value="{{contentData}}" name="content" ngModel #Content="ngModel"></ejs-richtexteditor>
+            </div>
+            <br>
+            <div class="submit_btn">
+              <button type="submit" mat-button color="accent">Submit</button>
+            </div>
+          </form>
+        </mat-card>
       </div>
       <div class="card-footer">
 

@@ -112,7 +112,7 @@ export class CommentService {
 
     getCommentById(id: string) {
         type responseType = { status: string, comment: any };
-        this.httpClient.get<responseType>('http://localhost:3000/comment/' + id)
+        this.httpClient.get<responseType>('http://localhost:3000/commentById/' + id)
             .pipe(
                 map(
                     (data) => {
@@ -130,14 +130,13 @@ export class CommentService {
             )
             .subscribe(
                 (transformedComment: Comment) => {
-                    console.log(transformedComment);
                     this.comment = transformedComment;
                     this.commentListener.next(this.comment);
                 },
                 (error) => {
                     this.dialog.open(ErrorComponent, {
                         data: {
-                            message: error.error.error.message
+                            message: "The comment could not be fetched."
                         }
                     })
                 }

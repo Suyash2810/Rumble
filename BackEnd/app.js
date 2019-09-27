@@ -77,4 +77,6 @@ app.post('/comment', CommentController.saveComment);
 
 app.get('/comment/:postId', CommentController.getComments);
 
+app.get('/commentById/:id', authorization, CommentController.getCommentById);
+
 module.exports = app

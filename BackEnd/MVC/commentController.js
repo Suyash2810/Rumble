@@ -59,7 +59,33 @@ var getComments = (request, response) => {
   )
 }
 
+var getCommentById = (request, response) => {
+
+  let id = request.params.id;
+  console.log(id);
+
+  Comment.findById(id).then(
+      (result) => {
+        console.log(result);
+
+        response.status(200).send({
+          status: "The comment has been fetched successfully.",
+          comment: result
+        });
+      }
+    )
+    .catch(
+      (error) => {
+        console.log(error);
+        response.status(400).send({
+          error: error
+        });
+      }
+    );
+}
+
 module.exports = {
   saveComment,
-  getComments
+  getComments,
+  getCommentById
 }
