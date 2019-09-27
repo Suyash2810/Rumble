@@ -157,6 +157,7 @@ export class CommentService {
         let data = {
             content
         };
-        this.httpClient.patch<responseType>("http://localhost:3000/updateComment" + id, data);
+
+        return this.httpClient.patch<responseType>("http://localhost:3000/updateComment/" + id, data);
     }
 }

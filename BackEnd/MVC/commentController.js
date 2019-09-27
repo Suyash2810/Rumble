@@ -88,7 +88,7 @@ updateCommentById = (request, response) => {
 
   let id = request.params.id;
   let body = _.pick(request.body, ['content']);
-
+  console.log(id, body);
   Comment.findOneAndUpdate({
     _id: id
   }, {
@@ -97,6 +97,7 @@ updateCommentById = (request, response) => {
     new: true
   }).then(
     (result) => {
+      console.log(result)
       response.status(200).send({
         status: "The comment has been updated successfully.",
         comment: result
@@ -104,6 +105,7 @@ updateCommentById = (request, response) => {
     }
   ).catch(
     (error) => {
+      console.log(error);
       response.status(400).send({
         error: error
       })

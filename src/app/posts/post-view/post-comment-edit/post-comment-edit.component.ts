@@ -12,6 +12,9 @@ import {
   QuickToolbarService
 } from '@syncfusion/ej2-angular-richtexteditor';
 import { NgForm } from '@angular/forms';
+import { map } from 'rxjs/operators';
+import { ErrorComponent } from 'src/app/error/error.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-post-comment-edit',
@@ -43,7 +46,7 @@ export class PostCommentEditComponent implements OnInit {
 
   id: string = " ";
 
-  constructor(private router: Router, private route: ActivatedRoute, private commentService: CommentService) { }
+  constructor(private router: Router, private route: ActivatedRoute, private commentService: CommentService, private dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -69,6 +72,34 @@ export class PostCommentEditComponent implements OnInit {
 
   onSubmit() {
     let content = this.form.value.content;
-    this.commentService.updateCommentById(this.id, content ? content : this.contentData);
+    this.commentService.updateCommentById(this.id, content ? content : this.contentData)
+      .pipe(
+        map(
+          (data) => {
+            return {
+              id: data.comment._id,
+              username: data.comment.username,
+              imagePath: data.comment.imagePath,
+              content: data.comment.content,
+              createdAt: data.comment.createdAt,
+              creator_id: data.comment.creator_id,
+              postId: data.comment.postId
+            }
+          }
+        )
+      )
+      .subscribe(
+        (transformedComment) => {
+          console.log(transformedComment);
+          this.navigate();
+        },
+        (error) => {
+          this.dialog.open(ErrorComponent, {
+            data: {
+              message: "The comment could not be updated."
+            }
+          });
+        }
+      );
   }
 }

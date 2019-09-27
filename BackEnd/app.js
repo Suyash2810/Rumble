@@ -79,6 +79,6 @@ app.get('/comment/:postId', CommentController.getComments);
 
 app.get('/commentById/:id', authorization, CommentController.getCommentById);
 
-app.post('/updateComment/:id', authorization, CommentController.updateCommentById);
+app.patch('/updateComment/:id', authorization, CommentController.updateCommentById);
 
 module.exports = app
