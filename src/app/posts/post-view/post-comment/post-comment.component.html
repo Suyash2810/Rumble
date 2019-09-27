@@ -28,7 +28,7 @@
                 <div class="mt-3">
                   <button type="button" mat-button color="accent">Like</button>
                   <button type="button" mat-button color="accent">Reply</button>
-                  <button type="button" mat-button color="accent">Edit</button>
+                  <button type="button" mat-button color="accent" [routerLink]="['comment', comment.id]">Edit</button>
                   <button type="button" mat-button color="accent">Delete</button>
                 </div>
               </div>

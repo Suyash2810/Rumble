@@ -14,6 +14,8 @@ import { ContactComponent } from "./core/home/contact/contact.component";
 import { UserProfileComponent } from './core/home/profile/user-profile/user-profile.component';
 import { UserAccountComponent } from "./core/home/profile/user-account/user-account.component";
 import { UserPostsComponent } from "./core/home/profile/user-posts/user-posts.component";
+import { PostCommentComponent } from "./posts/post-view/post-comment/post-comment.component";
+import { PostCommentEditComponent } from "./posts/post-view/post-comment-edit/post-comment-edit.component";
 
 const appRoutes: Routes = [
     {
@@ -32,7 +34,12 @@ const appRoutes: Routes = [
     { path: 'list', component: PostListComponent },
     { path: 'create', component: PostCreateComponent, canActivate: [AuthGuard] },
     { path: 'edit/:postID', component: PostEditComponent, canActivate: [AuthGuard] },
-    { path: 'view/:postID', component: PostViewComponent },
+    {
+        path: 'view/:postID', component: PostViewComponent, children: [
+            { path: '', component: PostCommentComponent },
+            { path: 'comment/:commentID', component: PostCommentEditComponent }
+        ]
+    },
     { path: 'login', component: SigninComponent },
     { path: 'register', component: SignupComponent }
 ];
