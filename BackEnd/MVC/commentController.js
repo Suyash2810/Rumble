@@ -7,7 +7,6 @@ const {
 var saveComment = (request, response) => {
 
   let commentbody = _.pick(request.body, ['username', 'imagePath', 'content', 'creator_id', 'postId']);
-  commentbody.imagePath = "Not implemented yet.";
 
   console.log(commentbody);
 

@@ -14,6 +14,8 @@ import { Comment } from './comment.model';
 import { Subscription } from 'rxjs';
 import { Params, ActivatedRoute } from '@angular/router';
 import { PostService } from '../../posts.service';
+import { User } from 'src/app/auth/user.model';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-post-comment',
@@ -35,6 +37,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   postCreatorId: string = " ";
   isAuthenticated: boolean = false;
   authSub: Subscription;
+  userInfo: User;
 
   public tools: object = {
     items: ['Undo', 'Redo', '|',
@@ -57,6 +60,24 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userID = this.authService.getCurrentUserId();
     this.username = this.authService.getCurrentUsername();
+    this.authService.getUserInfo().pipe(
+      map(
+        (data) => {
+          return {
+            id: data.user._id,
+            username: data.user.username,
+            email: data.user.email,
+            imagePath: data.user.imagePath
+          }
+        }
+      )
+    )
+      .subscribe(
+        (transformedUserData) => {
+          const user: User = transformedUserData;
+          this.userInfo = user;
+        }
+      );
 
     this.route.params.subscribe(
       (params: Params) => {
@@ -93,7 +114,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.comment = this.form.value.comment;
-    this.commentService.addComment(this.username, null, this.comment, this.userID, this.postID);
+    this.commentService.addComment(this.username, this.userInfo.imagePath, this.comment, this.userID, this.postID);
     this.form.reset();
   }
 
