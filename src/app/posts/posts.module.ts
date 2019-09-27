@@ -11,6 +11,7 @@ import { RichTextEditorAllModule } from "@syncfusion/ej2-angular-richtexteditor"
 import { SharedModule } from "../shared/shared.module";
 import { PostCommentComponent } from './post-view/post-comment/post-comment.component';
 import { SubReplyCommentsComponent } from './post-view/post-comment/sub-reply-comments/sub-reply-comments.component';
+import { PostCommentEditComponent } from './post-view/post-comment-edit/post-comment-edit.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { SubReplyCommentsComponent } from './post-view/post-comment/sub-reply-co
         PostListComponent,
         PostViewComponent,
         PostCommentComponent,
-        SubReplyCommentsComponent
+        SubReplyCommentsComponent,
+        PostCommentEditComponent
     ],
     imports: [
         CommonModule,

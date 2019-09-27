@@ -13,8 +13,10 @@
         <ul class="list-group">
           <li class="list-group-item" id="list-group-item" *ngFor="let comment of comments">
             <div class="media p-3">
-              <img [src]="comment.imagePath" alt="{{comment.username}}" class="align-self-start mr-3 rounded-circle"
-                style="width:60px;">
+              <img *ngIf="comment.imagePath" [src]="comment.imagePath" alt="{{comment.username}}"
+                class="align-self-start mr-3 rounded-circle" style="width:60px;">
+              <img *ngIf="!comment.imagePath" src="https://www.w3schools.com/bootstrap4/img_avatar3.png"
+                alt="{{comment.username}}" class="align-self-start mr-3 rounded-circle" style="width:60px;">
               <div class="media-body border p-4 rounded">
                 <h6 class="comment_title">{{comment.username}} <code class="title_date">{{comment.createdAt}}</code>
                 </h6>
