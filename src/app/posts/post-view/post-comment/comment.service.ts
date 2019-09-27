@@ -150,4 +150,13 @@ export class CommentService {
     getCommentListener() {
         return this.commentListener.asObservable();
     }
+
+    updateCommentById(id: string, content: string) {
+
+        type responseType = { status: string, comment: any };
+        let data = {
+            content
+        };
+        this.httpClient.patch<responseType>("http://localhost:3000/updateComment" + id, data);
+    }
 }

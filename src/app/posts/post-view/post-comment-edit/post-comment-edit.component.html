@@ -6,12 +6,16 @@
       </div>
       <div class="card-body">
         <mat-card>
+          <h5>Edit Comment</h5>
+          <br>
           <form (ngSubmit)="onSubmit()" #f="ngForm">
             <div class="example-full-width">
-              <label for="content">Content</label>
               <ejs-richtexteditor matInput id='defaultRTE' [toolbarSettings]='tools' [quickToolbarSettings]='quickTools'
-                value="{{contentData}}" name="content" ngModel #Content="ngModel"></ejs-richtexteditor>
+                value="{{contentData}}" name="content" ngModel #Content="ngModel" required></ejs-richtexteditor>
             </div>
+            <mat-error *ngIf="!Content.valid && Content.touched">
+              Edit the comment.
+            </mat-error>
             <br>
             <div class="submit_btn">
               <button type="submit" mat-button color="accent">Submit</button>

@@ -84,8 +84,36 @@ var getCommentById = (request, response) => {
     );
 }
 
+updateCommentById = (request, response) => {
+
+  let id = request.params.id;
+  let body = _.pick(request.body, ['content']);
+
+  Comment.findOneAndUpdate({
+    _id: id
+  }, {
+    $set: body
+  }, {
+    new: true
+  }).then(
+    (result) => {
+      response.status(200).send({
+        status: "The comment has been updated successfully.",
+        comment: result
+      })
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      })
+    }
+  )
+}
+
 module.exports = {
   saveComment,
   getComments,
-  getCommentById
+  getCommentById,
+  updateCommentById
 }

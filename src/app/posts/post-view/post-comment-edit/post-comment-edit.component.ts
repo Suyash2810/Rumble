@@ -66,4 +66,9 @@ export class PostCommentEditComponent implements OnInit {
   navigate() {
     this.router.navigate(['../..'], { relativeTo: this.route });
   }
+
+  onSubmit() {
+    let content = this.form.value.content;
+    this.commentService.updateCommentById(this.id, content ? content : this.contentData);
+  }
 }
