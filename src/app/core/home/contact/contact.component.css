@@ -1,3 +1,54 @@
-.col-md-4{
-    height: 500px;
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
+.col-md-4 {
+  height: 500px;
+}
+
+.card-header {
+  padding: 0;
+  background-image: url('https://images.pexels.com/photos/953214/pexels-photo-953214.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center center;
+  background-repeat: no-repeat;
+  height: 150px;
+}
+
+#header_img {
+  margin: 20px 0 0 20px;
+}
+
+h5 {
+  margin: 15px 0 0 20px;
+  font-weight: 100;
+  font-size: 18px;
+  color: white;
+  text-transform: capitalize;
+  font-family: 'Roboto', sans-serif;
+}
+
+h4.name {
+  color: #2962FF;
+  font-weight: 200;
+  text-align: center;
+  text-transform: uppercase;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+h4.app {
+  font-weight: 200;
+  text-align: center;
+  text-transform: capitalize;
+  margin-top: 5px;
+  font-size: 18px;
+  color: black;
+}
+
+p.parah {
+  font-weight: 100;
+  text-align: center;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #9E9E9E;
 }
