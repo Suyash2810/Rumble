@@ -11,6 +11,7 @@ import { UserProfileComponent } from './home/profile/user-profile/user-profile.c
 import { UserAccountComponent } from './home/profile/user-account/user-account.component';
 import { UserPostsComponent } from './home/profile/user-posts/user-posts.component';
 import {FormsModule} from "@angular/forms";
+import { ContactFormComponent } from './home/contact/contact-form/contact-form.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import {FormsModule} from "@angular/forms";
         ContactComponent,
         UserProfileComponent,
         UserAccountComponent,
-        UserPostsComponent
+        UserPostsComponent,
+        ContactFormComponent
     ],
     imports: [
         SharedModule,

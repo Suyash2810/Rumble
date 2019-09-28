@@ -13,4 +13,5 @@ Restrict comment section for the logged in users or disable comments for not log
 Add paginator to the comment section or use autoscroll.
 Work on sub components of the Home component.
 Add comments like/reply functionality.
-On updating the user image the imagePath in all the user's comment has to be updated.
+Create a favorite section. Will require to create a new model.
+Provide functionality for views on a particular post.
