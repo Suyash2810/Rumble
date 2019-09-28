@@ -9,6 +9,10 @@ const {
   User
 } = require('../models/user');
 
+const {
+  Comment
+} = require('../models/comments');
+
 const _ = require('lodash');
 
 var userLogin = (request, response) => {
@@ -106,6 +110,20 @@ var updateUserImage = (request, response) => {
   let updateBody = {
     imagePath: url + "/images/userImages/" + request.file.filename
   }
+
+  Comment.updateMany({
+    creator_id: id
+  }, {
+    $set: updateBody
+  }).then(
+    (result) => {
+      console.log(result);
+    }
+  ).catch(
+    (error) => {
+      console.log(error);
+    }
+  );
 
   User.findOneAndUpdate({
       _id: id
