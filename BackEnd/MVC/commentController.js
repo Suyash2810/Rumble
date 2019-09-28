@@ -113,9 +113,41 @@ updateCommentById = (request, response) => {
   )
 }
 
+var commentDelete = (request, response) => {
+
+  let commentId = request.params.id;
+  let creatorId = request.params.creatorId;
+  let userId = request.user._id;
+
+  if (creatorId == userId) {
+    Comment.findOneAndDelete({
+      _id: commentId,
+      creator_id: creatorId
+    }).then(
+      (result) => {
+        response.status(200).send({
+          status: "The comment has been deleted successfully.",
+          comment: result
+        });
+      }
+    ).catch(
+      (error) => {
+        response.status(400).send({
+          error: error
+        });
+      }
+    );
+  } else {
+    response.status(401).send({
+      error: "You are not authorized to delete the comment."
+    });
+  }
+}
+
 module.exports = {
   saveComment,
   getComments,
   getCommentById,
-  updateCommentById
+  updateCommentById,
+  commentDelete
 }

@@ -160,4 +160,31 @@ export class CommentService {
 
         return this.httpClient.patch<responseType>("http://localhost:3000/updateComment/" + id, data);
     }
+
+    deleteComment(id: string, creatorId: string) {
+
+        type responseType = { status: string, comment: any };
+
+        this.httpClient.delete<responseType>(`http://localhost:3000/commentDelete/${id}/${creatorId}`)
+            .pipe(
+                map(
+                    (data) => {
+                        return {
+                            id: data.comment._id,
+                            username: data.comment.username,
+                            imagePath: data.comment.imagePath,
+                            content: data.comment.content,
+                            createdAt: data.comment.createdAt,
+                            creator_id: data.comment.creator_id,
+                            postId: data.comment.postId
+                        }
+                    }
+                )
+            )
+            .subscribe(
+                (transformedDeletedComment) => {
+                    console.log(transformedDeletedComment);
+                }
+            )
+    }
 }

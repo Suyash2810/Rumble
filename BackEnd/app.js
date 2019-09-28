@@ -81,4 +81,6 @@ app.get('/commentById/:id', authorization, CommentController.getCommentById);
 
 app.patch('/updateComment/:id', authorization, CommentController.updateCommentById);
 
+app.delete('/commentDelete/:id/:creatorId', authorization, CommentController.commentDelete);
+
 module.exports = app

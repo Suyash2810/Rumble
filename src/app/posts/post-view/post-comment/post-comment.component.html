@@ -29,7 +29,8 @@
                   <button type="button" mat-button color="accent">Like</button>
                   <button type="button" mat-button color="accent">Reply</button>
                   <button type="button" mat-button color="accent" [routerLink]="['comment', comment.id]">Edit</button>
-                  <button type="button" mat-button color="accent">Delete</button>
+                  <button type="button" mat-button color="accent"
+                    (click)="commentDelete(comment.id, comment.creator_id)">Delete</button>
                 </div>
               </div>
             </div>

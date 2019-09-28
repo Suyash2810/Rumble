@@ -16,6 +16,8 @@ import { Params, ActivatedRoute } from '@angular/router';
 import { PostService } from '../../posts.service';
 import { User } from 'src/app/auth/user.model';
 import { map } from 'rxjs/operators';
+import { MatDialog } from '@angular/material';
+import { ErrorComponent } from 'src/app/error/error.component';
 
 @Component({
   selector: 'app-post-comment',
@@ -55,7 +57,8 @@ export class PostCommentComponent implements OnInit, OnDestroy {
       'Replace', 'Align', 'Caption', 'Remove', 'InsertLink', '-', 'Display', 'AltText', 'Dimension']
   };
 
-  constructor(private authService: AuthService, private commentService: CommentService, private route: ActivatedRoute, private postService: PostService) { }
+  constructor(private authService: AuthService, private commentService: CommentService,
+    private route: ActivatedRoute, private postService: PostService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.userID = this.authService.getCurrentUserId();
@@ -121,6 +124,18 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   toggleChecked() {
     this.checked = !this.checked;
     this.postService.commentStatus(this.checked, this.postID, this.postCreatorId);
+  }
+
+  commentDelete(id: string, creator_id: string) {
+    if (this.userID === creator_id) {
+      this.commentService.deleteComment(id, creator_id);
+    } else {
+      this.dialog.open(ErrorComponent, {
+        data: {
+          message: "You're not authorized to delete this comment."
+        }
+      });
+    }
   }
 
   ngOnDestroy() {
