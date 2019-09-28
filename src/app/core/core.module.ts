@@ -12,6 +12,7 @@ import { UserAccountComponent } from './home/profile/user-account/user-account.c
 import { UserPostsComponent } from './home/profile/user-posts/user-posts.component';
 import {FormsModule} from "@angular/forms";
 import { ContactFormComponent } from './home/contact/contact-form/contact-form.component';
+import { ContactListComponent } from './home/contact/contact-list/contact-list.component';
 
 @NgModule({
     declarations: [
@@ -23,7 +24,8 @@ import { ContactFormComponent } from './home/contact/contact-form/contact-form.c
         UserProfileComponent,
         UserAccountComponent,
         UserPostsComponent,
-        ContactFormComponent
+        ContactFormComponent,
+        ContactListComponent
     ],
     imports: [
         SharedModule,
