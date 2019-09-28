@@ -12,7 +12,8 @@ import {
     MatDividerModule,
     MatSlideToggleModule,
     MatTooltipModule,
-    MatListModule
+    MatListModule,
+    MatStepperModule
 } from '@angular/material';
 
 @NgModule({
@@ -29,7 +30,8 @@ import {
         MatDividerModule,
         MatSlideToggleModule,
         MatTooltipModule,
-        MatListModule
+        MatListModule,
+        MatStepperModule
     ],
     exports: [
         MatInputModule,
@@ -44,7 +46,8 @@ import {
         MatDividerModule,
         MatSlideToggleModule,
         MatTooltipModule,
-        MatListModule
+        MatListModule,
+        MatStepperModule
     ]
 })
 

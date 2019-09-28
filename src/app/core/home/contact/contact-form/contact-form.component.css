@@ -1,0 +1,12 @@
+mat-card {
+  border: 1px solid #0288D1;
+}
+
+.example-full-width {
+  width: 80%;
+}
+
+form {
+  margin: auto;
+  text-align: center;
+}

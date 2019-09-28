@@ -1,3 +1,48 @@
-<p>
-  contact-form works!
-</p>
+<div class="row" style="margin: 0; padding: 0;">
+  <div class="col-md-12">
+    <mat-card>
+      <form (submit)="onSubmit()" #f="ngForm">
+        <mat-vertical-stepper>
+          <mat-step>
+            <ng-template matStepLabel>Fill out your name</ng-template>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" id="name" name="username" ngModel #Username="ngModel" required>
+            </mat-form-field>
+            <div>
+              <button mat-button color="primary" matStepperNext type="button">Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Fill your email</ng-template>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="xyz@something.com" id="email" name="email" ngModel #Email="ngModel" required
+                email>
+            </mat-form-field>
+            <div>
+              <button mat-button color="primary" matStepperPrevious type="button">Previous</button>
+              <button mat-button color="primary" matStepperNext type="button">Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Fill your phone number</ng-template>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="9998884444" id="phone" name="phone" ngModel #Phone="ngModel" required>
+            </mat-form-field>
+            <div>
+              <button mat-button color="primary" matStepperPrevious type="button">Previous</button>
+              <button mat-button color="primary" matStepperNext type="button">Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Done</ng-template>
+            You are now done.
+            <div>
+              <button mat-button color="primary" matStepperPrevious type="button">Back</button>
+              <button mat-button color="primary" type="submit">Send</button>
+            </div>
+          </mat-step>
+        </mat-vertical-stepper>
+      </form>
+    </mat-card>
+  </div>
+</div>
