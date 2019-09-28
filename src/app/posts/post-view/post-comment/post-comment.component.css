@@ -37,3 +37,31 @@
 mat-spinner {
   margin: auto;
 }
+
+.list-inline {
+  text-align: center;
+}
+
+.list-inline-item {
+  margin: 0 2.0em;
+}
+
+.list-inline-item:hover {
+  cursor: pointer;
+}
+
+.fa-trash {
+  color: #D50000;
+}
+
+.fa-edit {
+  color: #FFEB3B;
+}
+
+.fa-reply {
+  color: #1B5E20;
+}
+
+.fa-heart {
+  color: #D32F2F;
+}

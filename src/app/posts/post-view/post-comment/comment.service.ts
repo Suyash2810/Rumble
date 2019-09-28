@@ -184,6 +184,9 @@ export class CommentService {
             .subscribe(
                 (transformedDeletedComment) => {
                     console.log(transformedDeletedComment);
+                    let comments: Array<Comment> = this.comments.filter( comment => comment.id !== id);
+                    this.comments = comments;
+                    this.commentsListener.next([...this.comments]);
                 }
             )
     }
