@@ -15,3 +15,4 @@ Work on sub components of the Home component.
 Add comments like/reply functionality.
 Create a favorite section. Will require to create a new model.
 Provide functionality for views on a particular post.
+Add loaders in user profile section in the home component.

@@ -34,6 +34,17 @@
             </div>
           </mat-step>
           <mat-step>
+            <ng-template matStepLabel>Fill your problem below.</ng-template>
+            <mat-form-field class="example-full-width">
+              <textarea matInput rows="5" cols="10" id="content" name="content" ngModel #Content="ngModel" required
+                class="border border-primary"></textarea>
+            </mat-form-field>
+            <div>
+              <button mat-button color="primary" matStepperPrevious type="button">Previous</button>
+              <button mat-button color="primary" matStepperNext type="button">Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
             <ng-template matStepLabel>Done</ng-template>
             You are now done.
             <div>

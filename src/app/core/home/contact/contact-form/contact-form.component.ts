@@ -6,6 +6,7 @@ import { NgForm } from '@angular/forms';
   templateUrl: './contact-form.component.html',
   styleUrls: ['./contact-form.component.css']
 })
+
 export class ContactFormComponent implements OnInit {
 
   @ViewChild('f') form: NgForm;
@@ -16,6 +17,6 @@ export class ContactFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("The submit works.", this.form.value.username, this.form.value.email);
+    // console.log("The submit works.", this.form.value.username, this.form.value.email);
   }
 }
