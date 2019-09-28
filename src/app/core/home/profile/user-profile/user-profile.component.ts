@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Subscription } from 'rxjs';
+import { User } from 'src/app/auth/user.model';
 
 @Component({
   selector: 'app-user-profile',
@@ -22,9 +23,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.userId = this.authService.getCurrentUserId();
-    this.userSub = this.authService.getUserInfo().subscribe(
-      (data) => {
-        this.imagePath = data.user.imagePath;
+    this.authService.getUserInfo();
+    this.userSub = this.authService.getUserInfoListener().subscribe(
+      (data: User) => {
+        this.imagePath = data.imagePath;
       }
     )
   }
@@ -44,7 +46,7 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     reader.readAsDataURL(this.file);
   }
 
-  ngOnDestroy(){
+  ngOnDestroy() {
     this.userSub.unsubscribe();
   }
 }

@@ -14,24 +14,20 @@ export class ProfileComponent implements OnInit {
   username: string = " ";
   email: string = " ";
   imagePath: string = " ";
+  userInfo: User;
 
   constructor(private authService: AuthService, private dialog: MatDialog) { }
 
   ngOnInit() {
 
-    this.authService.getUserInfo().subscribe(
-      (data: { status: string, user: any }) => {
-        this.username = data.user.username;
-        this.email = data.user.email;
-        this.imagePath = data.user.imagePath
-        console.log(data);
-      },
-      (error) => {
-        this.dialog.open(ErrorComponent, {
-          data: {
-            message: error.error.error.message
-          }
-        });
+    this.authService.getUserInfo();
+    this.userInfo = this.authService.getStaticUserInfo();
+
+    this.authService.getUserInfoListener().subscribe(
+      (user) => {
+        this.username = user.username;
+        this.email = user.email;
+        this.imagePath = user.imagePath;
       }
     )
   }

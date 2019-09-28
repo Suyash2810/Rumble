@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { MatDialog } from '@angular/material';
 import { ErrorComponent } from '../error/error.component';
 import { map } from 'rxjs/operators';
+import { User } from './user.model';
 
 @Injectable({ providedIn: 'root' })
 
@@ -16,6 +17,8 @@ export class AuthService {
     private username: string;
     isAuthenticated: boolean = false;
     tokenTimer: any;
+    private userInfo: User;
+    private userInfoListener = new Subject<User>();
 
     constructor(private http: HttpClient, public dialog: MatDialog) { }
 
@@ -162,9 +165,42 @@ export class AuthService {
 
         type responseType = { status: string, user: any };
 
-        return this.http.get<responseType>('http://localhost:3000/getUser');
+        this.http.get<responseType>('http://localhost:3000/getUser')
+            .pipe(
+                map(
+                    (data) => {
+                        return {
+                            id: data.user._id,
+                            username: data.user.username,
+                            email: data.user.email,
+                            imagePath: data.user.imagePath
+                        }
+                    }
+                )
+            )
+            .subscribe(
+                (transformedUserData) => {
+                    const user: User = transformedUserData;
+                    this.userInfo = user;
+                    this.userInfoListener.next(this.userInfo);
+                },
+                (error) => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: error.error.error.message
+                        }
+                    });
+                }
+            );
     }
 
+    getStaticUserInfo() {
+        return this.userInfo;
+    }
+
+    getUserInfoListener() {
+        return this.userInfoListener.asObservable();
+    }
 
     updateUserImage(id: string, image: File) {
 
@@ -189,6 +225,7 @@ export class AuthService {
             .subscribe(
                 (transformedUserData) => {
                     console.log(transformedUserData);
+                    this.getUserInfo();
                 },
                 (error) => {
                     this.dialog.open(ErrorComponent, {

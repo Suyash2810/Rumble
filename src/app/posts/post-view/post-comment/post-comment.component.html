@@ -34,8 +34,9 @@
                   <ul class="list-inline d-block">
                     <li class="list-inline-item"><i class="fa fa-heart"></i></li>
                     <li class="list-inline-item"><i class="fa fa-reply"></i></li>
-                    <li class="list-inline-item"><i class="fa fa-edit" [routerLink]="['comment', comment.id]"></i></li>
-                    <li class="list-inline-item"><i class="fa fa-trash"
+                    <li class="list-inline-item" *ngIf="comment.creator_id === userID"><i class="fa fa-edit"
+                        [routerLink]="['comment', comment.id]"></i></li>
+                    <li class="list-inline-item" *ngIf="comment.creator_id === userID"><i class="fa fa-trash"
                         (click)="commentDelete(comment.id, comment.creator_id)"></i></li>
                   </ul>
                 </div>

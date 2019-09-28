@@ -12,5 +12,5 @@ Add emoji bar to the comment panel.
 Restrict comment section for the logged in users or disable comments for not logged in users.
 Add paginator to the comment section or use autoscroll.
 Work on sub components of the Home component.
-Add comments like/reply/delete functionality.
-Update the data on comment update
+Add comments like/reply functionality.
+On updating the user image the imagePath in all the user's comment has to be updated.

@@ -63,24 +63,14 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.userID = this.authService.getCurrentUserId();
     this.username = this.authService.getCurrentUsername();
-    this.authService.getUserInfo().pipe(
-      map(
-        (data) => {
-          return {
-            id: data.user._id,
-            username: data.user.username,
-            email: data.user.email,
-            imagePath: data.user.imagePath
-          }
-        }
-      )
+    this.authService.getUserInfo();
+    this.userInfo = this.authService.getStaticUserInfo();
+    this.authService.getUserInfoListener().subscribe(
+      (user) => {
+        this.userInfo = user;
+        console.log(this.userInfo);
+      }
     )
-      .subscribe(
-        (transformedUserData) => {
-          const user: User = transformedUserData;
-          this.userInfo = user;
-        }
-      );
 
     this.route.params.subscribe(
       (params: Params) => {
