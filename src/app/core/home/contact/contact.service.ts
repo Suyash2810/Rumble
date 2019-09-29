@@ -3,6 +3,8 @@ import { Contact, ContactModel } from "./contact.model";
 import { Subject } from "rxjs";
 import { HttpClient } from "@angular/common/http";
 import { map } from "rxjs/operators";
+import { MatDialog } from "@angular/material";
+import { ErrorComponent } from "src/app/error/error.component";
 
 @Injectable({ providedIn: "root" })
 
@@ -11,7 +13,7 @@ export class ContactService {
     private contact: Contact;
     private contactListener = new Subject<Contact>();
 
-    constructor(private httpClient: HttpClient) { }
+    constructor(private httpClient: HttpClient, private dialog: MatDialog) { }
 
     addContact(usernmae: string, email: string, phone: string, content: string, creator_id: string) {
 
@@ -38,6 +40,13 @@ export class ContactService {
                     console.log(transformedContact);
                     this.contact = transformedContact;
                     this.contactListener.next(this.contact);
+                },
+                (error) => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: error.error.error.message
+                        }
+                    });
                 }
             )
     }

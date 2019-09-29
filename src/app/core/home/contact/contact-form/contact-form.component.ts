@@ -43,6 +43,8 @@ export class ContactFormComponent implements OnInit, OnDestroy {
     } else {
       this.contactService.addContact(this.username, this.email, this.phone, this.content, this.userId);
     }
+
+    this.form.reset();
   }
 
   ngOnDestroy() {
