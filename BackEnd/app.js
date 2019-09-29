@@ -19,6 +19,7 @@ const {
 const UserController = require('./MVC/userController');
 const PostController = require('./MVC/postController');
 const CommentController = require('./MVC/commentController');
+const ContactController = require('./MVC/contactController');
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
@@ -82,5 +83,9 @@ app.get('/commentById/:id', authorization, CommentController.getCommentById);
 app.patch('/updateComment/:id', authorization, CommentController.updateCommentById);
 
 app.delete('/commentDelete/:id/:creatorId', authorization, CommentController.commentDelete);
+
+// ------------------------------Contact Requests---------------------------------------//
+
+app.post('/contact', ContactController.saveContact);
 
 module.exports = app
