@@ -12,6 +12,8 @@ export class ContactService {
 
     private contact: Contact;
     private contactListener = new Subject<Contact>();
+    private contacts: Array<Contact>;
+    private contactsListener = new Subject<Array<Contact>>();
 
     constructor(private httpClient: HttpClient, private dialog: MatDialog) { }
 
@@ -49,5 +51,44 @@ export class ContactService {
                     });
                 }
             )
+    }
+
+    getContactMessages() {
+
+        type responseType = { status: string, contacts: any };
+
+        this.httpClient.get<responseType>("http://localhost:3000/contacts")
+            .pipe(
+                map(
+                    (data) => {
+                        return data.contacts.map(
+                            (contact) => {
+                                return {
+                                    id: contact._id,
+                                    username: contact.username,
+                                    email: contact.email,
+                                    phone: contact.phone,
+                                    content: contact.content,
+                                    creator_id: contact.creator_id
+                                }
+                            }
+                        )
+                    }
+                )
+            ).subscribe(
+                (transformedContacts) => {
+                    console.log(transformedContacts);
+                    this.contacts = transformedContacts;
+                    this.contactsListener.next([...this.contacts]);
+                }
+            )
+    }
+
+    getContacts() {
+        return this.contacts;
+    }
+
+    getContactsListener() {
+        return this.contactsListener.asObservable();
     }
 }

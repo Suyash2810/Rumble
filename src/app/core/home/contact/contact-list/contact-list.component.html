@@ -4,7 +4,9 @@
       <div class="card-header"></div>
       <div class="card-body" id="style-4">
         <ul class="list-group">
-          <li class="list-group-item">This is an item</li>
+          <li class="list-group-item" *ngFor="let contact of contacts">
+            {{contact.username}} - {{contact.email}}
+          </li>
         </ul>
       </div>
       <div class="card-footer"></div>

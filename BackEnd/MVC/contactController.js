@@ -29,7 +29,26 @@ var saveContact = (request, response) => {
   );
 }
 
+getContacts = (request, response) => {
+
+  Contact.find({}).then(
+    (result) => {
+      response.status(200).send({
+        status: "The messages have been successfully.",
+        contacts: result
+      })
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      })
+    }
+  )
+}
+
 
 module.exports = {
-  saveContact
+  saveContact,
+  getContacts
 }

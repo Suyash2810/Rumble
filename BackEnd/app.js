@@ -88,4 +88,6 @@ app.delete('/commentDelete/:id/:creatorId', authorization, CommentController.com
 
 app.post('/contact', ContactController.saveContact);
 
+app.get('/contacts', ContactController.getContacts);
+
 module.exports = app
