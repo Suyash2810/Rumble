@@ -7,6 +7,7 @@ export interface Contact {
     creator_id: string;
     tag: string;
     subject: string;
+    createdAt: string;
 }
 
 export class ContactModel implements Contact {
@@ -18,6 +19,7 @@ export class ContactModel implements Contact {
     creator_id: string;
     tag: string;
     subject: string;
+    createdAt: string;
 
     constructor(username: string, email: string, phone: string, content: string, creator_id: string, tag: string, subject: string) {
         this.username = username;

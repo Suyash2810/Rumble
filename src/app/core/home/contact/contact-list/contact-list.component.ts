@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ContactService } from '../contact.service';
 import { Contact } from '../contact.model';
 import { Subscription } from 'rxjs';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-contact-list',
@@ -12,10 +13,13 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   contacts: Array<Contact> = [];
   contactsSub: Subscription;
+  userId: string = " ";
 
-  constructor(private contactService: ContactService) { }
+  constructor(private contactService: ContactService, private authService: AuthService) { }
 
   ngOnInit() {
+    this.userId = this.authService.getCurrentUserId();
+
     this.contactService.getContactMessages();
     this.contacts = this.contactService.getContacts();
     this.contactsSub = this.contactService.getContactsListener().subscribe(

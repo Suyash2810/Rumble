@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
+const moment = require('moment');
 
 var contactSchema = new mongoose.Schema({
   username: {
@@ -40,6 +41,10 @@ var contactSchema = new mongoose.Schema({
   subject: {
     type: String,
     required: true
+  },
+  createdAt: {
+    type: String,
+    default: moment().format("MMM Do YY")
   }
 });
 

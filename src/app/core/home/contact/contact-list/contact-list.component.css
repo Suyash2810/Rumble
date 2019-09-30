@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
+
 .card-header {
   background-color: #0277BD;
 }
@@ -23,4 +25,26 @@
 
 .list-group-item {
   border-radius: 0;
+  padding: 10px;
+}
+
+span.name {
+  font-size: 10px;
+  text-transform: uppercase;
+  color: #2962FF;
+}
+
+span.date {
+  font-size: 10px;
+  color: #37474F;
+}
+
+span.content {
+  color: #546E7A;
+  font-weight: 200;
+  font-family: 'Roboto', sans-serif;
+}
+
+.border_left {
+  border-left: 2px solid #009688;
 }

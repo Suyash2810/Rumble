@@ -34,7 +34,8 @@ export class ContactService {
                             content: data.contact.content,
                             creator_id: data.contact.creator_id,
                             tag: data.contact.tag,
-                            subject: data.contact.subject
+                            subject: data.contact.subject,
+                            createdAt: data.contact.createdAt
                         }
                     }
                 )
@@ -73,7 +74,8 @@ export class ContactService {
                                     content: contact.content,
                                     creator_id: contact.creator_id,
                                     tag: contact.tag,
-                                    subject: contact.subject
+                                    subject: contact.subject,
+                                    createdAt: contact.createdAt
                                 }
                             }
                         )
