@@ -5,7 +5,7 @@ const {
 
 var saveContact = (request, response) => {
 
-  let body = _.pick(request.body, ['username', 'email', 'phone', 'content', 'creator_id']);
+  let body = _.pick(request.body, ['username', 'email', 'phone', 'content', 'creator_id', 'tag', 'subject']);
 
   if (body.creator_id == null) {
     body.creator_id = "Anonymous";

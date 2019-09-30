@@ -42,8 +42,8 @@ export class ContactService {
             .subscribe(
                 (transformedContact) => {
                     console.log(transformedContact);
-                    this.contact = transformedContact;
-                    this.contactListener.next(this.contact);
+                    this.contacts.push(transformedContact);
+                    this.contactsListener.next([...this.contacts]);
                 },
                 (error) => {
                     this.dialog.open(ErrorComponent, {

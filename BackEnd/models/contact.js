@@ -32,6 +32,14 @@ var contactSchema = new mongoose.Schema({
   },
   creator_id: {
     type: String
+  },
+  tag: {
+    required: true,
+    type: String
+  },
+  subject: {
+    type: String,
+    required: true
   }
 });
 
