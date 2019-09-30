@@ -17,9 +17,9 @@ export class ContactService {
 
     constructor(private httpClient: HttpClient, private dialog: MatDialog) { }
 
-    addContact(usernmae: string, email: string, phone: string, content: string, creator_id: string) {
+    addContact(username: string, email: string, phone: string, content: string, creator_id: string, tag: string, subject: string) {
 
-        let data = new ContactModel(usernmae, email, phone, content, creator_id);
+        let data = new ContactModel(username, email, phone, content, creator_id, tag, subject);
         type responseType = { status: string, contact: any };
 
         this.httpClient.post<responseType>("http://localhost:3000/contact", data)
@@ -32,7 +32,9 @@ export class ContactService {
                             email: data.contact.email,
                             phone: data.contact.phone,
                             content: data.contact.content,
-                            creator_id: data.contact.creator_id
+                            creator_id: data.contact.creator_id,
+                            tag: data.contact.tag,
+                            subject: data.contact.subject
                         }
                     }
                 )
@@ -69,7 +71,9 @@ export class ContactService {
                                     email: contact.email,
                                     phone: contact.phone,
                                     content: contact.content,
-                                    creator_id: contact.creator_id
+                                    creator_id: contact.creator_id,
+                                    tag: contact.tag,
+                                    subject: contact.subject
                                 }
                             }
                         )

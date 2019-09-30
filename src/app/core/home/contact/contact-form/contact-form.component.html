@@ -35,7 +35,32 @@
             </div>
           </mat-step>
           <mat-step>
-            <ng-template matStepLabel>Fill your problem below.</ng-template>
+            <ng-template matStepLabel>Subject</ng-template>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="What is the problem about? Explain very briefly" id="subject" name="subject"
+                ngModel #Subject="ngModel" required>
+            </mat-form-field>
+            <div>
+              <button mat-button color="primary" matStepperPrevious type="button">Previous</button>
+              <button mat-button color="primary" matStepperNext type="button">Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Tag</ng-template>
+            <mat-form-field class="example-full-width">
+              <mat-select id="tag" name="tag" ngModel #Label="ngModel" required>
+                <mat-option *ngFor="let tag of tags" [value]="tag">
+                  {{tag}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+            <div>
+              <button mat-button color="primary" matStepperPrevious type="button">Previous</button>
+              <button mat-button color="primary" matStepperNext type="button">Next</button>
+            </div>
+          </mat-step>
+          <mat-step>
+            <ng-template matStepLabel>Explain your problem in detail.</ng-template>
             <mat-form-field class="example-full-width">
               <textarea matInput rows="5" cols="10" id="content" name="content" ngModel #Content="ngModel" required
                 class="border border-primary"></textarea>
