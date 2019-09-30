@@ -6,6 +6,7 @@ import { MatDialog } from '@angular/material';
 import { ErrorComponent } from '../error/error.component';
 import { map } from 'rxjs/operators';
 import { User } from './user.model';
+import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })
 
@@ -20,7 +21,7 @@ export class AuthService {
     private userInfo: User;
     private userInfoListener = new Subject<User>();
 
-    constructor(private http: HttpClient, public dialog: MatDialog) { }
+    constructor(private http: HttpClient, public dialog: MatDialog, private router: Router) { }
 
     getToken() {
         return this.token;
@@ -91,13 +92,13 @@ export class AuthService {
         const dataFromStorage = this.getAuthData();
         if (dataFromStorage) {
             const nowTime = new Date();
-            const validTime = dataFromStorage.expiresIn.getTime() - nowTime.getDate();
+            const validTime = dataFromStorage.expiresIn.getTime() - nowTime.getTime();
             if (validTime > 0) {
                 this.token = dataFromStorage.token;
                 this.isAuthenticated = true;
                 this.userId = dataFromStorage.userId;
                 this.username = dataFromStorage.username;
-
+                console.log("The data is being fetched from the local storage", validTime / 1000);
                 this.setAuthTimer(validTime / 1000);
                 this.authenticatedListener.next(true);
             }
@@ -109,10 +110,12 @@ export class AuthService {
     setAuthTimer(duration: number) {
         this.tokenTimer = setTimeout(
             () => {
+                console.log("Called immediately");
                 this.logoutUser();
             },
             duration * 1000
         );
+        console.log(this.tokenTimer);
     }
 
     logoutUser() {
@@ -126,7 +129,8 @@ export class AuthService {
             data: {
                 message: "You have been logged out."
             }
-        })
+        });
+        this.router.navigate(['/', 'login']);
     }
 
     private setAuthData(token: string, expiresIn: Date, currentUserId: string, username: string) {
