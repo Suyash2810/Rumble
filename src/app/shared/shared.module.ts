@@ -3,12 +3,14 @@ import { DropdownDirective } from "./dropdown.directive";
 import { CommonModule } from "@angular/common";
 import { SafeHTMLPipe } from './safe-html.pipe';
 import { ToggleMessagePipe } from './toggle-message.pipe';
+import { TagFilterPipe } from './tag-filter.pipe';
 
 @NgModule({
     declarations: [
         DropdownDirective,
         SafeHTMLPipe,
-        ToggleMessagePipe
+        ToggleMessagePipe,
+        TagFilterPipe
     ],
     exports: [
         CommonModule,

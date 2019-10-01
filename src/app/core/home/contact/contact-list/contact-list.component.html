@@ -6,7 +6,7 @@
       </div>
       <div class="card-body" id="style-4">
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let contact of contacts"
+          <li class="list-group-item" *ngFor="let contact of contacts | toggleMessage:toggle:userId"
             [ngClass]="{border_left: contact.creator_id == userId}">
             <h6><span class="name">{{contact.username}}</span> <span
                 class="float-right date">{{contact.createdAt}}</span></h6>

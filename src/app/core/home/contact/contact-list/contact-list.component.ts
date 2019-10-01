@@ -36,8 +36,5 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   onToggle() {
     this.toggle = !this.toggle;
-    if (this.toggle) {
-      this.contacts = this.contacts.filter(contact => contact.creator_id == this.userId);
-    }
   }
 }
