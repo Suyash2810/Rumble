@@ -48,3 +48,9 @@ span.content {
 .border_left {
   border-left: 2px solid #009688;
 }
+
+#deleteContact {
+  background-color: #B00020;
+  width: 10px;
+  height: 10px;
+}

@@ -38,4 +38,8 @@ export class ContactListComponent implements OnInit, OnDestroy {
   onToggle() {
     this.toggle = !this.toggle;
   }
+
+  deleteMessage(id: string) {
+    this.contactService.deleteContactMessage(id);
+  }
 }
