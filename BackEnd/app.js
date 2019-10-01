@@ -90,4 +90,6 @@ app.post('/contact', ContactController.saveContact);
 
 app.get('/contacts', ContactController.getContacts);
 
+app.delete('/contact/:id', authorization, ContactController.deleteContact);
+
 module.exports = app

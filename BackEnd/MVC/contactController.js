@@ -29,7 +29,7 @@ var saveContact = (request, response) => {
   );
 }
 
-getContacts = (request, response) => {
+var getContacts = (request, response) => {
 
   Contact.find({}).then(
     (result) => {
@@ -47,8 +47,31 @@ getContacts = (request, response) => {
   )
 }
 
+var deleteContact = (request, response) => {
+
+  let id = request.params.id;
+
+  Contact.findOneAndDelete({
+      _id: id
+    }).then(
+      (result) => {
+        response.status(200).send({
+          status: "The contact message was successfully deleted.",
+          contact: result
+        });
+      }
+    )
+    .catch(
+      (error) => {
+        response.status(400).send({
+          error: error
+        });
+      }
+    );
+}
 
 module.exports = {
   saveContact,
-  getContacts
+  getContacts,
+  deleteContact
 }
