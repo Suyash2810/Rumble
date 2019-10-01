@@ -5,8 +5,13 @@
         <mat-slide-toggle (change)="onToggle()" matTooltip="Show my messages only."></mat-slide-toggle>
       </div>
       <div class="card-body" id="style-4">
+        <div class="input-group" style="width: 100%;">
+          <input type="text" class="form-control" [(ngModel)]="tag" placeholder="Search"
+            matTooltip="Technical, Account, Profile, Usage, Navigation, Privacy, Other" style="color: black;">
+        </div>
+        <mat-divider></mat-divider>
         <ul class="list-group">
-          <li class="list-group-item" *ngFor="let contact of contacts | toggleMessage:toggle:userId"
+          <li class="list-group-item" *ngFor="let contact of contacts | toggleMessage:toggle:userId | tagFilter:tag"
             [ngClass]="{border_left: contact.creator_id == userId}">
             <h6><span class="name">{{contact.username}}</span> <span
                 class="float-right date">{{contact.createdAt}}</span></h6>

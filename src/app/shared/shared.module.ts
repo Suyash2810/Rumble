@@ -16,7 +16,8 @@ import { TagFilterPipe } from './tag-filter.pipe';
         CommonModule,
         DropdownDirective,
         SafeHTMLPipe,
-        ToggleMessagePipe
+        ToggleMessagePipe,
+        TagFilterPipe
     ]
 })
 

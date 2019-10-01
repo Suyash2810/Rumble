@@ -15,6 +15,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
   contactsSub: Subscription;
   userId: string = " ";
   toggle: boolean = false;
+  tag: string = " ";
 
   constructor(private contactService: ContactService, private authService: AuthService) { }
 
