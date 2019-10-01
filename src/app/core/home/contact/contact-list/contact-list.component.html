@@ -1,7 +1,9 @@
 <div class="row" style="margin: 0; padding: 0;">
   <div class="col-md-12">
     <div class="card">
-      <div class="card-header"></div>
+      <div class="card-header">
+        <mat-slide-toggle (change)="onToggle()" matTooltip="Show my messages only."></mat-slide-toggle>
+      </div>
       <div class="card-body" id="style-4">
         <ul class="list-group">
           <li class="list-group-item" *ngFor="let contact of contacts"

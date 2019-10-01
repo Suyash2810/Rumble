@@ -14,6 +14,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
   contacts: Array<Contact> = [];
   contactsSub: Subscription;
   userId: string = " ";
+  toggle: boolean = false;
 
   constructor(private contactService: ContactService, private authService: AuthService) { }
 
@@ -31,5 +32,12 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.contactsSub.unsubscribe();
+  }
+
+  onToggle() {
+    this.toggle = !this.toggle;
+    if (this.toggle) {
+      this.contacts = this.contacts.filter(contact => contact.creator_id == this.userId);
+    }
   }
 }
