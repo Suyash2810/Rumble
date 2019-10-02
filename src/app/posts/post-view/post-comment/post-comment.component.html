@@ -26,14 +26,9 @@
                 </p>
                 <mat-divider></mat-divider>
                 <div class="mt-3">
-                  <!-- <button type="button" mat-button color="accent">Like</button> -->
-                  <!-- <button type="button" mat-button color="accent">Reply</button> -->
-                  <!-- <button type="button" mat-button color="accent" [routerLink]="['comment', comment.id]">Edit</button> -->
-                  <!-- <button type="button" mat-button color="accent"
-                    (click)="commentDelete(comment.id, comment.creator_id)">Delete</button> -->
                   <ul class="list-inline d-block">
                     <li class="list-inline-item"><i class="fa fa-heart"></i></li>
-                    <li class="list-inline-item"><i class="fa fa-reply"></i></li>
+                    <li class="list-inline-item"><i class="fa fa-reply" (click)="toggleSubComments()"></i></li>
                     <li class="list-inline-item" *ngIf="comment.creator_id === userID"><i class="fa fa-edit"
                         [routerLink]="['comment', comment.id]"></i></li>
                     <li class="list-inline-item" *ngIf="comment.creator_id === userID"><i class="fa fa-trash"
@@ -42,7 +37,7 @@
                 </div>
               </div>
             </div>
-            <!-- <app-sub-reply-comments></app-sub-reply-comments> -->
+            <app-sub-reply-comments *ngIf="toggleReply"></app-sub-reply-comments>
           </li>
         </ul>
         <mat-card *ngIf="comments.length == 0" class="border border-danger">

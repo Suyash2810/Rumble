@@ -1,15 +1,15 @@
 .card {
   background-color: transparent;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  width: 650px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: inherit;
 }
 
 .card-header {
   background-color: #5E35B1;
-  height: 2.5rem;
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  height: 15px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .panel-body {
@@ -23,14 +23,40 @@
 
 .comment_title {
   font-weight: 400;
-  font-size: 1.2em;
+  font-size: 12px;
+  color: #2962FF;
+  text-transform: capitalize;
 }
 
 .title_date {
-  font-size: 0.7em;
+  font-size: 10px;
   float: right;
 }
 
 .card-footer {
   background-color: transparent;
+}
+
+#content {
+  font-size: 12px;
+  font-weight: 100;
+}
+
+.card-body {
+  padding: 0;
+}
+
+.example-full-width {
+  width: 100%;
+}
+
+.mat-mini-fab {
+  width: 15px;
+  height: 15px;
+  margin: auto;
+  text-align: center;
+}
+
+form {
+  text-align: center;
 }

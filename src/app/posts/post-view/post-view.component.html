@@ -5,18 +5,20 @@
   </div>
 </div>
 <div class="row" id="content_row" *ngIf="!isLoading">
-  <div class="col-md-12" id="post_content">
-    <h2 class="header_title">{{post.title}}</h2>
-    <hr class="text-center" style="width:5%;">
-    <h6><code>{{post.username}} - {{post.createdAt}}</code></h6>
+  <div class="col-md-8 col-md-offset-2 mx-auto" id="post_content">
+    <mat-card>
+      <h2 class="header_title">{{post.title}}</h2>
+      <hr class="text-center" style="width:5%;">
+      <h6><code>{{post.username}} - {{post.createdAt}}</code></h6>
 
-    <div class="row" style="margin-top:70px;">
-      <div class="col-md-8 col-md-offset-2 mx-auto">
-        <p id="content" [innerHTML]="post.content | safeHTML">
-          <!-- {{post.content}} -->
-        </p>
+      <div class="row" style="margin-top:70px;">
+        <div class="col-md-8 col-md-offset-2 mx-auto">
+          <p id="content" [innerHTML]="post.content | safeHTML">
+            <!-- {{post.content}} -->
+          </p>
+        </div>
       </div>
-    </div>
+    </mat-card>
   </div>
 </div>
 

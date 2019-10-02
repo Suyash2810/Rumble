@@ -130,3 +130,7 @@ span.content {
   width: 100%;
   height: 15px;
 }
+
+mat-spinner {
+  margin: auto;
+}

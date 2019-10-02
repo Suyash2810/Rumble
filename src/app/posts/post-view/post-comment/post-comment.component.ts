@@ -40,6 +40,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   isAuthenticated: boolean = false;
   authSub: Subscription;
   userInfo: User;
+  toggleReply: boolean = false;
 
   public tools: object = {
     items: ['Undo', 'Redo', '|',
@@ -126,6 +127,10 @@ export class PostCommentComponent implements OnInit, OnDestroy {
         }
       });
     }
+  }
+
+  toggleSubComments() {
+    this.toggleReply = true;
   }
 
   ngOnDestroy() {
