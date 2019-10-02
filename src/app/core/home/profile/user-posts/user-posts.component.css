@@ -9,19 +9,19 @@
 
 .card-title {
   text-align: center;
-  color: #FF0266;
+  color: white;
   font-weight: 100;
   font-size: 16px;
   text-transform: uppercase;
 }
 
 #navigate_button {
-  width: 25px;
-  height: 25px;
+  width: 15px;
+  height: 15px;
 }
 
 #card_body {
-  background-color: #212121;
+  background-color: #006064;
 }
 
 mat-spinner {

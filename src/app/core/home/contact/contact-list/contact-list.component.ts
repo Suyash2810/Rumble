@@ -18,6 +18,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
   toggle: boolean = false;
   tag: string = " ";
   contactSub: Subscription;
+  isLoading: boolean = true;
 
   constructor(private contactService: ContactService, private authService: AuthService) { }
 
@@ -29,13 +30,16 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.contactsSub = this.contactService.getContactsListener().subscribe(
       (contacts: Contact[]) => {
         this.contacts = contacts;
+        this.isLoading = false;
       }
     );
   }
 
   ngOnDestroy() {
     this.contactsSub.unsubscribe();
-    this.contactSub.unsubscribe();
+    if (this.contactSub) {
+      this.contactSub.unsubscribe();
+    }
   }
 
   onToggle() {
