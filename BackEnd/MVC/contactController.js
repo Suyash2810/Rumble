@@ -70,8 +70,29 @@ var deleteContact = (request, response) => {
     );
 }
 
+var getContactById = (request, response) => {
+
+  let id = request.params.id;
+
+  Contact.findById(id).then(
+    (result) => {
+      response.status(200).send({
+        status: "The contact has been fetched sucessfully.",
+        contact: result
+      });
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      });
+    }
+  );
+}
+
 module.exports = {
   saveContact,
   getContacts,
-  deleteContact
+  deleteContact,
+  getContactById
 }

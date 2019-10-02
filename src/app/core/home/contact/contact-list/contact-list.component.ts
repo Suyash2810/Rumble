@@ -13,9 +13,11 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   contacts: Array<Contact> = [];
   contactsSub: Subscription;
+  contact: Contact;
   userId: string = " ";
   toggle: boolean = false;
   tag: string = " ";
+  contactSub: Subscription;
 
   constructor(private contactService: ContactService, private authService: AuthService) { }
 
@@ -33,6 +35,7 @@ export class ContactListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.contactsSub.unsubscribe();
+    this.contactSub.unsubscribe();
   }
 
   onToggle() {
@@ -44,6 +47,12 @@ export class ContactListComponent implements OnInit, OnDestroy {
   }
 
   openModal(id: string) {
-    console.log(id);
+    this.contactService.getContactById(id);
+    this.contact = this.contactService.getContactByIdStatic();
+    this.contactSub = this.contactService.getContactByIdListener().subscribe(
+      (contact: Contact) => {
+        this.contact = contact;
+      }
+    )
   }
 }

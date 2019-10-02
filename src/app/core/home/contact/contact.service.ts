@@ -159,6 +159,7 @@ export class ContactService {
             )
             .subscribe(
                 (transformedContact: Contact) => {
+                    console.log(transformedContact);
                     this.contact = transformedContact;
                     this.contactListener.next(this.contact);
                 },
@@ -170,5 +171,13 @@ export class ContactService {
                     });
                 }
             );
+    }
+
+    getContactByIdStatic() {
+        return this.contact;
+    }
+
+    getContactByIdListener() {
+        return this.contactListener.asObservable();
     }
 }

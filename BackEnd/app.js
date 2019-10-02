@@ -92,4 +92,6 @@ app.get('/contacts', ContactController.getContacts);
 
 app.delete('/contact/:id', authorization, ContactController.deleteContact);
 
+app.get('/contact/:id', ContactController.getContactById);
+
 module.exports = app
