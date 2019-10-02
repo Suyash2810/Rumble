@@ -21,19 +21,60 @@
                   (click)="deleteMessage(contact.id)"></button>
               </span> <span class="float-right date">{{contact.createdAt}}</span> </h6>
             <span class="content">{{contact.subject}}</span>
-            <div class="modal fade show" id="view">
-              <div class="modal-dialog">
-                <div class="modal-content">
-                  <div class="modal-header"></div>
-                  <div class="modal-body"></div>
-                  <div class="modal-footer"></div>
-                </div>
-              </div>
-            </div>
           </li>
         </ul>
       </div>
       <div class="card-footer"></div>
+    </div>
+    <div class="modal fade show" id="view">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div id="modal_header">
+            <button mat-mini-fab id="modal_close_btn" class="close" data-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+            <h5 id="username">
+              <!-- {{contact.username}} -->
+            </h5>
+            <h6 id="email">
+              <span id="email_span">
+                <!-- {{contact.email}}--> </span>
+            </h6>
+            <br>
+            <div class="row" style="margin: 0; padding: 0;">
+              <div class="col-md-8 col-md-offset-2" id="subject">
+                <span id="subject_span">
+
+                </span>
+              </div>
+            </div>
+            <br>
+            <mat-divider></mat-divider>
+            <div class="row">
+              <div class="col-md-4" id="phone">
+                <span class="badge badge-info" id="phone_span">
+                  <!-- {{contact.phone}}--></span>
+              </div>
+              <div class="col-md-4" id="tag">
+                <span class="badge badge-info" id="tag_span">
+                  <!-- {{contact.tag}}--></span>
+              </div>
+              <div class="col-md-4" id="createdAt">
+                <span class="badge badge-info" id="createdAt_span">
+                </span>
+              </div>
+            </div>
+            <div class="row" style="margin:0; padding:0;margin-top:30px;">
+              <div class="col-md-8 col-md-offset-2" id="content">
+                <span id="content_span"></span>
+              </div>
+            </div>
+          </div>
+          <div id="footer">
+
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </div>

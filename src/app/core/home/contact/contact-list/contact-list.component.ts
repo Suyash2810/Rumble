@@ -52,7 +52,14 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.contactSub = this.contactService.getContactByIdListener().subscribe(
       (contact: Contact) => {
         this.contact = contact;
+        document.getElementById('username').innerText = contact.username;
+        document.getElementById('email_span').innerText = contact.email;
+        document.getElementById('subject_span').innerText = contact.subject;
+        document.getElementById('phone_span').innerText = contact.phone;
+        document.getElementById('tag_span').innerText = contact.tag;
+        document.getElementById('createdAt_span').innerText = contact.createdAt;
+        document.getElementById('content_span').innerText = contact.content;
       }
-    )
+    );
   }
 }
