@@ -42,4 +42,8 @@ export class ContactListComponent implements OnInit, OnDestroy {
   deleteMessage(id: string) {
     this.contactService.deleteContactMessage(id);
   }
+
+  openModal(id: string) {
+    console.log(id);
+  }
 }

@@ -135,4 +135,40 @@ export class ContactService {
                 }
             );
     }
+
+    getContactById(id: string) {
+
+        type responseType = { status: string, contact: any };
+        this.httpClient.get<responseType>("http://localhost:3000/contact/" + id)
+            .pipe(
+                map(
+                    (data) => {
+                        return {
+                            id: data.contact._id,
+                            username: data.contact.username,
+                            email: data.contact.email,
+                            phone: data.contact.phone,
+                            content: data.contact.content,
+                            creator_id: data.contact.creator_id,
+                            tag: data.contact.tag,
+                            subject: data.contact.subject,
+                            createdAt: data.contact.createdAt
+                        }
+                    }
+                )
+            )
+            .subscribe(
+                (transformedContact: Contact) => {
+                    this.contact = transformedContact;
+                    this.contactListener.next(this.contact);
+                },
+                (error) => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: "The contact could not be fetched."
+                        }
+                    });
+                }
+            );
+    }
 }
