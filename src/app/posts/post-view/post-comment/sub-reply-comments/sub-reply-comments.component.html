@@ -1,14 +1,16 @@
 <div class="row" style="margin: 0; padding: 0;">
-  <div class="col-md-8 col-md-offset-2 mx-auto" style="margin: 0; padding:0;">
+  <div class="col-md-8 col-md-offset-2 mx-auto">
     <div class="card" style="margin: 0; padding:0;">
-      <div class="card-header" style="margin: 0; padding:0;"></div>
-      <div class="card-body" style="margin: 0; padding:0;">
-        <ul class="list-group" style="margin: 0; padding:0;">
-          <li class="list-group-item" id="list-group-sub-item" style="margin: 0; padding:0;">
-            <div class="media p-3" style="margin: 0; padding:0;">
+      <div class="card-header">
+        <button mat-mini-fab id="closeBtn" (click)="closeSubComponent()"></button>
+      </div>
+      <div class="card-body">
+        <ul class="list-group">
+          <li class="list-group-item" id="list-group-sub-item">
+            <div class="media p-3">
               <img src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="John Doe"
                 class="align-self-start mr-3 rounded-circle" style="width:30px;">
-              <div class="media-body border p-3 rounded" style="margin: 0; padding:0;">
+              <div class="media-body border p-3 rounded">
                 <h6 class="comment_title">Daniel Bran <code class="title_date">27th August, 2019</code></h6>
                 <mat-divider></mat-divider>
                 <p class="mt-1" id="content">
@@ -21,8 +23,8 @@
           </li>
         </ul>
       </div>
-      <div class="card-footer" style="margin: 0; padding:0;">
-        <form (ngSubmit)="onSubmit()" #f="ngForm" style="margin: 0; padding:0;width: inherit;">
+      <div class="card-footer">
+        <form (ngSubmit)="onSubmit()" #f="ngForm">
           <mat-form-field class="example-full-width">
             <textarea name="comment" id="comment" rows="2" matInput ngModel #Comment="ngModel"
               placeholder="Reply.."></textarea>

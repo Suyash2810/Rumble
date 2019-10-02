@@ -60,3 +60,12 @@
 form {
   text-align: center;
 }
+
+#closeBtn {
+  float: right;
+  background-color: #B00020;
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  margin-bottom: 5px;
+}

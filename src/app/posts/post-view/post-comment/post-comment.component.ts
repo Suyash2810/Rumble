@@ -133,6 +133,10 @@ export class PostCommentComponent implements OnInit, OnDestroy {
     this.toggleReply = true;
   }
 
+  hideSubComponent(data: { status: boolean }) {
+    this.toggleReply = data.status;
+  }
+
   ngOnDestroy() {
     this.commentSubs.unsubscribe();
   }

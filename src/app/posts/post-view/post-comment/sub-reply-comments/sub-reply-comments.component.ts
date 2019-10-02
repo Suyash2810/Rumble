@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, Output, EventEmitter } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
 @Component({
@@ -10,6 +10,7 @@ export class SubReplyCommentsComponent implements OnInit {
 
   comment: string = " ";
   @ViewChild('f') subform: NgForm;
+  @Output() toggler = new EventEmitter<{ status: boolean }>();
 
   constructor() { }
 
@@ -18,5 +19,10 @@ export class SubReplyCommentsComponent implements OnInit {
 
   onSubmit() {
     this.comment = this.subform.value.comment;
+  }
+
+  closeSubComponent() {
+    let toggleData = { status: false };
+    this.toggler.emit(toggleData);
   }
 }
