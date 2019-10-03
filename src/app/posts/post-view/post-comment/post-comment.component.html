@@ -37,7 +37,8 @@
                 </div>
               </div>
             </div>
-            <app-sub-reply-comments *ngIf="toggleReply" (toggler)="hideSubComponent($event)"></app-sub-reply-comments>
+            <app-sub-reply-comments *ngIf="toggleReply" (toggler)="hideSubComponent($event)" [parentId]="comment.id"
+              [postId]="postID"></app-sub-reply-comments>
           </li>
         </ul>
         <mat-card *ngIf="comments.length == 0" class="border border-danger">
