@@ -64,4 +64,37 @@ export class ReplyService {
     getRepliesListener() {
         return this.repliesListener.asObservable();
     }
+
+    getSpecificReplies(postId: string, parent_Id: string) {
+
+        type responseType = { status: string, replies: any };
+
+        this.httpClient.get<responseType>(`http://localhost:3000/reply/${postId}/${parent_Id}`)
+            .pipe(
+                map(
+                    (data) => {
+                        return data.replies.map(
+                            (reply) => {
+                                return {
+                                    id: reply._id,
+                                    username: reply.username,
+                                    imagePath: reply.imagePath,
+                                    content: reply.content,
+                                    createdAt: reply.createdAt,
+                                    creator_id: reply.creator_id,
+                                    postId: reply.postId,
+                                    parent_Id: reply.parent_Id
+                                }
+                            }
+                        )
+                    }
+                )
+            )
+            .subscribe(
+                (transformedReplies: Reply[]) => {
+                    this.replies = transformedReplies;
+                    this.repliesListener.next([...this.replies]);
+                }
+            );
+    }
 }

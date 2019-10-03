@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { User } from 'src/app/auth/user.model';
 import { Subscription } from 'rxjs';
 import { ReplyService } from './reply.service';
 import { Reply } from './reply.model';
@@ -23,7 +22,14 @@ export class SubReplyCommentsComponent implements OnInit, OnDestroy {
   constructor(private replyService: ReplyService) { }
 
   ngOnInit() {
-
+    this.replyService.getSpecificReplies(this.postId, this.parentId);
+    this.replies = this.replyService.getReplies();
+    this.replySub = this.replyService.getRepliesListener().subscribe(
+      (replies: Reply[]) => {
+        this.replies = replies;
+        console.log(this.replies);
+      }
+    );
   }
 
   onSubmit() {
@@ -38,6 +44,6 @@ export class SubReplyCommentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-
+    this.replySub.unsubscribe();
   }
 }

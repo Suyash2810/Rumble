@@ -99,4 +99,6 @@ app.get('/contact/:id', ContactController.getContactById);
 
 app.post('/reply', authorization, ReplyController.saveReply);
 
+app.get('/reply/:postId/:parent_Id', ReplyController.getSpecificSubReplies);
+
 module.exports = app
