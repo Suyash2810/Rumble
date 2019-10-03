@@ -56,4 +56,12 @@ export class ReplyService {
                 }
             );
     }
+
+    getReplies() {
+        return this.replies;
+    }
+
+    getRepliesListener() {
+        return this.repliesListener.asObservable();
+    }
 }

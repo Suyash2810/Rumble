@@ -43,3 +43,7 @@ Create the test file for the sub reply model.
 
 Use input for the flow of information from the parent comment component to the sub reply component for providing 
 information about the comment whose sub reply has been sent
+
+Resolve the unauthorized error on the post view page when the user is not logged in. Handle the dialog message.
+
+Disable the reply form for the not logged in users.

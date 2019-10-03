@@ -20,6 +20,7 @@ const UserController = require('./MVC/userController');
 const PostController = require('./MVC/postController');
 const CommentController = require('./MVC/commentController');
 const ContactController = require('./MVC/contactController');
+const ReplyController = require('./MVC/replyController');
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
@@ -93,5 +94,9 @@ app.get('/contacts', ContactController.getContacts);
 app.delete('/contact/:id', authorization, ContactController.deleteContact);
 
 app.get('/contact/:id', ContactController.getContactById);
+
+// ------------------------------Reply Requests---------------------------------------//
+
+app.post('/reply', authorization, ReplyController.saveReply);
 
 module.exports = app

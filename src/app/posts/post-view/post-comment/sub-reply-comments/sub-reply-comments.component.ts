@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild, Output, EventEmitter, Input, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
 import { Subscription } from 'rxjs';
+import { ReplyService } from './reply.service';
+import { Reply } from './reply.model';
 
 @Component({
   selector: 'app-sub-reply-comments',
@@ -11,28 +12,24 @@ import { Subscription } from 'rxjs';
 })
 export class SubReplyCommentsComponent implements OnInit, OnDestroy {
 
-  comment: string = " ";
+  reply: string = " ";
   @ViewChild('f') subform: NgForm;
   @Output() toggler = new EventEmitter<{ status: boolean }>();
   @Input() parentId: string = " ";
   @Input() postId: string = " ";
-  userInfo: User;
-  userSub: Subscription;
+  replies: Array<Reply> = [];
+  replySub: Subscription;
 
-  constructor(private authService: AuthService) { }
+  constructor(private replyService: ReplyService) { }
 
   ngOnInit() {
-    this.authService.getUserInfo();
-    this.userInfo = this.authService.getStaticUserInfo();
-    this.userSub = this.authService.getUserInfoListener().subscribe(
-      (user: User) => {
-        this.userInfo = user;
-      }
-    );
+
   }
 
   onSubmit() {
-    this.comment = this.subform.value.comment;
+    this.reply = this.subform.value.comment;
+    this.replyService.addReply(this.reply, this.postId, this.parentId);
+    this.subform.reset();
   }
 
   closeSubComponent() {
@@ -41,6 +38,6 @@ export class SubReplyCommentsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.userSub.unsubscribe();
+
   }
 }
