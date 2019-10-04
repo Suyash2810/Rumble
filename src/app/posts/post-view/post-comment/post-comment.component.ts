@@ -18,6 +18,7 @@ import { User } from 'src/app/auth/user.model';
 import { map } from 'rxjs/operators';
 import { MatDialog } from '@angular/material';
 import { ErrorComponent } from 'src/app/error/error.component';
+import { ReplyService } from './sub-reply-comments/reply.service';
 
 @Component({
   selector: 'app-post-comment',
@@ -60,7 +61,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   };
 
   constructor(private authService: AuthService, private commentService: CommentService,
-    private route: ActivatedRoute, private postService: PostService, private dialog: MatDialog) { }
+    private route: ActivatedRoute, private postService: PostService, private dialog: MatDialog, private replyService: ReplyService) { }
 
   ngOnInit() {
 
@@ -124,6 +125,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   commentDelete(id: string, creator_id: string) {
     if (this.userID === creator_id) {
       this.commentService.deleteComment(id, creator_id);
+      this.replyService.deleteSpecificReplies(this.postID, id);
     } else {
       this.dialog.open(ErrorComponent, {
         data: {
