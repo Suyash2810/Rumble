@@ -37,11 +37,4 @@ Further add the functionality to post the comment from there. Work out the vario
 
 Add tooltips for all the buttons.
 
-Create a model for sub replies. The model must have a creator_id, post_id, parent comment id. Along with this
-it will store all the information which is being stored by the comment model.
-
-Resolve the unauthorized error on the post view page when the user is not logged in. Handle the dialog message.
-
-Disable the reply form for the not logged in users.
-
 Deleted all the sub replies if the main comment has been deleted by the user.
