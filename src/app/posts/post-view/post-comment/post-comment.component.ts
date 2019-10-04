@@ -63,16 +63,26 @@ export class PostCommentComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute, private postService: PostService, private dialog: MatDialog) { }
 
   ngOnInit() {
-    this.userID = this.authService.getCurrentUserId();
-    this.username = this.authService.getCurrentUsername();
-    this.authService.getUserInfo();
-    this.userInfo = this.authService.getStaticUserInfo();
-    this.authService.getUserInfoListener().subscribe(
-      (user) => {
-        this.userInfo = user;
-        console.log(this.userInfo);
+
+    this.isAuthenticated = this.authService.getAuth();
+    this.authSub = this.authService.getAuthenticatedListener().subscribe(
+      (auth: boolean) => {
+        this.isAuthenticated = auth;
       }
-    )
+    );
+
+    if (this.isAuthenticated) {
+      this.userID = this.authService.getCurrentUserId();
+      this.username = this.authService.getCurrentUsername();
+      this.authService.getUserInfo();
+      this.userInfo = this.authService.getStaticUserInfo();
+      this.authService.getUserInfoListener().subscribe(
+        (user) => {
+          this.userInfo = user;
+          console.log(this.userInfo);
+        }
+      )
+    }
 
     this.route.params.subscribe(
       (params: Params) => {
@@ -98,13 +108,6 @@ export class PostCommentComponent implements OnInit, OnDestroy {
         this.checked = post.commentStatus;
       }
     );
-
-    this.isAuthenticated = this.authService.getAuth();
-    this.authSub = this.authService.getAuthenticatedListener().subscribe(
-      (auth: boolean) => {
-        this.isAuthenticated = auth;
-      }
-    )
   }
 
   onSubmit() {

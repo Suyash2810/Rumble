@@ -44,6 +44,4 @@ Resolve the unauthorized error on the post view page when the user is not logged
 
 Disable the reply form for the not logged in users.
 
-Handle the errors regarding the user images. In all the places if the user hasn't uploaded the user image then the user
-path is null in such a case store the basic logo image in the database which whill get loaded everywhere until the 
-user uploads a new one.
+Deleted all the sub replies if the main comment has been deleted by the user.

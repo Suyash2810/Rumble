@@ -21,7 +21,7 @@
           </li>
         </ul>
       </div>
-      <div class="card-footer">
+      <div class="card-footer" *ngIf="isAuth">
         <form (ngSubmit)="onSubmit()" #f="ngForm">
           <mat-form-field class="example-full-width">
             <textarea name="comment" id="comment" rows="2" matInput ngModel #Comment="ngModel"
