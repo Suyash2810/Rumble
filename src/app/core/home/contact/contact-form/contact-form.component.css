@@ -1,5 +1,11 @@
 mat-card {
   border: 1px solid #0288D1;
+  max-height: 70vh;
+  overflow: scroll;
+}
+
+mat-card::-webkit-scrollbar {
+  width: 0 !important;
 }
 
 .example-full-width {

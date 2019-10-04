@@ -44,3 +44,12 @@ mat-card h4 {
   font-family: 'Roboto', sans-serif;
   font-size: 20px;
 }
+
+.card-body {
+  max-height: 70vh;
+  overflow: scroll;
+}
+
+.card-body::-webkit-scrollbar {
+  width: 0 !important;
+}

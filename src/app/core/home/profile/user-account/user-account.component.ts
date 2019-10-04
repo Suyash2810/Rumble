@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-user-account',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserAccountComponent implements OnInit {
 
-  constructor() { }
+  username: string = " ";
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
+    this.username = this.authService.getCurrentUsername();
   }
 
 }
