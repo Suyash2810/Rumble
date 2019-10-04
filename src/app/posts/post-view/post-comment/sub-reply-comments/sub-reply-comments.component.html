@@ -6,17 +6,17 @@
       </div>
       <div class="card-body">
         <ul class="list-group">
-          <li class="list-group-item" id="list-group-sub-item">
+          <li class="list-group-item" id="list-group-sub-item" *ngFor="let reply of replies">
             <div class="media p-3">
-              <img src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="John Doe"
+              <img *ngIf="!reply.imagePath" src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="John Doe"
+                class="align-self-start mr-3 rounded-circle" style="width:30px;">
+              <img *ngIf="reply.imagePath" [src]="reply.imagePath" alt="John Doe"
                 class="align-self-start mr-3 rounded-circle" style="width:30px;">
               <div class="media-body border p-3 rounded">
-                <h6 class="comment_title">Daniel Bran <code class="title_date">27th August, 2019</code></h6>
+                <h6 class="comment_title">{{reply.username}} <code class="title_date">{{reply.createdAt}}</code></h6>
                 <mat-divider></mat-divider>
                 <p class="mt-1" id="content">
-                  Her extensive perceived may any sincerity extremity. Indeed add rather may pretty see. Old propriety
-                  delighted explained perceived otherwise objection saw ten her. Doubt merit sir the right these alone
-                  keeps. By sometimes intention smallness he northward.
+                  {{reply.content}}
                 </p>
               </div>
             </div>

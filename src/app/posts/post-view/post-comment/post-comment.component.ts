@@ -41,6 +41,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
   authSub: Subscription;
   userInfo: User;
   toggleReply: boolean = false;
+  replyUserId: string = " ";
 
   public tools: object = {
     items: ['Undo', 'Redo', '|',
@@ -108,7 +109,7 @@ export class PostCommentComponent implements OnInit, OnDestroy {
 
   onSubmit() {
     this.comment = this.form.value.comment;
-    this.commentService.addComment(this.username, this.userInfo.imagePath, this.comment, this.userID, this.postID);
+    this.commentService.addComment(this.username, this.userInfo.imagePath.length >= 1 ? this.userInfo.imagePath : 'https://www.w3schools.com/bootstrap4/img_avatar3.png', this.comment, this.userID, this.postID);
     this.form.reset();
   }
 
@@ -129,8 +130,9 @@ export class PostCommentComponent implements OnInit, OnDestroy {
     }
   }
 
-  toggleSubComments() {
+  toggleSubComments(id: string) {
     this.toggleReply = true;
+    this.replyUserId = id;
   }
 
   hideSubComponent(data: { status: boolean }) {
