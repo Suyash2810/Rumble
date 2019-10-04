@@ -8,8 +8,6 @@
         <ul class="list-group">
           <li class="list-group-item" id="list-group-sub-item" *ngFor="let reply of replies">
             <div class="media p-3">
-              <img *ngIf="!reply.imagePath" src="https://www.w3schools.com/bootstrap4/img_avatar3.png" alt="John Doe"
-                class="align-self-start mr-3 rounded-circle" style="width:30px;">
               <img *ngIf="reply.imagePath" [src]="reply.imagePath" alt="John Doe"
                 class="align-self-start mr-3 rounded-circle" style="width:30px;">
               <div class="media-body border p-3 rounded">

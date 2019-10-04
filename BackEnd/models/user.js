@@ -42,7 +42,7 @@ var userSchema = new mongoose.Schema({
   },
   imagePath: {
     type: String,
-    default: null
+    default: "https://www.w3schools.com/bootstrap4/img_avatar3.png"
   }
 });
 
