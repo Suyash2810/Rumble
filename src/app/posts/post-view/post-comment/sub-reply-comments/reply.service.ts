@@ -98,40 +98,21 @@ export class ReplyService {
             );
     }
 
-    deleteSpecificReplies(parent_Id: string, postId: string) {
+    deleteSpecificReplies(postId: string, parent_Id: string) {
 
         type responseType = { status: string, replies: any };
         this.httpClient.delete<responseType>(`http://localhost:3000/reply/${postId}/${parent_Id}`)
-            .pipe(
-                map(
-                    (data) => {
-                        return data.replies.map(
-                            (reply) => {
-                                return {
-                                    id: reply._id,
-                                    username: reply.username,
-                                    imagePath: reply.imagePath,
-                                    content: reply.content,
-                                    createdAt: reply.createdAt,
-                                    creator_id: reply.creator_id,
-                                    postId: reply.postId,
-                                    parent_Id: reply.parent_Id
-                                }
-                            }
-                        )
-                    }
-                )
-            )
             .subscribe(
                 (deletedReplies) => {
                     console.log(deletedReplies);
                 },
                 (error) => {
-                    this.dialog.open(ErrorComponent, {
-                        data: {
-                            message: error.error.error.message
-                        }
-                    });
+                    // this.dialog.open(ErrorComponent, {
+                    //     data: {
+                    //         message: error.error.error.message
+                    //     }
+                    // });
+                    console.log(error);
                 }
             );
     }

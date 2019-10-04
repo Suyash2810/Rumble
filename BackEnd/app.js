@@ -101,4 +101,6 @@ app.post('/reply', authorization, ReplyController.saveReply);
 
 app.get('/reply/:postId/:parent_Id', ReplyController.getSpecificSubReplies);
 
+app.delete('/reply/:postId/:parent_Id', ReplyController.deleteSpecificReplies);
+
 module.exports = app

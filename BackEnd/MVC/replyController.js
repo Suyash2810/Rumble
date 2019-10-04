@@ -58,7 +58,32 @@ var getSpecificSubReplies = (request, response) => {
   );
 }
 
+var deleteSpecificReplies = (request, response) => {
+
+  let postId = request.params.postId;
+  let parent_Id = request.params.parent_Id;
+
+  SubReply.deleteMany({
+    postId: postId,
+    parent_Id: parent_Id
+  }).then(
+    (result) => {
+      response.status(200).send({
+        status: "The replies have been fetched successfully.",
+        replies: result
+      });
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      });
+    }
+  );
+}
+
 module.exports = {
   saveReply,
-  getSpecificSubReplies
+  getSpecificSubReplies,
+  deleteSpecificReplies
 }
