@@ -34,7 +34,3 @@ Provide functionality for views on a particular post.
 
 Create an archive section where the user will save the not yet published posts and review them.
 Further add the functionality to post the comment from there. Work out the various ways possible.
-
-Add tooltips for all the buttons.
-
-Deleted all the sub replies if the main comment has been deleted by the user.

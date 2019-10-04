@@ -69,3 +69,12 @@ form {
   margin: 0;
   margin-bottom: 5px;
 }
+
+.card-body {
+  max-height: 300px;
+  overflow: scroll;
+}
+
+.card-body::-webkit-scrollbar {
+  width: 0 !important;
+}

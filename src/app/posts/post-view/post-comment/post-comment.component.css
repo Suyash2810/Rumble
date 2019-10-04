@@ -65,3 +65,12 @@ mat-spinner {
 .fa-heart {
   color: #D32F2F;
 }
+
+.card-body {
+  overflow: scroll;
+  max-height: 600px;
+}
+
+.card-body::-webkit-scrollbar {
+  width: 0 !important
+}
