@@ -25,7 +25,7 @@
                 </div>
               </div>
             </div>
-            <mat-card *ngIf="posts.length === 0">
+            <mat-card *ngIf="posts.length === 0 && !isLoading">
               <h4>No posts have yet been posted.</h4>
             </mat-card>
           </div>

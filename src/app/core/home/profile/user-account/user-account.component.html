@@ -5,12 +5,27 @@
 
       </div>
       <div class="card-body">
-        <h4 id="user_profile_header">Welcome {{username}}</h4>
-        <div class="row" style="margin: 0; padding: 0; margin-top:30px;">
-          <div class="col-md-12">
-            <mat-card class="border border-info">
+        <div class="row" style="margin: 0; padding: 0;height: 100%;">
+          <div class="col-md-12" id="main_column">
+            <div class="row" style="margin: 0; padding: 0;height: 100%;">
+              <div class="col-md-2" id="side_nav">
+                <mat-card>
+                  <h5 id="side_nav_header">Account</h5>
 
-            </mat-card>
+                  <ul class="list-group" id="side_nav_list_group">
+                    <li class="list-group-item"><button type="button" mat-mini-fab style="background-color: #B00020;"
+                        matTooltip="Favorite Posts"></button></li>
+                    <li class="list-group-item"><button type="button" mat-mini-fab style="background-color: #01579B;"
+                        matTooltip="My notes"></button></li>
+                    <li class="list-group-item"><button type="button" mat-mini-fab
+                        matTooltip="Change username/email/password"></button></li>
+                    <li class="list-group-item"><button type="button" mat-mini-fab style="background-color: #E57373;"
+                        matTooltip="Delete Account"></button></li>
+                  </ul>
+                </mat-card>
+              </div>
+              <div class="col-md-10" id="components_column">sdftsgydsfyhtu</div>
+            </div>
           </div>
         </div>
       </div>

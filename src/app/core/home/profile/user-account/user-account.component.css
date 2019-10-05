@@ -7,7 +7,58 @@
   font-weight: 100;
 }
 
-mat-card {
-  width: 600px;
+.card {
   margin: auto;
+  height: 70vh;
+}
+
+.card-body {
+  padding: 0;
+  border-bottom: 1px solid #00838F;
+  border-right: 1px solid #00838F;
+}
+
+#main_column {
+  padding: 0;
+  height: inherit;
+}
+
+#side_nav {
+  padding: 30px 10px;
+  background-color: #00838F;
+  height: 100%;
+}
+
+#components_column {
+  height: 100%;
+}
+
+mat-card {
+  background-color: #006064;
+  text-align: center;
+}
+
+#side_nav_header {
+  font-size: 14px;
+  color: white;
+}
+
+#side_nav_list_group {
+  background-color: transparent;
+}
+
+.list-group-item {
+  background-color: transparent;
+  margin-top: 25%;
+  border: none;
+  z-index: 50;
+}
+
+.fa-heart {
+  color: white;
+}
+
+li button[type="button"] {
+  width: 10px;
+  height: 10px;
 }
