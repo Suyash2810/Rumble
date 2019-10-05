@@ -15,6 +15,7 @@ import { ContactFormComponent } from './home/contact/contact-form/contact-form.c
 import { ContactListComponent } from './home/contact/contact-list/contact-list.component';
 import { FavoriteComponent } from './home/profile/user-account/favorite/favorite.component';
 import { IdeasComponent } from './home/profile/user-account/ideas/ideas.component';
+import { DeleteAccountComponent } from './home/profile/user-account/delete-account/delete-account.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { IdeasComponent } from './home/profile/user-account/ideas/ideas.componen
         ContactFormComponent,
         ContactListComponent,
         FavoriteComponent,
-        IdeasComponent
+        IdeasComponent,
+        DeleteAccountComponent
     ],
     imports: [
         SharedModule,
