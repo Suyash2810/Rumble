@@ -16,6 +16,10 @@ import { UserAccountComponent } from "./core/home/profile/user-account/user-acco
 import { UserPostsComponent } from "./core/home/profile/user-posts/user-posts.component";
 import { PostCommentComponent } from "./posts/post-view/post-comment/post-comment.component";
 import { PostCommentEditComponent } from "./posts/post-view/post-comment-edit/post-comment-edit.component";
+import { ChangeInfoComponent } from "./core/home/profile/user-account/change-info/change-info.component";
+import { IdeasComponent } from "./core/home/profile/user-account/ideas/ideas.component";
+import { FavoriteComponent } from "./core/home/profile/user-account/favorite/favorite.component";
+import { DeleteAccountComponent } from "./core/home/profile/user-account/delete-account/delete-account.component";
 
 const appRoutes: Routes = [
     {
@@ -24,7 +28,14 @@ const appRoutes: Routes = [
             {
                 path: 'profile', component: ProfileComponent, children: [
                     { path: '', component: UserProfileComponent },
-                    { path: 'user-account', component: UserAccountComponent },
+                    {
+                        path: 'user-account', component: UserAccountComponent, children: [
+                            { path: '', component: FavoriteComponent },
+                            { path: 'idea', component: IdeasComponent },
+                            { path: 'change', component: ChangeInfoComponent },
+                            { path: 'delete', component: DeleteAccountComponent }
+                        ]
+                    },
                     { path: 'user-posts', component: UserPostsComponent }
                 ]
             },

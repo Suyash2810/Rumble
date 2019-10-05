@@ -14,17 +14,19 @@
 
                   <ul class="list-group" id="side_nav_list_group">
                     <li class="list-group-item"><button type="button" mat-mini-fab style="background-color: #B00020;"
-                        matTooltip="Favorite Posts"></button></li>
+                        matTooltip="Favorite Posts" [routerLink]="['.']"></button></li>
                     <li class="list-group-item"><button type="button" mat-mini-fab style="background-color: #01579B;"
-                        matTooltip="My notes"></button></li>
+                        matTooltip="My notes" [routerLink]="['idea']"></button></li>
                     <li class="list-group-item"><button type="button" mat-mini-fab
-                        matTooltip="Change username/email/password"></button></li>
+                        matTooltip="Change username/email/password" [routerLink]="['change']"></button></li>
                     <li class="list-group-item"><button type="button" mat-mini-fab style="background-color: #E57373;"
-                        matTooltip="Delete Account"></button></li>
+                        matTooltip="Delete Account" [routerLink]="['delete']"></button></li>
                   </ul>
                 </mat-card>
               </div>
-              <div class="col-md-10" id="components_column">sdftsgydsfyhtu</div>
+              <div class="col-md-10" id="components_column">
+                <router-outlet></router-outlet>
+              </div>
             </div>
           </div>
         </div>
