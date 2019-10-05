@@ -14,6 +14,7 @@ import {FormsModule} from "@angular/forms";
 import { ContactFormComponent } from './home/contact/contact-form/contact-form.component';
 import { ContactListComponent } from './home/contact/contact-list/contact-list.component';
 import { FavoriteComponent } from './home/profile/user-account/favorite/favorite.component';
+import { IdeasComponent } from './home/profile/user-account/ideas/ideas.component';
 
 @NgModule({
     declarations: [
@@ -27,7 +28,8 @@ import { FavoriteComponent } from './home/profile/user-account/favorite/favorite
         UserPostsComponent,
         ContactFormComponent,
         ContactListComponent,
-        FavoriteComponent
+        FavoriteComponent,
+        IdeasComponent
     ],
     imports: [
         SharedModule,
