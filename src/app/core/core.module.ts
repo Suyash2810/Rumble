@@ -16,6 +16,7 @@ import { ContactListComponent } from './home/contact/contact-list/contact-list.c
 import { FavoriteComponent } from './home/profile/user-account/favorite/favorite.component';
 import { IdeasComponent } from './home/profile/user-account/ideas/ideas.component';
 import { DeleteAccountComponent } from './home/profile/user-account/delete-account/delete-account.component';
+import { ChangeInfoComponent } from './home/profile/user-account/change-info/change-info.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +32,8 @@ import { DeleteAccountComponent } from './home/profile/user-account/delete-accou
         ContactListComponent,
         FavoriteComponent,
         IdeasComponent,
-        DeleteAccountComponent
+        DeleteAccountComponent,
+        ChangeInfoComponent
     ],
     imports: [
         SharedModule,
