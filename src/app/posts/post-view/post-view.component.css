@@ -28,9 +28,21 @@ mat-spinner {
 }
 
 #header_title {
-  margin-top: 20%;
+  margin-top: 30%;
 }
 
 #content {
   text-align: center;
+}
+
+#favorite {
+  color: #B00020;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+#notFavorite {
+  color: darkgray;
+  cursor: pointer;
+  font-size: 25px;
 }

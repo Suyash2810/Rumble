@@ -7,6 +7,10 @@
 <div class="row" id="content_row" *ngIf="!isLoading">
   <div class="col-md-8 col-md-offset-2 mx-auto" id="post_content">
     <mat-card>
+      <span *ngIf="toggleFav" class="fa fa-heart float-right" matTooltip="Remove from my favorites." id="favorite"
+        (click)="toggleFavorite(post.id)"></span>
+      <span *ngIf="!toggleFav" class="fa fa-heart float-right" matTooltip="Add to my favorites." id="notFavorite"
+        (click)="toggleFavorite(post.id)"></span>
       <h2 class="header_title">{{post.title}}</h2>
       <hr class="text-center" style="width:5%;">
       <h6><code>{{post.username}} - {{post.createdAt}}</code></h6>
@@ -22,5 +26,5 @@
   </div>
 </div>
 
-<br>
+<br><br>
 <router-outlet></router-outlet>

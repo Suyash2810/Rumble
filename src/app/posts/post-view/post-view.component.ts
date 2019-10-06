@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../posts.service';
-import { AuthService } from 'src/app/auth/auth.service';
-import { Router, ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params } from '@angular/router';
 import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
 
@@ -16,9 +15,9 @@ export class PostViewComponent implements OnInit {
   post: Post;
   PostSubs: Subscription;
   isLoading: boolean = true;
+  toggleFav: boolean = false;
 
-  constructor(private postService: PostService, private authService: AuthService,
-    private router: Router, private route: ActivatedRoute) { }
+  constructor(private postService: PostService, private route: ActivatedRoute) { }
 
   ngOnInit() {
 
@@ -35,6 +34,10 @@ export class PostViewComponent implements OnInit {
         this.isLoading = false;
       }
     );
+  }
+
+  toggleFavorite(postId: string) {
+    this.toggleFav = !this.toggleFav;
   }
 
 }
