@@ -39,10 +39,12 @@ mat-spinner {
   color: #B00020;
   cursor: pointer;
   font-size: 25px;
+  margin-top: 10px;
 }
 
 #notFavorite {
   color: darkgray;
   cursor: pointer;
   font-size: 25px;
+  margin-top: 10px;
 }
