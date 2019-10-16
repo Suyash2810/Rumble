@@ -41,6 +41,7 @@ export class FavoriteService {
             )
             .subscribe(
                 (transformedFavorites) => {
+                    console.log(transformedFavorites);
                     this.favorites = transformedFavorites;
                     this.favoriteListener.next([...this.favorites]);
                 },
@@ -108,14 +109,12 @@ export class FavoriteService {
 
     removeFavorite(postId: string) {
 
-        type responseType = { status: string, favorite: Favorite };
+        type responseType = { status: string, favorite: any };
 
         this.httpClient.delete<responseType>("http://localhost:3000/favorite/" + postId)
             .subscribe(
                 (data) => {
-                    const favorites = this.favorites.filter(favorite => favorite.id !== data.favorite.id);
-                    this.favorites = favorites;
-                    this.favoriteListener.next([...this.favorites]);
+                    this.getFavorites();
                 },
                 () => {
                     this.dialog.open(ErrorComponent, {

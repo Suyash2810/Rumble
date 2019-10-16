@@ -104,12 +104,12 @@ app.get('/reply/:postId/:parent_Id', ReplyController.getSpecificSubReplies);
 
 app.delete('/reply/:postId/:parent_Id', ReplyController.deleteSpecificReplies);
 
-// ------------------------------Reply Requests---------------------------------------//
+// ------------------------------Favorite Requests---------------------------------------//
 
 app.get('/favorites', authorization, favoriteController.getFavorites);
 
 app.post('/favorite', authorization, favoriteController.addfavorite);
 
-app.delete('/favorite/postId', authorization, favoriteController.removefavorite);
+app.delete('/favorite/:postId', authorization, favoriteController.removefavorite);
 
 module.exports = app
