@@ -21,6 +21,7 @@ const PostController = require('./MVC/postController');
 const CommentController = require('./MVC/commentController');
 const ContactController = require('./MVC/contactController');
 const ReplyController = require('./MVC/replyController');
+const favoriteController = require('./MVC/favoriteController');
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
@@ -102,5 +103,13 @@ app.post('/reply', authorization, ReplyController.saveReply);
 app.get('/reply/:postId/:parent_Id', ReplyController.getSpecificSubReplies);
 
 app.delete('/reply/:postId/:parent_Id', ReplyController.deleteSpecificReplies);
+
+// ------------------------------Reply Requests---------------------------------------//
+
+app.get('/favorites', authorization, favoriteController.getFavorites);
+
+app.post('/favorite', authorization, favoriteController.addfavorite);
+
+app.delete('/favorite/postId', authorization, favoriteController.removefavorite);
 
 module.exports = app
