@@ -3,6 +3,7 @@ import { PostService } from '../posts.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
+import { FavoriteService } from 'src/app/core/home/profile/user-account/favorite/favorite.service';
 
 @Component({
   selector: 'app-post-view',
@@ -17,7 +18,7 @@ export class PostViewComponent implements OnInit {
   isLoading: boolean = true;
   toggleFav: boolean = false;
 
-  constructor(private postService: PostService, private route: ActivatedRoute) { }
+  constructor(private postService: PostService, private route: ActivatedRoute, private favoriteService: FavoriteService) { }
 
   ngOnInit() {
 
@@ -36,8 +37,13 @@ export class PostViewComponent implements OnInit {
     );
   }
 
-  toggleFavorite(postId: string) {
+  toggleFavorite() {
     this.toggleFav = !this.toggleFav;
+    if (this.toggleFav) {
+      this.favoriteService.addFavorite(this.post);
+    } else {
+      this.favoriteService.removeFavorite(this.postId);
+    }
   }
 
 }
