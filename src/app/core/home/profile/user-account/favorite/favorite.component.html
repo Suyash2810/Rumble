@@ -1,12 +1,12 @@
-<p>
-  This is the favorite section to store the user's favorited posts.
-</p>
-<mat-grid-list cols="4" rowHeight="100px">
-  <mat-grid-tile
-      *ngFor="let tile of tiles"
-      [colspan]="tile.cols"
-      [rowspan]="tile.rows"
-      [style.background]="tile.color">
-    {{tile.text}}
+<mat-grid-list cols="3" rowHeight="100px">
+  <mat-grid-tile *ngFor="let favorite of favorites" [style.background]="'#26A69A'" [rowspan]="'3'">
+    <mat-grid-tile-header>
+      {{favorite.title}}
+      <span class="spacer"></span>
+      <button mat-mini-fab id="viewButton"></button>
+    </mat-grid-tile-header>
+    <p id="description_para">
+      {{favorite.description}}
+    </p>
   </mat-grid-tile>
 </mat-grid-list>

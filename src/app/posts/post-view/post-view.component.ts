@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { PostService } from '../posts.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Post } from '../post.model';
@@ -11,7 +11,7 @@ import { Favorite } from 'src/app/core/home/profile/user-account/favorite/favori
   templateUrl: './post-view.component.html',
   styleUrls: ['./post-view.component.css']
 })
-export class PostViewComponent implements OnInit {
+export class PostViewComponent implements OnInit, OnDestroy {
 
   postId: string;
   post: Post;
@@ -60,4 +60,8 @@ export class PostViewComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.favSub.unsubscribe();
+    this.PostSubs.unsubscribe();
+  }
 }

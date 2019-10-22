@@ -1,0 +1,28 @@
+#description_para {
+  margin-top: 25%;
+  text-align: center;
+  padding: 5px;
+}
+
+#tile_header {
+  text-align: center;
+  margin: auto;
+}
+
+p {
+  color: white;
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+#viewButton {
+  float: right;
+  width: 10px;
+  height: 10px;
+}
+
+mat-grid-list {
+  margin-top: 20px;
+}
