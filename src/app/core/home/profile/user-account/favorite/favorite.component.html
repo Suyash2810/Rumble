@@ -3,7 +3,7 @@
     <mat-grid-tile-header>
       {{favorite.title}}
       <span class="spacer"></span>
-      <button mat-mini-fab id="viewButton"></button>
+      <button mat-mini-fab id="viewButton" [routerLink]="['/view/',favorite.postId]"></button>
     </mat-grid-tile-header>
     <p id="description_para">
       {{favorite.description}}
