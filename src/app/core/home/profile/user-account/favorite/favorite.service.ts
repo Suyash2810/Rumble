@@ -14,8 +14,11 @@ export class FavoriteService {
 
     private favorites: Array<Favorite> = [];
     private favoriteListener = new Subject<Array<Favorite>>();
+    private favorite: Favorite;
+    private favListener = new Subject<Favorite>();
 
     constructor(private httpClient: HttpClient, private authService: AuthService, private dialog: MatDialog) { }
+
     getFavorites() {
 
         type responseType = { status: string, favorites: any };
@@ -78,24 +81,9 @@ export class FavoriteService {
         type responseType = { status: string, favorite: any };
 
         this.httpClient.post<responseType>("http://localhost:3000/favorite", data)
-            .pipe(
-                map(
-                    (data) => {
-                        return {
-                            id: data.favorite._id,
-                            username: data.favorite.username,
-                            title: data.favorite.title,
-                            description: data.favorite.description,
-                            postId: data.favorite.id,
-                            userId: data.favorite.userId
-                        }
-                    }
-                )
-            )
             .subscribe(
-                (transformedFavorite) => {
-                    this.favorites.push(transformedFavorite);
-                    this.favoriteListener.next([...this.favorites]);
+                () => {
+                    this.getFavorites();
                 },
                 (error) => {
                     this.dialog.open(ErrorComponent, {
@@ -124,5 +112,41 @@ export class FavoriteService {
                     });
                 }
             );
+    }
+
+    getFavoriteById(postId: string) {
+
+        const userId = this.authService.getCurrentUserId();
+
+        type responseType = { status: string, favorite: any };
+        this.httpClient.get<responseType>(`http://localhost:3000/getFavoriteById/${postId}/${userId}`)
+            .pipe(
+                map(
+                    (data) => {
+                        return {
+                            id: data.favorite._id,
+                            username: data.favorite.username,
+                            title: data.favorite.title,
+                            description: data.favorite.description,
+                            postId: data.favorite.postId,
+                            userId: data.favorite.userId
+                        }
+                    }
+                )
+            )
+            .subscribe(
+                (transformedFavorite) => {
+                    this.favorite = transformedFavorite;
+                    this.favListener.next(this.favorite);
+                }
+            )
+    }
+
+    getStaticFavorite() {
+        return this.favorite;
+    }
+
+    getFavListener() {
+        return this.favListener.asObservable();
     }
 }
