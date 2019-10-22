@@ -123,23 +123,30 @@ export class FavoriteService {
             .pipe(
                 map(
                     (data) => {
-                        return {
-                            id: data.favorite._id,
-                            username: data.favorite.username,
-                            title: data.favorite.title,
-                            description: data.favorite.description,
-                            postId: data.favorite.postId,
-                            userId: data.favorite.userId
+                        if (data.favorite._id) {
+                            return {
+                                id: data.favorite._id,
+                                username: data.favorite.username,
+                                title: data.favorite.title,
+                                description: data.favorite.description,
+                                postId: data.favorite.postId,
+                                userId: data.favorite.userId
+                            }
+                        } else {
+                            return null;
                         }
                     }
                 )
             )
             .subscribe(
                 (transformedFavorite) => {
-                    this.favorite = transformedFavorite;
-                    this.favListener.next(this.favorite);
+                    if (transformedFavorite) {
+
+                        this.favorite = transformedFavorite;
+                        this.favListener.next(this.favorite);
+                    }
                 }
-            )
+            );
     }
 
     getStaticFavorite() {

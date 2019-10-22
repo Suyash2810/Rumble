@@ -112,4 +112,6 @@ app.post('/favorite', authorization, favoriteController.addfavorite);
 
 app.delete('/favorite/:postId', authorization, favoriteController.removefavorite);
 
+app.get('/getFavoriteById/:postId/:userId', authorization, favoriteController.getFavoriteById);
+
 module.exports = app

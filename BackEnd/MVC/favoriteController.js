@@ -70,8 +70,33 @@ var removefavorite = (request, response) => {
   )
 }
 
+var getFavoriteById = (request, response) => {
+
+  let postId = request.params.postId;
+  let userId = request.params.userId;
+
+  Favorite.findOne({
+    postId: postId,
+    userId: userId
+  }).then(
+    (result) => {
+      response.status(200).send({
+        status: "The data was found successfully.",
+        favorite: result
+      })
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      })
+    }
+  );
+}
+
 module.exports = {
   addfavorite,
   getFavorites,
-  removefavorite
+  removefavorite,
+  getFavoriteById
 }
