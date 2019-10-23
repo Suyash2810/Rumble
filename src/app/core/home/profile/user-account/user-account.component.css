@@ -27,6 +27,8 @@
   padding: 30px 10px;
   background-color: #00838F;
   height: 100%;
+  z-index: 1000;
+  margin-bottom: 0;
 }
 
 #components_column {
@@ -66,4 +68,8 @@ mat-card {
 li button[type="button"] {
   width: 10px;
   height: 10px;
+}
+
+#user-account-card-body::-webkit-scrollbar {
+  display: none;
 }
