@@ -19,7 +19,8 @@ import { SubStrPipe } from './sub-str.pipe';
         DropdownDirective,
         SafeHTMLPipe,
         ToggleMessagePipe,
-        TagFilterPipe
+        TagFilterPipe,
+        SubStrPipe
     ]
 })
 

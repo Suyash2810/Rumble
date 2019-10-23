@@ -9,7 +9,7 @@ export class SubStrPipe implements PipeTransform {
     if (value.length < len) {
       return value;
     } else {
-      return value.substr(1, len) + '...';
+      return value.substr(0, len) + '...';
     }
   }
 
