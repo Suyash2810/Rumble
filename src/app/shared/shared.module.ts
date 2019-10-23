@@ -4,13 +4,15 @@ import { CommonModule } from "@angular/common";
 import { SafeHTMLPipe } from './safe-html.pipe';
 import { ToggleMessagePipe } from './toggle-message.pipe';
 import { TagFilterPipe } from './tag-filter.pipe';
+import { SubStrPipe } from './sub-str.pipe';
 
 @NgModule({
     declarations: [
         DropdownDirective,
         SafeHTMLPipe,
         ToggleMessagePipe,
-        TagFilterPipe
+        TagFilterPipe,
+        SubStrPipe
     ],
     exports: [
         CommonModule,
