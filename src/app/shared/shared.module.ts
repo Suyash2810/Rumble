@@ -6,6 +6,7 @@ import { ToggleMessagePipe } from './toggle-message.pipe';
 import { TagFilterPipe } from './tag-filter.pipe';
 import { SubStrPipe } from './sub-str.pipe';
 import { ColorFillDirective } from './color-fill.directive';
+import { ColorBorderDirective } from './color-border.directive';
 
 @NgModule({
     declarations: [
@@ -14,7 +15,8 @@ import { ColorFillDirective } from './color-fill.directive';
         ToggleMessagePipe,
         TagFilterPipe,
         SubStrPipe,
-        ColorFillDirective
+        ColorFillDirective,
+        ColorBorderDirective
     ],
     exports: [
         CommonModule,
@@ -23,7 +25,8 @@ import { ColorFillDirective } from './color-fill.directive';
         ToggleMessagePipe,
         TagFilterPipe,
         SubStrPipe,
-        ColorFillDirective
+        ColorFillDirective,
+        ColorBorderDirective
     ]
 })
 
