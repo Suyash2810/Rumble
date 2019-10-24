@@ -3,3 +3,17 @@
   background: transparent;
   border: none;
 }
+
+#form_note {
+  margin-top: 50px;
+}
+
+#form_header {
+  background-color: transparent;
+  border-bottom: none;
+}
+
+.flexer {
+  flex: 1 1 auto;
+  display: none;
+}

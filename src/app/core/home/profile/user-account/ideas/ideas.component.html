@@ -1,61 +1,90 @@
 <div class="card" id="main_card">
-  <div class="card-body" id="card_main_body">
-    <div class="row" style="margin:0; padding:0;">
-      <div class="col-md-12">
-        <div class="card-columns">
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
-          </div>
-          <div class="card" style="width: 200px;height:120px;">
-            <div class="card-header">Header</div>
-            <div class="card-body">Footer</div>
+  <div class="row" style="margin:0; padding:0;">
+    <div class="col-md-4">
+      <div class="card-header mt-2 p-4" id="form_header">
+        <form class="example-form form-inline" (ngSubmit)="onSubmit()" #f="ngForm" id="form_note">
+          <mat-form-field class="example-full-width">
+            <input matInput placeholder="Enter the title" name="title" id="title" ngModel #Title="ngModel">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <textarea matInput placeholder="Add the description" name="description" id="description" ngModel
+              #Descrip="ngModel"></textarea>
+          </mat-form-field>
+
+          <mat-form-field id="select_option">
+            <mat-label>Color</mat-label>
+            <mat-select>
+              <mat-option *ngFor="let color of colors" [value]="color.value">
+                {{color.key}}
+                <div class="flexer"></div>
+                <button mat-mini-fab style="width:10px; height:10px; float: right;margin-right: 5px;margin-top:10px;"
+                  type="button"></button>
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <button mat-stroked-button color="primary" type="submit" class="mx-auto">Add Note</button>
+        </form>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <div class="card-body" id="card_main_body">
+        <div class="row" style="margin:0; padding:0;">
+          <div class="col-md-12">
+            <div class="card-columns">
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+              <div class="card" style="max-width: 100px;height:120px;">
+                <div class="card-header">Header</div>
+                <div class="card-body">Footer</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <div class="card-footer fixed-bottom">
-    This is some data.
   </div>
 </div>
