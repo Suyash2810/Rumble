@@ -41,10 +41,16 @@
           <div class="col-md-12">
             <div class="card" style="min-width:150px;max-width: 250px; margin: 30px 0 0 80px;"
               *ngFor="let note of notes" appColorBorder [borderColor]="note.color">
-              <div class="card-header" id="note_card_header" appColorFill [setColor]="note.color"></div>
+              <div class="card-header" id="note_card_header" appColorFill [setColor]="note.color">
+                <button type="button" mat-mini-fab id="delete_noteBtn" (click)="deleteNote(note.id)"
+                  matTooltip="Delete Note."></button>
+              </div>
               <div class="card-body" id="note_card_description">
                 <h3 id="note_title">{{note.title}}</h3>
-                <p id="note_Description">{{note.description}}</p>
+                <p id="note_Description">{{note.description}}
+                  <br>
+                  <code id="date">{{note.createdAt}}</code>
+                </p>
               </div>
             </div>
           </div>

@@ -19,5 +19,35 @@
 }
 
 #note_card_header {
+  height: 20px;
+  padding: 0 10px;
+}
+
+#delete_noteBtn {
+  background-color: darkred;
   height: 10px;
+  width: 10px;
+  float: right;
+  margin-top: 5px;
+}
+
+#note_card_description {
+  text-align: center;
+}
+
+#note_title {
+  font-size: 18px;
+  text-transform: capitalize;
+  font-weight: 400;
+  color: black;
+}
+
+#note_Description {
+  color: #757575;
+}
+
+#date {
+  margin-top: 10px;
+  font-weight: 100;
+  font-size: 12px;
 }
