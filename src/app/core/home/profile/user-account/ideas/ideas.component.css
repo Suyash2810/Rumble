@@ -17,3 +17,7 @@
   flex: 1 1 auto;
   display: none;
 }
+
+#note_card_header {
+  height: 10px;
+}

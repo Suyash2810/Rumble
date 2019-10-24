@@ -40,9 +40,12 @@
         <div class="row" style="margin:0; padding:0;">
           <div class="col-md-12">
             <div class="card" style="min-width:150px;max-width: 250px; margin: 30px 0 0 80px;"
-              *ngFor="let note of notes">
-              <div class="card-header">{{note.title}}</div>
-              <div class="card-body">{{note.description}}</div>
+              *ngFor="let note of notes" appColorBorder [borderColor]="note.color">
+              <div class="card-header" id="note_card_header" appColorFill [setColor]="note.color"></div>
+              <div class="card-body" id="note_card_description">
+                <h3 id="note_title">{{note.title}}</h3>
+                <p id="note_Description">{{note.description}}</p>
+              </div>
             </div>
           </div>
         </div>
