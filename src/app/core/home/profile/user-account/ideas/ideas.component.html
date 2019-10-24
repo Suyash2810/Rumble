@@ -4,17 +4,22 @@
       <div class="card-header mt-2 p-4" id="form_header">
         <form class="example-form form-inline" (ngSubmit)="onSubmit()" #f="ngForm" id="form_note">
           <mat-form-field class="example-full-width">
-            <input matInput placeholder="Enter the title" name="title" id="title" ngModel #Title="ngModel">
+            <input matInput placeholder="Enter the title" name="title" id="title" ngModel #Title="ngModel" required
+              minlength="4">
           </mat-form-field>
-
+          <mat-error *ngIf="Title.invalid && Title.touched">
+            Please enter a valid title. The title should be of minimum 4 characters.
+          </mat-error>
           <mat-form-field class="example-full-width">
             <textarea matInput placeholder="Add the description" name="description" id="description" ngModel
-              #Descrip="ngModel"></textarea>
+              #Descrip="ngModel" required></textarea>
           </mat-form-field>
-
+          <mat-error *ngIf="Descrip.invalid && Descrip.touched">
+            Please enter a valid description.
+          </mat-error>
           <mat-form-field id="select_option">
             <mat-label>Color</mat-label>
-            <mat-select matInput id="noteColor" name="noteColor" ngModel #NoteColor="ngModel">
+            <mat-select matInput id="noteColor" name="noteColor" ngModel #NoteColor="ngModel" required>
               <mat-option *ngFor="let color of colors" [value]="color.value">
                 {{color.key}}
                 <div class="flexer"></div>
@@ -23,7 +28,9 @@
               </mat-option>
             </mat-select>
           </mat-form-field>
-
+          <mat-error *ngIf="NoteColor.invalid && NoteColor.touched">
+            Please select any one color.
+          </mat-error>
           <button mat-stroked-button color="primary" type="submit" class="mx-auto">Add Note</button>
         </form>
       </div>
