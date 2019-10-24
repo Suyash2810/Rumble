@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
+import { IdeaService } from './idea.service';
 
 @Component({
   selector: 'app-ideas',
@@ -6,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ideas.component.css']
 })
 export class IdeasComponent implements OnInit {
+
+  @ViewChild('f') form: NgForm;
 
   colors: Array<{ key: string, value: string }> = [
     {
@@ -37,9 +41,14 @@ export class IdeasComponent implements OnInit {
       value: '#0D47A1'
     }
   ]
-  constructor() { }
+  constructor(private noteService: IdeaService) { }
 
   ngOnInit() {
+  }
+
+  onSubmit() {
+    this.noteService.addNote(this.form.value.title, this.form.value.description, this.form.value.noteColor);
+    this.form.reset();
   }
 
 }
