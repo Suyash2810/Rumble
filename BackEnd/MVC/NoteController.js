@@ -47,7 +47,30 @@ var getNotes = (request, response) => {
   );
 }
 
+var deleteNote = (request, response) => {
+
+  let id = request.params.id;
+
+  Note.findOneAndDelete({
+    _id: id
+  }).then(
+    (result) => {
+      response.status(200).send({
+        status: "The note has been deleted.",
+        note: result
+      });
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      });
+    }
+  );
+}
+
 module.exports = {
   saveNote,
-  getNotes
+  getNotes,
+  deleteNote
 }

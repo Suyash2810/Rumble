@@ -121,4 +121,6 @@ app.get('/note', authorization, NoteController.getNotes);
 
 app.post('/note', authorization, NoteController.saveNote);
 
+app.delete('/note/:id', authorization, NoteController.deleteNote);
+
 module.exports = app
