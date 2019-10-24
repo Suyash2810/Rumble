@@ -5,6 +5,7 @@ import { SafeHTMLPipe } from './safe-html.pipe';
 import { ToggleMessagePipe } from './toggle-message.pipe';
 import { TagFilterPipe } from './tag-filter.pipe';
 import { SubStrPipe } from './sub-str.pipe';
+import { ColorFillDirective } from './color-fill.directive';
 
 @NgModule({
     declarations: [
@@ -12,7 +13,8 @@ import { SubStrPipe } from './sub-str.pipe';
         SafeHTMLPipe,
         ToggleMessagePipe,
         TagFilterPipe,
-        SubStrPipe
+        SubStrPipe,
+        ColorFillDirective
     ],
     exports: [
         CommonModule,
@@ -20,7 +22,8 @@ import { SubStrPipe } from './sub-str.pipe';
         SafeHTMLPipe,
         ToggleMessagePipe,
         TagFilterPipe,
-        SubStrPipe
+        SubStrPipe,
+        ColorFillDirective
     ]
 })
 
