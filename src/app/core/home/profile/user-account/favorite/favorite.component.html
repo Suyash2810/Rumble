@@ -5,6 +5,9 @@
       <span class="spacer"></span>
       <button mat-mini-fab id="viewButton" [routerLink]="['/view/',favorite.postId]"
         matTooltip="View the post."></button>
+      <button mat-mini-fab id="deleteButton" matTooltip="Remove the favorites."
+        (click)="removeFavorite(favorite.postId)"></button>
+
     </mat-grid-tile-header>
     <p id="description_para">
       {{favorite.description | subStr:200}}

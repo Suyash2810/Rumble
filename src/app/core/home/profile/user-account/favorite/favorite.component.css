@@ -24,6 +24,13 @@ p {
   height: 10px;
 }
 
+#deleteButton {
+  width: 10px;
+  height: 10px;
+  background-color: darkred;
+  margin-left: 5px;
+}
+
 mat-grid-list {
   margin-top: 20px;
 }

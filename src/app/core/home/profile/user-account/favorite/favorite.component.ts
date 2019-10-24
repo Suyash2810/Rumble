@@ -30,4 +30,7 @@ export class FavoriteComponent implements OnInit, OnDestroy {
     this.favoriteSub.unsubscribe();
   }
 
+  removeFavorite(postId: string) {
+    this.favoriteService.removeFavorite(postId);
+  }
 }
