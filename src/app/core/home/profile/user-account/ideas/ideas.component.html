@@ -39,55 +39,10 @@
       <div class="card-body" id="card_main_body">
         <div class="row" style="margin:0; padding:0;">
           <div class="col-md-12">
-            <div class="card-columns">
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
-              <div class="card" style="max-width: 100px;height:120px;">
-                <div class="card-header">Header</div>
-                <div class="card-body">Footer</div>
-              </div>
+            <div class="card" style="min-width:150px;max-width: 250px; margin: 30px 0 0 80px;"
+              *ngFor="let note of notes">
+              <div class="card-header">{{note.title}}</div>
+              <div class="card-body">{{note.description}}</div>
             </div>
           </div>
         </div>

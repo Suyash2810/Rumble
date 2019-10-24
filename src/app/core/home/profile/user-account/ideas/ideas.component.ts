@@ -1,15 +1,19 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { IdeaService } from './idea.service';
+import { Subscription } from 'rxjs';
+import { Note } from './idea.model';
 
 @Component({
   selector: 'app-ideas',
   templateUrl: './ideas.component.html',
   styleUrls: ['./ideas.component.css']
 })
-export class IdeasComponent implements OnInit {
+export class IdeasComponent implements OnInit, OnDestroy {
 
   @ViewChild('f') form: NgForm;
+  notes: Array<Note> = [];
+  notesSub: Subscription;
 
   colors: Array<{ key: string, value: string }> = [
     {
@@ -44,6 +48,13 @@ export class IdeasComponent implements OnInit {
   constructor(private noteService: IdeaService) { }
 
   ngOnInit() {
+    this.noteService.getNotes();
+    this.notes = this.noteService.getStaticNotes();
+    this.notesSub = this.noteService.getNotesListener().subscribe(
+      (notes: Array<Note>) => {
+        this.notes = notes;
+      }
+    )
   }
 
   onSubmit() {
@@ -51,4 +62,7 @@ export class IdeasComponent implements OnInit {
     this.form.reset();
   }
 
+  ngOnDestroy() {
+    this.notesSub.unsubscribe();
+  }
 }
