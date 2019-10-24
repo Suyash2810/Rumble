@@ -22,6 +22,7 @@ const CommentController = require('./MVC/commentController');
 const ContactController = require('./MVC/contactController');
 const ReplyController = require('./MVC/replyController');
 const favoriteController = require('./MVC/favoriteController');
+const NoteController = require('./MVC/NoteController');
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
@@ -113,5 +114,11 @@ app.post('/favorite', authorization, favoriteController.addfavorite);
 app.delete('/favorite/:postId', authorization, favoriteController.removefavorite);
 
 app.get('/getFavoriteById/:postId/:userId', authorization, favoriteController.getFavoriteById);
+
+// ------------------------------Note Requests---------------------------------------//
+
+app.get('/note', authorization, NoteController.getNotes);
+
+app.post('/note', authorization, NoteController.saveNote);
 
 module.exports = app
