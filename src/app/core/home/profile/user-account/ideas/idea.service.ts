@@ -91,4 +91,24 @@ export class IdeaService {
     getNotesListener() {
         return this.notesListener.asObservable();
     }
+
+    deleteNote(id: string) {
+
+        type responseType = { status: string, note: any };
+
+        this.httpClient.delete<responseType>("http://localhost:3000/note/" + id)
+            .subscribe(
+                (data) => {
+                    console.log(data.status);
+                    this.getNotes();
+                },
+                (error) => {
+                    this.dialog.open(ErrorComponent, {
+                        data: {
+                            message: error.error.error.message
+                        }
+                    });
+                }
+            );
+    }
 }

@@ -62,6 +62,10 @@ export class IdeasComponent implements OnInit, OnDestroy {
     this.form.reset();
   }
 
+  deleteNote(id: string) {
+    this.noteService.deleteNote(id);
+  }
+
   ngOnDestroy() {
     this.notesSub.unsubscribe();
   }
