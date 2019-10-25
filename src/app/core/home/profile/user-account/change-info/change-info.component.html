@@ -2,36 +2,40 @@
   <h5 id="heading">Change/Update</h5>
   <p id="sub_para">Update only the fields which are required to be changed.</p>
   <br>
-  <form class="example-form" (ngSubmit)="onSubmit()" #f="ngForm" id="form_change">
+  <mat-spinner *ngIf="isLoading" class="mx-auto"></mat-spinner>
+
+  <form *ngIf="!isLoading" class="example-form" (ngSubmit)="onSubmit()" #f="ngForm" id="form_change">
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="" name="username" id="username" ngModel #Username="ngModel" required minlength="3">
+      <input matInput placeholder="{{userInfo.username}}" name="username" id="username" ngModel #Username="ngModel"
+        minlength="3" [value]="userInfo.username">
     </mat-form-field>
     <mat-error *ngIf="Username.invalid && Username.touched">
       Please enter a valid username. The title should be of minimum 3 characters.
     </mat-error>
     <br>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="" name="email" id="email" ngModel #Email="ngModel" required email>
+      <input matInput placeholder="{{userInfo.email}}" name="email" id="email" ngModel #Email="ngModel" email
+        [value]="userInfo.email">
     </mat-form-field>
     <mat-error *ngIf="Email.invalid && Email.touched">
       Please enter a valid email.
     </mat-error>
     <br>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="*********" name="password" id="password" ngModel #Pass="ngModel" required>
+      <input type="password" matInput placeholder="*********" name="password" id="password" ngModel #Pass="ngModel">
     </mat-form-field>
     <mat-error *ngIf="Pass.invalid && Pass.touched">
       Please enter a valid password.
     </mat-error>
     <br>
     <mat-form-field class="example-full-width">
-      <input matInput placeholder="*********" name="confirmPass" id="confirmPass" ngModel #ConfirmPass="ngModel"
-        required>
+      <input type="password" matInput placeholder="*********" name="confirmPass" id="confirmPass" ngModel
+        #ConfirmPass="ngModel">
     </mat-form-field>
     <mat-error *ngIf="ConfirmPass.invalid && ConfirmPass.touched">
       Please confirm your password.
     </mat-error>
     <br>
-    <button mat-stroked-button color="primary" type="submit" class="mx-auto">Update</button>
+    <button mat-stroked-button type="submit" class="mx-auto" id="updateBtn">Update</button>
   </form>
 </mat-card>

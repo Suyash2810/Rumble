@@ -3,3 +3,12 @@ mat-card {
   color: white;
   text-align: center;
 }
+
+#form_change {
+  color: white;
+}
+
+#updateBtn {
+  color: white;
+  border: 1px solid white;
+}
