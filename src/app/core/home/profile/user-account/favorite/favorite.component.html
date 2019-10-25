@@ -14,3 +14,9 @@
     </p>
   </mat-grid-tile>
 </mat-grid-list>
+
+<mat-card *ngIf="favorites.length == 0" id="emptyCard">
+  You have not favorited any post yet.
+  <br>
+  Visit posts and add them to your favorite section.
+</mat-card>

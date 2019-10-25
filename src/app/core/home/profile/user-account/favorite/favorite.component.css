@@ -34,3 +34,9 @@ p {
 mat-grid-list {
   margin-top: 20px;
 }
+
+#emptyCard {
+  background-color: #0288D1;
+  text-align: center;
+  color: white;
+}

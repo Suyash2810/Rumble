@@ -53,6 +53,13 @@
                 </p>
               </div>
             </div>
+            <mat-card *ngIf="notes.length == 0" id="emptyCard">
+              <h4 id='emptyHeading'>Empty!</h4>
+              <p id="emptyPara">You have not created any notes yet.
+                <br>
+                Use the form on the left side to add your first note.
+              </p>
+            </mat-card>
           </div>
         </div>
       </div>
