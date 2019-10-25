@@ -123,4 +123,8 @@ app.post('/note', authorization, NoteController.saveNote);
 
 app.delete('/note/:id', authorization, NoteController.deleteNote);
 
+// ------------------------------User Update Requests---------------------------------------//
+
+app.patch('/updateUserInfo', authorization, UserController.updateUserInfo);
+
 module.exports = app

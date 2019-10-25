@@ -148,9 +148,37 @@ var updateUserImage = (request, response) => {
     )
 }
 
+updateUserInfo = (request, response) => {
+
+  let body = _.pick(request.body, ['username', 'email']);
+  let id = request.user._id;
+
+  User.findOneAndUpdate({
+    _id: id
+  }, {
+    $set: body
+  }, {
+    new: true
+  }).then(
+    (result) => {
+      response.status(200).send({
+        status: 'The user data has been updated.',
+        user: result
+      });
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      });
+    }
+  );
+}
+
 module.exports = {
   userLogin,
   createUser,
   getUserInfo,
-  updateUserImage
+  updateUserImage,
+  updateUserInfo
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
@@ -11,7 +11,7 @@ import { ErrorComponent } from 'src/app/error/error.component';
   templateUrl: './change-info.component.html',
   styleUrls: ['./change-info.component.css']
 })
-export class ChangeInfoComponent implements OnInit {
+export class ChangeInfoComponent implements OnInit, OnDestroy {
 
   username: string = " ";
   email: string = " ";
@@ -42,6 +42,7 @@ export class ChangeInfoComponent implements OnInit {
     this.confPass = this.form.value.confirmPass;
     if (this.pass === this.confPass) {
       this.authService.updateUserInfo(this.username, this.email);
+      this.form.reset();
     } else {
       this.dialog.open(ErrorComponent, {
         data: {
@@ -51,4 +52,7 @@ export class ChangeInfoComponent implements OnInit {
     }
   }
 
+  ngOnDestroy() {
+    this.userInfoSub.unsubscribe();
+  }
 }
