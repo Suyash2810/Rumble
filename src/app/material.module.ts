@@ -15,7 +15,8 @@ import {
     MatListModule,
     MatStepperModule,
     MatSelectModule,
-    MatGridListModule
+    MatGridListModule,
+    MatCheckboxModule
 } from '@angular/material';
 
 @NgModule({
@@ -35,7 +36,8 @@ import {
         MatListModule,
         MatStepperModule,
         MatSelectModule,
-        MatGridListModule
+        MatGridListModule,
+        MatCheckboxModule
     ],
     exports: [
         MatInputModule,
@@ -53,7 +55,8 @@ import {
         MatListModule,
         MatStepperModule,
         MatSelectModule,
-        MatGridListModule
+        MatGridListModule,
+        MatCheckboxModule
     ]
 })
 

@@ -1,3 +1,31 @@
-<p>
-  User's account to be deleted after confirmation and authorization.
-</p>
+<mat-card class="mt-5">
+  <h5 id="heading">Delete User Account.</h5>
+  <p id="sub_para">Account once deleted cannot be recovered.</p>
+  <br>
+
+  <form class="example-form" (ngSubmit)="onSubmit()" #f="ngForm" id="form_change">
+    <mat-form-field class="example-full-width">
+      <input type="password" matInput placeholder="*********" name="password" id="password" ngModel #Pass="ngModel"
+        required>
+    </mat-form-field>
+    <mat-error *ngIf="Pass.invalid && Pass.touched">
+      Please enter a valid password.
+    </mat-error>
+    <br>
+    <mat-form-field class="example-full-width">
+      <input type="password" matInput placeholder="*********" name="confirmPass" id="confirmPass" ngModel
+        #ConfirmPass="ngModel" required>
+    </mat-form-field>
+    <mat-error *ngIf="ConfirmPass.invalid && ConfirmPass.touched">
+      Please confirm your password.
+    </mat-error>
+    <br>
+    <section class="example-full-width">
+      <mat-checkbox matInput class="example-margin" id="conf1" name="conf1" ngModel>Are you sure?</mat-checkbox>
+      &nbsp;
+      <mat-checkbox matInput class="example-margin" id="conf2" name="conf2" ngModel>All data will be deleted!
+      </mat-checkbox>
+    </section>
+    <button mat-stroked-button type="submit" class="mx-auto" id="updateBtn">Update</button>
+  </form>
+</mat-card>

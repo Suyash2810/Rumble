@@ -1,0 +1,14 @@
+mat-card {
+  background-color: #0097A7;
+  color: white;
+  text-align: center;
+}
+
+#form_change {
+  color: white;
+}
+
+#updateBtn {
+  color: white;
+  border: 1px solid white;
+}
