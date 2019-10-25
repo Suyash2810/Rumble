@@ -3,7 +3,6 @@ import { NgForm } from '@angular/forms';
 import { MatDialog } from '@angular/material';
 import { ErrorComponent } from 'src/app/error/error.component';
 import { AuthService } from 'src/app/auth/auth.service';
-import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-delete-account',
@@ -15,7 +14,7 @@ export class DeleteAccountComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   pass: string = " ";
   cpass: string = " ";
-  constructor(private dialog: MatDialog, private authService: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private dialog: MatDialog, private authService: AuthService) { }
 
   ngOnInit() {
   }
@@ -28,7 +27,7 @@ export class DeleteAccountComponent implements OnInit {
         this.authService.deleteUserAccount().subscribe(
           (result) => {
             console.log(result);
-            this.router.navigate(['/', 'login'], { relativeTo: this.route });
+            this.authService.logoutUser();
           }
         )
       } else {

@@ -10,6 +10,22 @@ const {
 } = require('../models/user');
 
 const {
+  Post
+} = require('../models/post');
+
+const {
+  Note
+} = require('../models/notes');
+
+const {
+  SubReply
+} = require('../models/subComments');
+
+const {
+  Favorite
+} = require('../models/favorite');
+
+const {
   Comment
 } = require('../models/comments');
 
@@ -175,10 +191,91 @@ updateUserInfo = (request, response) => {
   );
 }
 
+var deleteUserAccount = (request, response) => {
+
+  let id = request.user._id;
+
+  Comment.deleteMany({
+    creator_id: id
+  }).then(
+    (result) => {
+      console.log(result);
+    }
+  ).catch(
+    (error) => {
+      console.log(error);
+    }
+  );
+
+  Favorite.deleteMany({
+    userId: id
+  }).then(
+    (result) => {
+      console.log(result);
+    }
+  ).catch(
+    (error) => {
+      console.log(error);
+    }
+  );
+
+  SubReply.deleteMany({
+    creator_id: id
+  }).then(
+    (result) => {
+      console.log(result);
+    }
+  ).catch(
+    (error) => {
+      console.log(error);
+    }
+  );
+
+  Note.deleteMany({
+    userId: id
+  }).then(
+    (result) => {
+      console.log(result);
+    }
+  ).catch(
+    (error) => {
+      console.log(error);
+    }
+  );
+
+  Post.deleteMany({
+    creator_id: id
+  }).then(
+    (result) => {
+      console.log(result);
+    }
+  ).catch(
+    (error) => {
+      console.log(error);
+    }
+  );
+
+  User.findByIdAndDelete(id).then(
+    (result) => {
+      response.status(200).send({
+        status: "The user has been deleted.",
+        user: result
+      });
+    }
+  ).catch(
+    (error) => {
+      response.status(400).send({
+        error: error
+      })
+    }
+  )
+}
+
 module.exports = {
   userLogin,
   createUser,
   getUserInfo,
   updateUserImage,
-  updateUserInfo
+  updateUserInfo,
+  deleteUserAccount
 }

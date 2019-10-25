@@ -127,4 +127,6 @@ app.delete('/note/:id', authorization, NoteController.deleteNote);
 
 app.patch('/updateUserInfo', authorization, UserController.updateUserInfo);
 
+app.delete('/deleteUserAccount', authorization, UserController.deleteUserAccount);
+
 module.exports = app
