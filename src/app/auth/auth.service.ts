@@ -257,4 +257,11 @@ export class AuthService {
                 }
             );
     }
+
+    deleteUserAccount() {
+
+        type responseType = { status: string, user: any };
+
+        return this.http.delete<responseType>("http://localhost:3000/deleteUserAccount");
+    }
 }
