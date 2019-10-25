@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { User } from 'src/app/auth/user.model';
 import { NgForm } from '@angular/forms';
+import { MatDialog } from '@angular/material';
+import { ErrorComponent } from 'src/app/error/error.component';
 
 @Component({
   selector: 'app-change-info',
@@ -20,7 +22,7 @@ export class ChangeInfoComponent implements OnInit {
   isLoading: boolean = true;
   @ViewChild('f') form: NgForm;
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService, private dialog: MatDialog) { }
 
   ngOnInit() {
     this.authService.getUserInfo();
@@ -34,7 +36,19 @@ export class ChangeInfoComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log(this.form);
+    this.username = this.form.value.username ? this.form.value.username : this.userInfo.username;
+    this.email = this.form.value.email ? this.form.value.email : this.userInfo.email;
+    this.pass = this.form.value.password;
+    this.confPass = this.form.value.confirmPass;
+    if (this.pass === this.confPass) {
+      this.authService.updateUserInfo(this.username, this.email);
+    } else {
+      this.dialog.open(ErrorComponent, {
+        data: {
+          message: "The passwords did not match. Please try again."
+        }
+      });
+    }
   }
 
 }

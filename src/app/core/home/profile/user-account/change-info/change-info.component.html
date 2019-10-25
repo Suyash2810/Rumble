@@ -22,7 +22,8 @@
     </mat-error>
     <br>
     <mat-form-field class="example-full-width">
-      <input type="password" matInput placeholder="*********" name="password" id="password" ngModel #Pass="ngModel">
+      <input type="password" matInput placeholder="*********" name="password" id="password" ngModel #Pass="ngModel"
+        required>
     </mat-form-field>
     <mat-error *ngIf="Pass.invalid && Pass.touched">
       Please enter a valid password.
@@ -30,7 +31,7 @@
     <br>
     <mat-form-field class="example-full-width">
       <input type="password" matInput placeholder="*********" name="confirmPass" id="confirmPass" ngModel
-        #ConfirmPass="ngModel">
+        #ConfirmPass="ngModel" required>
     </mat-form-field>
     <mat-error *ngIf="ConfirmPass.invalid && ConfirmPass.touched">
       Please confirm your password.

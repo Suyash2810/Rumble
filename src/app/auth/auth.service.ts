@@ -240,4 +240,20 @@ export class AuthService {
                 }
             )
     }
+
+    updateUserInfo(username: string, email: string) {
+
+        type responseType = {status: string, user: any};
+        let data = {
+            username,
+            email
+        };
+
+        this.http.patch<responseType>("http://localhost:3000/updateUserInfo", data)
+        .subscribe(
+            (data) => {
+                console.log(data.status);
+            }
+        );
+    }
 }
