@@ -199,11 +199,11 @@ var deleteUserAccount = (request, response) => {
     creator_id: id
   }).then(
     (result) => {
-      console.log(result);
+      console.log(`The comments of the user: ${id} have been deleted if any.`, result);
     }
   ).catch(
     (error) => {
-      console.log(error);
+      console.log("An error was encountered while deleting user's comments during account deletion process.", error);
     }
   );
 
@@ -211,11 +211,11 @@ var deleteUserAccount = (request, response) => {
     userId: id
   }).then(
     (result) => {
-      console.log(result);
+      console.log(`The favorited posts of the user: ${id} have been deleted if any.`, result);
     }
   ).catch(
     (error) => {
-      console.log(error);
+      console.log("An error was encountered while deleting user's favorited posts during account deletion process.", error);
     }
   );
 
@@ -223,11 +223,11 @@ var deleteUserAccount = (request, response) => {
     creator_id: id
   }).then(
     (result) => {
-      console.log(result);
+      console.log(`The sub replies of the user: ${id} have been deleted if any.`, result);
     }
   ).catch(
     (error) => {
-      console.log(error);
+      console.log("An error was encountered while deleting user's sup replies during account deletion process.", error);
     }
   );
 
@@ -235,11 +235,11 @@ var deleteUserAccount = (request, response) => {
     userId: id
   }).then(
     (result) => {
-      console.log(result);
+      console.log(`The note saved by the user: ${id} have been deleted if any.`, result);
     }
   ).catch(
     (error) => {
-      console.log(error);
+      console.log("An error was encountered while deleting user's notes during account deletion process.", error);
     }
   );
 
@@ -247,11 +247,11 @@ var deleteUserAccount = (request, response) => {
     creator_id: id
   }).then(
     (result) => {
-      console.log(result);
+      console.log(`The posts by the user: ${id} have been deleted if any.`, result);
     }
   ).catch(
     (error) => {
-      console.log(error);
+      console.log("An error was encountered while deleting user's posts during account deletion process.", error);
     }
   );
 
