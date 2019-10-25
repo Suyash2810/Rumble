@@ -16,8 +16,16 @@ var signUpLog = (username, email) => {
   fs.appendFileSync('./BackEnd/log_files/register.log', log);
 }
 
+var deleteAccountLog = (id, username, email) => {
+
+  let date = new Date().toISOString();
+  let log = `Account with ID: ${id}, email: ${email} with username: ${username} deleted on - ${date}.`;
+
+  fs.appendFileSync('./BackEnd/log_files/deletedAccounts.log', log);
+}
 
 module.exports = {
   SignInLog,
-  signUpLog
+  signUpLog,
+  deleteAccountLog
 }

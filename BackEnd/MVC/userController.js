@@ -2,7 +2,8 @@ const jwt = require('jsonwebtoken');
 
 var {
   SignInLog,
-  signUpLog
+  signUpLog,
+  deleteAccountLog
 } = require('../log_files/logFunctions/log');
 
 const {
@@ -254,6 +255,8 @@ var deleteUserAccount = (request, response) => {
       console.log("An error was encountered while deleting user's posts during account deletion process.", error);
     }
   );
+
+  deleteAccountLog(id, request.user.username, request.user.email);
 
   User.findByIdAndDelete(id).then(
     (result) => {
