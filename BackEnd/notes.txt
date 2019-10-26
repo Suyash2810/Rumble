@@ -1,31 +1,12 @@
 Create a confirmation for deletion of a particular post by the user.
 
-Create post-view-info component which gives the information about the creator as well as the post.
-
-Also Create the about section in the User model which gives information about the creator of a particular post.
-
 Do the testing of the API requests.
 
 Resolve the storing of images uploaded in posts content in text editor.
 
 Add various utilities to the home component
 
-Add emoji bar to the comment panel.
-
-Work on sub components of the Home component.
-
 Add comments like functionality.
 
 Provide functionality for views on a particular post.
 
-User Account section
-
-        --Create a favorite section. Will require to create a new model. New Component as a sub to user - account
-
-        --Create an ideas section where the user will save the various ideas reagrding the topics of various posts.
-
-        --Create functionality for deleting user accounts after thorough confirmation. New component
-
-        --Username/email/password change option. In such a case add multiple mat cards each having a seperate form
-          for changing different properties of the user. Display a successfull message using the dialog. Check whether
-          real time updation is taking place or not. New component.
