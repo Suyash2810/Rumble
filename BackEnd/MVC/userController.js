@@ -60,7 +60,6 @@ var userLogin = (request, response) => {
     }
   ).catch(
     (error) => {
-      console.log(error);
       response.status(404).send({
         status: "Email or password is invalid.",
         error: error

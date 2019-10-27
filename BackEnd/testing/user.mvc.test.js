@@ -105,6 +105,10 @@ describe("User MVC Test", () => {
             expect(response.body.user.imagePath).to.be.equal(users[0].imagePath);
             expect(response.body.user._id).to.exist;
             expect(response.body.user._id).to.be.equal(users[0]._id);
+            expect(response.body.token).to.exist;
+            expect(response.body.creator_id).to.exist;
+            expect(response.body.expiresIn).to.exist;
+            expect(response.body.expiresIn).to.be.equal(3600);
           }
         ).end(
           (err, result) => {
@@ -129,7 +133,48 @@ describe("User MVC Test", () => {
 
 
           }
-        )
+        );
+    });
+
+    it("should not login an invalid user.", (done) => {
+
+      let data = {
+        email: "bryann@gmail.com",
+        password: "Bryann123.."
+      }
+
+      supertest(app)
+        .post('/auth/login')
+        .send(data)
+        .expect(404)
+        .end(
+          (err, result) => {
+            expect(result.body.status).to.exist;
+            expect(result.body.status).to.be.equal('Email or password is invalid.');
+            expect(result.body.error).to.exist;
+            expect(result.body.error).to.be.equal('User was not found in the database.');
+            done();
+          }
+        );
+    });
+
+    it("should not login for invalid email", (done) => {
+
+      let data = {
+        email: 'bryanngmail.com',
+        password: "Bryann123.."
+      };
+
+      supertest(app)
+        .post('/auth/login')
+        .send(data)
+        .expect(404)
+        .end(
+          (err, result) => {
+            console.log(err, result);
+            done();
+          }
+        );
     });
   });
 });
