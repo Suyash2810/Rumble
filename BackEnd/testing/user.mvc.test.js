@@ -4,7 +4,9 @@ const {
 
 const {
   populateUsers,
-  users
+  users,
+  user1Token,
+  user2Token
 } = require('./Test/user.mvc.seed');
 
 const supertest = require('supertest');
@@ -171,7 +173,44 @@ describe("User MVC Test", () => {
         .expect(404)
         .end(
           (err, result) => {
-            console.log(err, result);
+            expect(result.body.status).to.exist;
+            expect(result.body.status).to.be.equal('Email or password is invalid.');
+            expect(result.body.error).to.exist;
+            expect(result.body.error).to.be.equal('User was not found in the database.');
+            done();
+          }
+        );
+    });
+  });
+
+  context("user info request", () => {
+
+    it("should get the user info", (done) => {
+
+      supertest(app)
+        .get('/getUser')
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            let body = response.body;
+            expect(body.status).to.exist;
+            expect(body.status).to.be.equal('The user has been successfully');
+            expect(body.user).to.exist;
+            expect(body.user._id).to.exist;
+            expect(body.user._id).to.be.equal(users[0]._id);
+            expect(body.user.username).to.be.equal(users[0].username);
+            expect(body.user.email).to.be.equal(users[0].email);
+            expect(body.user.imagePath).to.be.equal(users[0].imagePath);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.status).to.exist;
             done();
           }
         );

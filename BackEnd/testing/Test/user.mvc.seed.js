@@ -14,14 +14,14 @@ const access = "auth";
 const user1Token = jwt.sign({
   access,
   _id: user1ID.toHexString()
-}, 'shdfguysddshfsdfffdsuysgf', {
+}, 'sfhgduksyfshgfkdsgfhgsafhgdfkdsdgfsjfdkgy', {
   expiresIn: '1h'
 }).toString();
 
 const user2Token = jwt.sign({
   access,
   _id: user2ID.toHexString()
-}, 'shdfguysddshfsdfffdsusdgf', {
+}, 'sfhgduksyfshgfkdsgfhgsafhgdfkdsdgfsjfdkgy', {
   expiresIn: '1h'
 }).toString();
 
@@ -55,5 +55,7 @@ const populateUsers = (done) => {
 
 module.exports = {
   users,
-  populateUsers
+  populateUsers,
+  user1Token,
+  user2Token
 }
