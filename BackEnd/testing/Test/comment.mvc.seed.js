@@ -25,3 +25,21 @@ let comments = [{
     postId: new ObjectID().toHexString()
   }
 ];
+
+const populateComments = (done) => {
+
+  Comment.remove({}).then(
+    () => {
+      return Comment.insertMany(comments).then(
+        () => {
+          done();
+        }
+      );
+    }
+  )
+}
+
+module.exports = {
+  populateComments,
+  comments
+}
