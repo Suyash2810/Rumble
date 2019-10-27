@@ -81,4 +81,55 @@ describe("User MVC Test", () => {
         );
     });
   });
+
+  context("user login tests", () => {
+
+    it("should login the user", (done) => {
+
+      let data = {
+        email: users[0].email,
+        password: users[0].password
+      };
+
+      supertest(app)
+        .post('/auth/login')
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+            expect(response.body.success).to.exist;
+            expect(response.body.success).to.be.equal("The user has been logged in successfully");
+            expect(response.body.user).to.exist;
+            expect(response.body.user.email).to.be.equal(users[0].email);
+            expect(response.body.user.username).to.be.equal(users[0].username);
+            expect(response.body.user.imagePath).to.be.equal(users[0].imagePath);
+            expect(response.body.user._id).to.exist;
+            expect(response.body.user._id).to.be.equal(users[0]._id);
+          }
+        ).end(
+          (err, result) => {
+
+            if (err) {
+              return done(err);
+            }
+
+            User.findById(users[0]._id).then(
+              (user) => {
+                expect(user._id).to.exist;
+                expect(user.username).to.exist;
+                expect(user.email).to.exist;
+                expect(user.imagePath).to.exist;
+                done();
+              }
+            ).catch(
+              (error) => {
+                done(error);
+              }
+            );
+
+
+          }
+        )
+    });
+  });
 });
