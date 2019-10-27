@@ -13,7 +13,6 @@ describe("Sub Reply Comment Model", () => {
       (error) => {
         expect(error.errors.username).to.exist;
         expect(error.errors.imagePath).to.exist;
-        expect(error.errors.createdAt).to.exist;
         expect(error.errors.content).to.exist;
         expect(error.errors.creator_id).to.exist;
         expect(error.errors.postId).to.exist;
@@ -39,7 +38,7 @@ describe("Sub Reply Comment Model", () => {
     expect(reply).to.have.property('imagePath').to.equal('/foo');
     expect(reply).to.have.property('createdAt').to.equal('20foo');
     expect(reply).to.have.property('content').to.equal('foofoo');
-    expect(reply).to.have.property('created_id').to.equal('1234');
+    expect(reply).to.have.property('creator_id').to.equal('1234');
     expect(reply).to.have.property('postId').to.equal('ttrr');
     expect(reply).to.have.property('parent_Id').to.equal('rrtt');
     done();

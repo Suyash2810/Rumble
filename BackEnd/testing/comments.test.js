@@ -14,7 +14,6 @@ describe("Comment Model", () => {
       (error) => {
         expect(error.errors.username).to.exist;
         expect(error.errors.imagePath).to.exist;
-        expect(error.errors.createdAt).to.exist;
         expect(error.errors.content).to.exist;
         expect(error.errors.creator_id).to.exist;
       }
@@ -36,7 +35,7 @@ describe("Comment Model", () => {
     expect(comment).to.have.property('imagePath').to.equal('/foo');
     expect(comment).to.have.property('createdAt').to.equal('20foo');
     expect(comment).to.have.property('content').to.equal('foofoo');
-    expect(comment).to.have.property('created_id').to.equal('1234');
+    expect(comment).to.have.property('creator_id').to.equal('1234');
 
     done();
   });
