@@ -11,7 +11,6 @@ const user2ID = new ObjectID();
 
 const jwt = require('jsonwebtoken');
 const access = "auth";
-console.log(process.env);
 const user1Token = jwt.sign({
   access,
   _id: user1ID.toHexString()
