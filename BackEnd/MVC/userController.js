@@ -110,7 +110,7 @@ var getUserInfo = (request, response) => {
     }
   ).catch(
     (error) => {
-      response.status(400).send({
+      response.status(401).send({
         error: error
       })
     }

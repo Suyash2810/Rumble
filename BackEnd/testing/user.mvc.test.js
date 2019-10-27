@@ -215,5 +215,42 @@ describe("User MVC Test", () => {
           }
         );
     });
+
+    it("should not get the user info for unauthorized user", (done) => {
+
+      supertest(app)
+        .get('/getUser')
+        .expect(401)
+        .end(
+          (err, result) => {
+
+            if (err) {
+              return done(err);
+            }
+
+            expect(err).to.be.null;
+            expect(result.body.error).to.be.equal('User isn\'t authenticated.');
+            done();
+          }
+        );
+    });
+
+    it("should not get the user info in case of an invalid token", (done) => {
+
+      supertest(app)
+        .get('/getUser')
+        .set('authaccess', 'somerandomtokenwhichisnotvalid')
+        .expect(500)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.error).to.exist;
+            done();
+          }
+        );
+    });
   });
 });
