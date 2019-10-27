@@ -253,4 +253,117 @@ describe("User MVC Test", () => {
         );
     });
   });
+
+  context("update user info request", () => {
+
+    it("should update the user info", (done) => {
+
+      let data = {
+        username: "Jackson",
+        email: "jackson@gmail.com"
+      };
+
+      supertest(app)
+        .patch('/updateUserInfo')
+        .set('authaccess', user1Token)
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+            let data = response.body;
+            expect(data.status).to.exist;
+            expect(data.status).to.be.equal('The user data has been updated.');
+            expect(data.user).to.exist;
+            expect(data.user._id).to.exist;
+            expect(data.user.username).to.exist;
+            expect(data.user.email).to.exist;
+            expect(data.user.imagePath).to.exist;
+            expect(data.user._id).to.be.equal(users[0]._id);
+            expect(data.user.username).to.not.equal(users[0].username);
+            expect(data.user.email).to.not.equal(users[0].email);
+            expect(data.user.imagePath).to.be.equal(users[0].imagePath);
+            expect(data.user.username).to.be.equal('Jackson');
+            expect(data.user.email).to.be.equal('jackson@gmail.com');
+          }
+        )
+        .end(
+          (err, result) => {
+
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.status).to.exist;
+
+            User.findById(users[0]._id).then(
+              (user) => {
+                expect(user._id).to.be.equal(users[0]._id);
+                expect(user.username).to.be.equal('Jackson');
+                expect(user.email).to.be.equal('jackson@gmail.com');
+                expect(user.imagePath).to.be.equal(users[0].imagePath);
+              }
+            );
+
+            done();
+          }
+        );
+    });
+
+    it('should not update the user info when unauthorized', (done) => {
+
+      let data = {
+        username: "Jackson",
+        email: "jackson@gmail.com"
+      };
+
+      supertest(app)
+        .patch('/updateUserInfo')
+        .send(data)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.error).to.exist;
+            expect(result.body.error).to.be.equal('User isn\'t authenticated.');
+
+            done();
+          }
+        );
+    });
+
+    it("should not update when no data is sent", (done) => {
+
+      supertest(app)
+        .patch('/updateUserInfo')
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            let data = response.body;
+
+            expect(data.status).to.exist;
+            expect(data.status).to.be.equal('The user data has been updated.');
+            expect(data.user).to.exist;
+            expect(data.user._id).to.exist;
+            expect(data.user._id).to.be.equal(users[0]._id);
+            expect(data.user.username).to.be.equal(users[0].username);
+            expect(data.user.email).to.be.equal(users[0].email);
+            expect(data.user.imagePath).to.be.equal(users[0].imagePath);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.status).to.exist;
+            done();
+          }
+        );
+    });
+  });
 });
