@@ -17,6 +17,8 @@ const {
   posts
 } = require('./Test/post.mvc.seed');
 
+const moment = require('moment');
+
 beforeEach(populatePosts);
 
 describe("Post MVC Test", () => {
@@ -61,6 +63,43 @@ describe("Post MVC Test", () => {
             expect(data.content).to.not.be.null;
             expect(data.content.length).to.be.equal(posts.length);
             expect(data.maxPosts).to.be.equal(posts.length);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
+  });
+
+  context("get post by id test", () => {
+
+    it("should get the post by id", (done) => {
+
+      supertest(app)
+        .get(`/post/${posts[0]._id}`)
+        .expect(200)
+        .expect(
+          (response) => {
+            let data = response.body;
+
+            expect(data.success).to.be.equal('The post has been fetched from the database.');
+            expect(data.post).to.exist;
+            expect(data.post._id).to.be.deep.equal(posts[0]._id);
+            expect(data.post.createdAt).to.be.equal(moment().format("MMM Do YY"));
+            expect(data.post.username).to.be.equal(posts[0].username);
+            expect(data.post.title).to.be.equal(posts[0].title);
+            expect(data.post.description).to.be.equal(posts[0].description);
+            expect(data.post.content).to.be.equal(posts[0].content);
+            expect(data.post.imagePath).to.be.equal(posts[0].imagePath);
+            expect(data.post.creator_id).to.be.equal(posts[0].creator_id);
+            expect(data.post.commentStatus).to.be.equal(posts[0].commentStatus);
           }
         )
         .end(
