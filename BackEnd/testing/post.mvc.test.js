@@ -113,5 +113,32 @@ describe("Post MVC Test", () => {
           }
         );
     });
+
+    it("should not get the post for object id for which there is no post", (done) => {
+
+      let id = new ObjectID().toHexString();
+
+      supertest(app)
+        .get(`/post/${id}`)
+        .expect(200)
+        .expect(
+          (response) => {
+            let data = response.body;
+            expect(data.success).to.be.equal('The post has been fetched from the database.');
+            expect(data.post).to.be.null;
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body).to.exist;
+            done();
+          }
+        );
+    });
+
   });
 });
