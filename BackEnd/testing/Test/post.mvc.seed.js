@@ -10,8 +10,6 @@ const {
   users
 } = require('./user.mvc.seed');
 
-console.log(users);
-
 const posts = [{
     _id: new ObjectID().toHexString(),
     username: users[0].username,
