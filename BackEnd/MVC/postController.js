@@ -67,7 +67,6 @@ var deletePost = (request, response) => {
     .then(
       (result) => {
         if (result) {
-          console.log(result);
           response.status(200).send(result);
         } else {
           response.status(401).send({

@@ -18,7 +18,8 @@ const {
 } = require('./Test/post.mvc.seed');
 
 const {
-  user1Token
+  user1Token,
+  user2Token
 } = require('./Test/user.mvc.seed');
 
 const moment = require('moment');
@@ -174,6 +175,36 @@ describe("Post MVC Test", () => {
             }
 
             expect(result.body).to.exist;
+            Post.find({}).then(
+              (result) => {
+                expect(result.length).to.be.equal(1);
+              }
+            )
+            done();
+          }
+        );
+    });
+
+    it("should not delete the post by other user", (done) => {
+
+      supertest(app)
+        .get(`/posts/${posts[0]._id}`)
+        .set('authaccess', user2Token)
+        .expect(404)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.error).to.exist;
+            expect(result.error.status).to.be.equal(404);
+
+            Post.find({}).then(
+              (result) => {
+                expect(result.length).to.be.equal(posts.length);
+              }
+            )
             done();
           }
         );
