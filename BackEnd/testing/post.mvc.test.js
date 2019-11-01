@@ -188,9 +188,9 @@ describe("Post MVC Test", () => {
     it("should not delete the post by other user", (done) => {
 
       supertest(app)
-        .get(`/posts/${posts[0]._id}`)
+        .delete(`/posts/${posts[0]._id}`)
         .set('authaccess', user2Token)
-        .expect(404)
+        .expect(401)
         .end(
           (err, result) => {
             if (err) {
@@ -198,16 +198,73 @@ describe("Post MVC Test", () => {
             }
 
             expect(result.error).to.exist;
-            expect(result.error.status).to.be.equal(404);
+            expect(result.error.status).to.be.equal(401);
 
             Post.find({}).then(
               (result) => {
                 expect(result.length).to.be.equal(posts.length);
               }
-            )
+            );
             done();
           }
         );
+    });
+
+    it("should not delete the post for invalid object id", (done) => {
+
+      let id = new ObjectID();
+
+      supertest(app)
+        .delete(`/posts/${id}`)
+        .set('authaccess', user1Token)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body).to.exist;
+            expect(result.body.err).to.be.equal('Post could not be deleted.');
+            expect(result.error.status).to.be.equal(401);
+            expect(result.statusCode).to.be.equal(401);
+
+            Post.find({}).then(
+              (result) => {
+                expect(result.length).to.be.equal(posts.length);
+              }
+            );
+
+            done();
+          }
+        );
+    });
+
+    it("should not delete the post by an unauthorized user", (done) => {
+
+      supertest(app)
+        .delete(`/posts/${posts[0]._id}`)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+
+            expect(result.statusCode).to.be.equal(401);
+            expect(result.error.status).to.be.equal(401);
+
+
+            Post.find({})
+              .then(
+                (result) => {
+                  expect(result.length).to.be.equal(posts.length);
+                }
+              );
+            done();
+          }
+        )
     });
   });
 });

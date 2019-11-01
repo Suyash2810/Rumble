@@ -7,7 +7,7 @@
     "build": "ng build",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha BackEnd/testing/*.test.js --timeout 50000",
+    "test": "export NODE_ENV=test || SET \"NODE_ENV=test\" && mocha BackEnd/testing/*.test.js --timeout 500000",
     "test-watch": "nodemon --exec \"npm test\""
   },
   "private": true,
