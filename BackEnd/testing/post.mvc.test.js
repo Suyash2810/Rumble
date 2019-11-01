@@ -17,6 +17,10 @@ const {
   posts
 } = require('./Test/post.mvc.seed');
 
+const {
+  user1Token
+} = require('./Test/user.mvc.seed');
+
 const moment = require('moment');
 
 beforeEach(populatePosts);
@@ -139,6 +143,40 @@ describe("Post MVC Test", () => {
           }
         );
     });
+  });
 
+  context("delete post by id", () => {
+
+    it("it should delete the post by valid id", (done) => {
+
+      supertest(app)
+        .delete(`/posts/${posts[0]._id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            let data = response.body;
+            expect(data._id).to.be.equal(posts[0]._id);
+            expect(data.username).to.be.equal(posts[0].username);
+            expect(data.title).to.be.equal(posts[0].title);
+            expect(data.description).to.be.equal(posts[0].description);
+            expect(data.createdAt).to.be.equal(moment().format("MMM Do YY"));
+            expect(data.content).to.be.equal(posts[0].content);
+            expect(data.imagePath).to.be.equal(posts[0].imagePath);
+            expect(data.creator_id).to.be.equal(posts[0].creator_id);
+            expect(data.commentStatus).to.be.equal(posts[0].commentStatus);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body).to.exist;
+            done();
+          }
+        );
+    });
   });
 });
