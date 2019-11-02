@@ -310,5 +310,81 @@ describe("Post MVC Test", () => {
           }
         );
     });
+
+    it("should not update the comment status of a post by another user", (done) => {
+
+      let data = {
+        commentStatus: false,
+        postID: posts[0]._id,
+        postCreatorID: posts[1].creator_id
+      }
+
+      supertest(app)
+        .patch('/post/commentStatus')
+        .set('authaccess', user1Token)
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+            expect(response.body.post).to.be.null;
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            Post.find({
+              _id: posts[0]._id,
+              creator_id: posts[0].creator_id
+            }).then(
+              (result) => {
+                expect(result.commentStatus).to.be.equal(true);
+              }
+            );
+
+            done();
+          }
+        );
+    });
+
+    it("should not update the post for an invalid creator id", (done) => {
+      let creatorId = new ObjectID();
+
+      let data = {
+        commentStatus: false,
+        postID: posts[0]._id,
+        postCreatorID: creatorId
+      }
+
+      supertest(app)
+        .patch('/post/commentStatus')
+        .set('authaccess', user1Token)
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+            expect(response.body.post).to.be.null;
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            Post.find({
+              _id: posts[0]._id,
+              creator_id: posts[0].creator_id
+            }).then(
+              (result) => {
+                expect(result.commentStatus).to.be.equal(true);
+              }
+            );
+            done();
+          }
+        );
+    });
   });
 });
