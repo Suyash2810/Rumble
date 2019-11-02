@@ -264,7 +264,51 @@ describe("Post MVC Test", () => {
               );
             done();
           }
+        );
+    });
+  });
+
+  context("update the comment status", () => {
+
+    it("should update the comment status", (done) => {
+
+      let data = {
+        commentStatus: false,
+        postID: posts[0]._id,
+        postCreatorID: posts[0].creator_id
+      }
+
+      supertest(app)
+        .patch('/post/commentStatus')
+        .set('authaccess', user1Token)
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+            let data = response.body;
+
+            expect(data.status).to.be.equal('The data has been successfully saved.');
+            expect(data.post._id).to.be.equal(posts[0]._id);
+            expect(data.post.username).to.be.equal(posts[0].username);
+            expect(data.post.title).to.be.equal(posts[0].title);
+            expect(data.post.description).to.be.equal(posts[0].description);
+            expect(data.post.createdAt).to.be.equal(moment().format("MMM Do YY"));
+            expect(data.post.content).to.be.equal(posts[0].content);
+            expect(data.post.imagePath).to.be.equal(posts[0].imagePath);
+            expect(data.post.creator_id).to.be.equal(posts[0].creator_id);
+            expect(data.post.commentStatus).to.not.be.equal(posts[0].commentStatus);
+          }
         )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
     });
   });
 });

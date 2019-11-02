@@ -182,7 +182,6 @@ var getPosts = async (request, response) => {
 updateCommentStatus = (request, response) => {
 
   let body = _.pick(request.body, ['commentStatus', 'postID', 'postCreatorID']);
-  console.log(body);
 
   let updateBody = {
     commentStatus: body.commentStatus
@@ -197,7 +196,6 @@ updateCommentStatus = (request, response) => {
     new: true
   }).then(
     (result) => {
-      console.log(result);
       response.status(200).send({
         status: "The data has been successfully saved.",
         post: result
