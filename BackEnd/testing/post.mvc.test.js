@@ -386,5 +386,56 @@ describe("Post MVC Test", () => {
           }
         );
     });
+
+    it("should not update the comment status for an unauthorized user", (done) => {
+
+      let data = {
+        commentStatus: false,
+        postID: posts[0]._id,
+        postCreatorID: posts[0].creator_id
+      };
+
+      supertest(app)
+        .patch('/post/commentStatus')
+        .send(data)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.error).to.be.equal('User isn\'t authenticated.');
+
+            Post.find({
+              _id: posts[0]._id
+            }).then(
+              (result) => {
+                expect(result.commentStatus).to.be.equal(true);
+              }
+            );
+
+            done();
+          }
+        );
+    });
+
+    it("should return null when no data is sent", (done) => {
+
+      supertest(app)
+        .patch('/post/commentStatus')
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.post).to.be.null;
+            done();
+          }
+        );
+    });
   });
 });
