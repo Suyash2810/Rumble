@@ -466,5 +466,23 @@ describe("Post MVC Test", () => {
           }
         );
     });
+
+    it("should not get the posts for unauthorized users", (done) => {
+
+      supertest(app)
+        .get('/getUserPosts')
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(401);
+            expect(result.body.error).to.be.equal('User isn\'t authenticated.');
+            done();
+          }
+        );
+    });
   });
 });
