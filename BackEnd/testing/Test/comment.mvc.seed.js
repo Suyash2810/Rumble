@@ -1,45 +1,53 @@
-// const {
-//   Comment
-// } = require('../../models/comments');
+const {
+  Comment
+} = require('../../models/comments');
 
-// const {
-//   ObjectID
-// } = require('mongodb');
+const {
+  ObjectID
+} = require('mongodb');
 
-// let comments = [{
-//     _id: new ObjectID().toHexString(),
-//     username: "Eliot",
-//     imagePath: 'http://localhost:3000/images/userImages/attractive-casual-close-up-1906997.jpg_1569671610409.jpeg',
-//     createdAt: 'Sep 28th 19',
-//     content: 'This is some random content.',
-//     creator_id: new ObjectID().toHexString(),
-//     postId: new ObjectID().toHexString()
-//   },
-//   {
-//     _id: new ObjectID().toHexString(),
-//     username: "Brandon",
-//     imagePath: 'http://localhost:3000/images/userImages/attractive-casual-close-up-1906997.jpg_1569671610409.jpeg',
-//     createdAt: 'Sep 28th 19',
-//     content: 'This is some random content.',
-//     creator_id: new ObjectID().toHexString(),
-//     postId: new ObjectID().toHexString()
-//   }
-// ];
+let {
+  posts
+} = require('./post.mvc.seed.js');
 
-// const populateComments = (done) => {
+let {
+  users
+} = require('./user.mvc.seed.js');
 
-//   Comment.remove({}).then(
-//     () => {
-//       return Comment.insertMany(comments).then(
-//         () => {
-//           done();
-//         }
-//       );
-//     }
-//   )
-// }
+let comments = [{
+    _id: new ObjectID().toHexString(),
+    username: "Eliot",
+    imagePath: 'http://localhost:3000/images/userImages/attractive-casual-close-up-1906997.jpg_1569671610409.jpeg',
+    createdAt: 'Sep 28th 19',
+    content: 'This is some random content.',
+    creator_id: users[0]._id,
+    postId: posts[0]._id
+  },
+  {
+    _id: new ObjectID().toHexString(),
+    username: "Brandon",
+    imagePath: 'http://localhost:3000/images/userImages/attractive-casual-close-up-1906997.jpg_1569671610409.jpeg',
+    createdAt: 'Sep 28th 19',
+    content: 'This is some random content.',
+    creator_id: users[1]._id,
+    postId: posts[1]._id
+  }
+];
 
-// module.exports = {
-//   populateComments,
-//   comments
-// }
+const populateComments = (done) => {
+
+  Comment.remove({}).then(
+    () => {
+      return Comment.insertMany(comments).then(
+        () => {
+          done();
+        }
+      );
+    }
+  )
+}
+
+module.exports = {
+  populateComments,
+  comments
+}
