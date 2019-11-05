@@ -438,4 +438,33 @@ describe("Post MVC Test", () => {
         );
     });
   });
+
+  context("get user posts by id", () => {
+
+    it("should get the user posts by valid id", (done) => {
+
+      supertest(app)
+        .get('/getUserPosts')
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            expect(response.body).to.exist;
+            expect(response.body.status).to.exist;
+            expect(response.body.status).to.be.equal('Posts have been fetched successfully');
+            expect(response.body.posts).to.exist;
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
+  });
 });
