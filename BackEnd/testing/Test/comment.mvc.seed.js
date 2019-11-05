@@ -14,6 +14,11 @@ let {
   users
 } = require('./user.mvc.seed.js');
 
+const {
+  user1Token,
+  user2Token
+} = require('./user.mvc.seed');
+
 let comments = [{
     _id: new ObjectID().toHexString(),
     username: "Eliot",
@@ -49,5 +54,7 @@ const populateComments = (done) => {
 
 module.exports = {
   populateComments,
-  comments
+  comments,
+  user1Token,
+  user2Token
 }
