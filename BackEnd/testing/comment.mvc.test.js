@@ -13,6 +13,9 @@ const supertest = require('supertest');
 const chai = require('chai');
 const expect = chai.expect;
 const app = require('./../app');
+const {
+  ObjectID
+} = require('mongodb');
 
 const moment = require('moment');
 
@@ -105,6 +108,59 @@ describe("Comment Request Tests", () => {
 
             expect(result.statusCode).to.be.equal(200);
             expect(result.body).to.exist;
+            done();
+          }
+        );
+    });
+
+    it("should not get the comments for non existent postID", (done) => {
+
+      let id = new ObjectID();
+
+      supertest(app)
+        .get(`/comment/${id}`)
+        .expect(200)
+        .end(
+          (err, result) => {
+
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.comments.length).to.be.equal(0);
+            done();
+          }
+        );
+    });
+  });
+
+  context('get comment by id', () => {
+
+    it("should get the comment for a valid id", (done) => {
+
+      supertest(app)
+        .get(`/commentById/${comments[0]._id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            expect(response.body.status).to.be.equal('The comment has been fetched successfully.');
+            let comment = response.body.comment;
+            expect(comment._id).to.be.equal(comments[0]._id);
+            expect(comment.createdAt).to.be.equal(comments[0].createdAt);
+            expect(comment.username).to.be.equal(comments[0].username);
+            expect(comment.imagePath).to.be.equal(comments[0].imagePath);
+            expect(comment.content).to.be.equal(comments[0].content);
+            expect(comment.creator_id).to.be.equal(comments[0].creator_id);
+            expect(comment.postId).to.be.equal(comments[0].postId);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+            expect(result.statusCode).to.be.equal(200);
             done();
           }
         );
