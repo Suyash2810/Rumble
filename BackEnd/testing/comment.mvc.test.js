@@ -265,5 +265,57 @@ describe("Comment Request Tests", () => {
           }
         );
     });
+
+    it("should not update the comment when data not sent", (done) => {
+
+      supertest(app)
+        .patch(`/updateComment/${comments[0]._id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            let comment = response.body.comment;
+            expect(comment._id).to.be.equal(comments[0]._id);
+            expect(comment.createdAt).to.be.equal(comments[0].createdAt);
+            expect(comment.username).to.be.equal(comments[0].username);
+            expect(comment.imagePath).to.be.equal(comments[0].imagePath);
+            expect(comment.content).to.be.equal(comments[0].content);
+            expect(comment.creator_id).to.be.equal(comments[0].creator_id);
+            expect(comment.postId).to.be.equal(comments[0].postId);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
+
+    it("should not update the comment by unauthorized user", (done) => {
+
+      let data = {
+        content: "fofoo"
+      }
+
+      supertest(app)
+        .patch(`/commentUpdate/${comments[0]._id}`)
+        .send(data)
+        .expect(404)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(404);
+            done();
+          }
+        )
+    });
   });
 });
