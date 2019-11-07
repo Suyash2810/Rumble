@@ -165,5 +165,43 @@ describe("Comment Request Tests", () => {
           }
         );
     });
+
+    it("should not get the comment for invalid id", (done) => {
+
+      let id = new ObjectID();
+
+      supertest(app)
+        .get(`/commentById/${id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.comment).to.be.null;
+            done();
+          }
+        );
+    });
+
+    it("should not get the comment by id for unauthorized user", (done) => {
+
+      supertest(app)
+        .get(`/commentById/${comments[0]._id}`)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.error).to.be.equal('User isn\'t authenticated.');
+            expect(result.statusCode).to.be.equal(401);
+            done();
+          }
+        );
+    });
   });
 });
