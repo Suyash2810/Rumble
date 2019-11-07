@@ -204,4 +204,66 @@ describe("Comment Request Tests", () => {
         );
     });
   });
+
+  context("update comment by id", () => {
+
+    it("should update the comment by id", (done) => {
+
+      let data = {
+        content: "This is the comment\'s content after updation."
+      }
+
+      supertest(app)
+        .patch(`/updateComment/${comments[0]._id}`)
+        .set('authaccess', user1Token)
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+            expect(response.body.status).that.be.equal('The comment has been updated successfully.');
+            let comment = response.body.comment;
+            expect(comment._id).to.be.equal(comments[0]._id);
+            expect(comment.createdAt).to.be.equal(comments[0].createdAt);
+            expect(comment.username).to.be.equal(comments[0].username);
+            expect(comment.imagePath).to.be.equal(comments[0].imagePath);
+            expect(comment.content).to.be.equal(data.content);
+            expect(comment.creator_id).to.be.equal(comments[0].creator_id);
+            expect(comment.postId).to.be.equal(comments[0].postId);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            done();
+          }
+        );
+    });
+
+    it("should not update the comment for invalid id", (done) => {
+
+      let id = new ObjectID();
+      let data = {
+        content: "This is the updated content."
+      }
+
+      supertest(app)
+        .patch(`/updateComment/${id}`)
+        .set('authaccess', user1Token)
+        .send(data)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+            expect(result.statusCode).to.be.equal(200);
+            expect(result.body.comment).to.be.null;
+            done();
+          }
+        );
+    });
+  });
 });
