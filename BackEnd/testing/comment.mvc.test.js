@@ -62,5 +62,52 @@ describe("Comment Request Tests", () => {
           }
         );
     });
+
+    it("should not save the data", (done) => {
+
+      supertest(app)
+        .post('/comment')
+        .expect(400)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.error.errors).to.exist;
+            expect(result.body.error._message).to.be.equal('Comment validation failed');
+            expect(result.body.error.message).to.exist;
+            expect(result.body.error.name).to.be.equal('ValidationError');
+            done();
+          }
+        );
+    });
+  });
+
+  context("get comments request", () => {
+
+    it("should get the comments by id", (done) => {
+
+      supertest(app)
+        .get(`/comment/${comments[0].postId}`)
+        .expect(200)
+        .expect(
+          (response) => {
+            expect(response.body.status).to.be.equal('The data has been retrieved successfully.');
+            expect(response.body.comments).to.exist;
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            expect(result.body).to.exist;
+            done();
+          }
+        );
+    });
   });
 });
