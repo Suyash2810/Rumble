@@ -318,4 +318,78 @@ describe("Comment Request Tests", () => {
         )
     });
   });
+
+  context("delete comment by id", () => {
+
+    it('should delete the comment by valid id and creator Id', (done) => {
+
+      supertest(app)
+        .delete(`/commentDelete/${comments[0]._id}/${comments[0].creator_id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            let data = response.body;
+
+            expect(data.status).to.be.equal('The comment has been deleted successfully.');
+            expect(data.comment).to.exist;
+            expect(data.comment.createdAt).to.be.equal(comments[0].createdAt);
+            expect(data.comment.postId).to.be.equal(comments[0].postId);
+            expect(data.comment.creator_id).to.be.equal(comments[0].creator_id);
+            expect(data.comment.content).to.be.equal(comments[0].content);
+            expect(data.comment.username).to.be.equal(comments[0].username);
+            expect(data.comment.imagePath).to.be.equal(comments[0].imagePath);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
+
+    it("should not delete the comment for invalid id", (done) => {
+
+      let id = new ObjectID().toHexString();
+
+      supertest(app)
+        .delete(`/commentDelete/${id}/${comments[0].creator_id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.comment).to.be.equal(null);
+            done();
+          }
+        );
+    });
+
+    it("should not delete the comment for invalid creator id", (done) => {
+
+      let id = new ObjectID().toHexString();
+
+      supertest(app)
+        .delete(`/commentDelete/${comments[0]._id}/${id}`)
+        .set('authaccess', user1Token)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.error).to.be.equal('You are not authorized to delete the comment.');
+            done();
+          }
+        );
+    });
+  });
 });
