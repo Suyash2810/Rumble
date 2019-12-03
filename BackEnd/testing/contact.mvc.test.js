@@ -132,7 +132,55 @@ describe("Contact MVC Test", () => {
               return done(err);
             }
 
-            console.log(result);
+            let data = result.body;
+            expect(data.status).to.be.equal('The contact message was successfully deleted.');
+            let contact = data.contact;
+            expect(contact._id).to.be.equal(contacts[0]._id);
+            expect(contact.username).to.be.equal(contacts[0].username);
+            expect(contact.email).to.be.equal(contacts[0].email);
+            expect(contact.phone).to.be.equal(contacts[0].phone);
+            expect(contact.content).to.be.equal(contacts[0].content);
+            expect(contact.subject).to.be.equal(contacts[0].subject);
+            expect(contact.tag).to.be.equal(contacts[0].tag);
+            expect(contact.creator_id).to.be.equal(users[0]._id);
+            expect(contact.createdAt).to.exist;
+            done();
+          }
+        );
+    });
+
+    it("should not delete the contact for an invalid user", (done) => {
+
+      supertest(app)
+        .delete(`/contact/${contacts[0]._id}`)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.error.text).to.exist;
+            done();
+          }
+        );
+    });
+
+    it("should not delete the contact for an invalid id", (done) => {
+
+      let id = new ObjectID();
+
+      supertest(app)
+        .delete(`/contact/${id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.contact).to.be.equal(null);
             done();
           }
         );
@@ -173,5 +221,24 @@ describe("Contact MVC Test", () => {
           }
         );
     });
-  })
+
+    it("should not get the contact for an invalid id", (done) => {
+
+      let id = new ObjectID().toHexString();
+
+      supertest(app)
+        .get(`/contact/${id}`)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.contact).to.be.equal(null);
+            done();
+          }
+        )
+    });
+  });
 });
