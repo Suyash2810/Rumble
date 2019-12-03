@@ -73,6 +73,19 @@ describe("Contact MVC Test", () => {
             if (err) {
               return done(err);
             }
+
+            let contact = result.body.contact;
+            expect(contact).to.exist;
+            expect(contact._id).to.exist;
+            expect(contact.username).to.be.equal("Bryan");
+            expect(contact.email).to.be.equal("bryan@gmail.com");
+            expect(contact.phone).to.be.equal("9869504568");
+            expect(contact.content).to.be.equal("Some random content");
+            expect(contact.subject).to.be.equal("This is the subject");
+            expect(contact.tag).to.be.equal('technical');
+            expect(contact.creator_id).to.be.equal(users[0]._id);
+            expect(contact.createdAt).to.exist;
+
             done();
           }
         );
@@ -105,26 +118,26 @@ describe("Contact MVC Test", () => {
     });
   });
 
-  //   context("delete a contact", () => {
+  context("delete a contact", () => {
 
-  //     it("should delete the contact for a valid id and an authorized user", (done) => {
+    it("should delete the contact for a valid id and an authorized user", (done) => {
 
-  //       supertest(app)
-  //         .delete(`/contact/${contacts[0]._id}`)
-  //         .set('authaccess', user1Token)
-  //         .expect(200)
-  //         .end(
-  //           (err, result) => {
-  //             if (err) {
-  //               return done(err);
-  //             }
+      supertest(app)
+        .delete(`/contact/${contacts[0]._id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
 
-  //             console.log(result);
-  //             done();
-  //           }
-  //         );
-  //     });
-  //   });
+            console.log(result);
+            done();
+          }
+        );
+    });
+  });
 
   context('get contact by id', () => {
 
@@ -145,6 +158,7 @@ describe("Contact MVC Test", () => {
             expect(contact.content).to.be.equal(contacts[0].content);
             expect(contact.subject).to.be.equal(contacts[0].subject);
             expect(contact.tag).to.be.equal(contacts[0].tag);
+            expect(contact.creator_id).to.be.equal(users[0]._id);
             expect(contact.createdAt).to.exist;
           }
         )
