@@ -391,5 +391,22 @@ describe("Comment Request Tests", () => {
           }
         );
     });
+
+    it("should not delete the comment for unauthorized user", (done) => {
+
+      supertest(app)
+        .delete(`/commentDelete/${comments[0]._id}/${comments[0].creator_id}`)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.error).to.be.equal('User isn\'t authenticated.');
+            done();
+          }
+        );
+    });
   });
 });
