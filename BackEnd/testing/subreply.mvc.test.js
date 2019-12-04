@@ -73,4 +73,68 @@ describe("Sub Reply MVC Test", () => {
         );
     });
   });
+
+  context("post sub reply requests", () => {
+
+    it("should save the reply", (done) => {
+
+      let data = {
+        username: "Bryan",
+        imagePath: '/images/userimages',
+        creator_id: subreplies[0].creator_id,
+        content: "this is some random content",
+        postId: subreplies[0].postId,
+        parent_Id: subreplies[0].parent_Id
+      }
+
+
+      supertest(app)
+        .post('/reply')
+        .set('authaccess', user1Token)
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+            expect(response.body.status).to.be.equal('The reply has been saved successfully.');
+            let reply = response.body.reply;
+            expect(reply.username).to.exist;
+            expect(reply.imagePath).to.exist;
+            expect(reply.createdAt).to.exist;
+            expect(reply.creator_id).to.be.equal(data.creator_id);
+            expect(reply.postId).to.be.equal(data.postId);
+            expect(reply.parent_Id).to.be.equal(data.parent_Id);
+            expect(reply.content).to.be.equal(data.content);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
+
+    it('should not save the reply for invalid data', (done) => {
+
+      supertest(app)
+        .post('/reply')
+        .set('authaccess', user2Token)
+        .expect(400)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.error._message).to.be.equal('SubReply validation failed');
+            expect(result.statusCode).to.be.equal(400);
+            done();
+          }
+        );
+    });
+  });
 });
