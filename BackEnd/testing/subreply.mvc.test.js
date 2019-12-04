@@ -136,5 +136,96 @@ describe("Sub Reply MVC Test", () => {
           }
         );
     });
+
+    it("should not save the reply for unauthorize user", (done) => {
+
+      let data = {
+        username: "Bryan",
+        imagePath: '/images/userimages',
+        creator_id: subreplies[0].creator_id,
+        content: "this is some random content",
+        postId: subreplies[0].postId,
+        parent_Id: subreplies[0].parent_Id
+      }
+
+      supertest(app)
+        .post('/reply')
+        .send(data)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(401);
+            done();
+          }
+        );
+    });
+  });
+
+  context("sub reply delete requests", () => {
+
+    it("should delete the sub reply", (done) => {
+
+      supertest(app)
+        .delete(`/reply/${subreplies[0].postId}/${subreplies[0].parent_Id}`)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            expect(result.body.replies.deletedCount).to.be.greaterThan(0);
+            done();
+          }
+        );
+    });
+
+    it("should not delete the sub replies for invalid ids", (done) => {
+
+      let postId = new ObjectID().toHexString();
+      let parent_Id = new ObjectID().toHexString();
+
+      supertest(app)
+        .delete(`/reply/${postId}/${parent_Id}`)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            expect(result.body.replies.deletedCount).to.be.equal(0);
+            done();
+          }
+        );
+    });
+
+
+    it("should return and error for wrong ids", (done) => {
+
+      let postId = new ObjectID().toHexString() + 'dgfusgdf';
+      let parent_Id = new ObjectID().toHexString() + 'kfgsdfsf';
+
+      supertest(app)
+        .delete(`/reply/${postId}/${parent_Id}`)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            expect(result.body.replies.deletedCount).to.be.equal(0);
+            done();
+          }
+        );
+    });
   });
 });
