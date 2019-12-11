@@ -223,5 +223,43 @@ describe("Favorite Testing", () => {
           }
         );
     });
+
+    it("should not delete for invalid post id", (done) => {
+
+      let id = new ObjectID().toHexString();
+
+      supertest(app)
+        .delete(`/favorite/${id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            expect(result.body.favorite).to.be.null;
+            done();
+          }
+        );
+    });
+
+    it("should not delete for unauthorized user", (done) => {
+
+      supertest(app)
+        .delete(`/favorite/${favorites[0].postId}`)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(401);
+            done();
+          }
+        );
+    });
   });
 });
