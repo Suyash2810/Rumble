@@ -143,7 +143,85 @@ describe("Favorite Testing", () => {
             expect(result.statusCode).to.be.equal(200);
             done();
           }
+        );
+    });
+
+    it("should not save for unauthorized user", (done) => {
+
+      let data = {
+        username: "Abraham",
+        title: "Some title",
+        description: "Some description",
+        postId: favorites[0].postId,
+        userId: favorites[0].userId
+      }
+
+      supertest(app)
+        .post('/favorite')
+        .send(data)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(401);
+            done();
+          }
+        );
+    });
+
+    it("should not save for invalid data", (done) => {
+
+      supertest(app)
+        .post('/favorite')
+        .set('authaccess', user2Token)
+        .expect(400)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(400);
+            done();
+          }
+        );
+    });
+  });
+
+  context("delete requests", () => {
+
+    it("should delete the favorite successfully", (done) => {
+
+      supertest(app)
+        .delete(`/favorite/${favorites[0].postId}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            let status = response.body.status;
+            expect(status).to.be.equal('The data has been deleted.');
+            let data = response.body.favorite;
+            expect(data._id).to.be.equal(favorites[0]._id);
+            expect(data.username).to.be.equal(favorites[0].username);
+            expect(data.title).to.be.equal(favorites[0].title);
+            expect(data.description).to.be.equal(favorites[0].description);
+            expect(data.postId).to.be.equal(favorites[0].postId);
+            expect(data.userId).to.be.equal(favorites[0].userId);
+          }
         )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
     });
   });
 });
