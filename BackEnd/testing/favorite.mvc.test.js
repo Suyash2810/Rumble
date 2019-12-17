@@ -262,4 +262,97 @@ describe("Favorite Testing", () => {
         );
     });
   });
+
+  context("get favorite by parameters", () => {
+
+    it("should get the favorite post by postId and userId", (done) => {
+
+      supertest(app)
+        .get(`/getFavoriteById/${favorites[0].postId}/${favorites[0].userId}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .expect(
+          (response) => {
+            let data = response.body;
+            expect(data).to.exist;
+            expect(data.status).to.be.equal('The data was found successfully.');
+            let favorite = data.favorite;
+            expect(favorite).to.exist;
+            expect(favorite._id).to.be.equal(favorites[0]._id);
+            expect(favorite.username).to.be.equal(favorites[0].username);
+            expect(favorite.title).to.be.equal(favorites[0].title);
+            expect(favorite.description).to.be.equal(favorites[0].description);
+            expect(favorite.userId).to.be.equal(favorites[0].userId);
+            expect(favorite.postId).to.be.equal(favorites[0].postId);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
+
+    it("should not get the favorite for invalid post id", (done) => {
+
+      let fakepostId = new ObjectID().toHexString();
+
+      supertest(app)
+        .get(`/getFavoriteById/${fakepostId}/${favorites[0].userId}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.favorite).to.be.null;
+            done();
+          }
+        );
+    });
+
+    it("should not get the favorite for invalid user id", (done) => {
+
+      let fakeUserId = new ObjectID().toHexString();
+
+      supertest(app)
+        .get(`/getFavoriteById/${favorites[0].postId}/${fakeUserId}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.favorite).to.be.null;
+            done();
+          }
+        );
+    });
+
+    it("should not get the favorite for unauthorized user", (done) => {
+
+      supertest(app)
+        .get(`/getFavoriteById/${favorites[0].postId}/${favorites[0].userId}`)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(401);
+            done();
+          }
+        );
+    });
+  });
 });
