@@ -185,5 +185,43 @@ describe("Note MVC Tests", () => {
           }
         );
     });
+
+    it("should not delete for invalid id", (done) => {
+
+      let id = new ObjectID().toHexString();
+
+      supertest(app)
+        .delete(`/note/${id}`)
+        .set('authaccess', user1Token)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.note).to.be.null;
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
+
+    it("should not delete for unauthorized user", (done) => {
+
+      supertest(app)
+        .delete(`/note/${notes[0]._id}`)
+        .expect(401)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(401);
+            done();
+          }
+        );
+    });
   });
 });
