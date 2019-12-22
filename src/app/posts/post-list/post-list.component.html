@@ -1,7 +1,7 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
-<div class="row" *ngIf="posts.length > 0 && !isLoading; else noPostsBlock" style="margin:0;">
-  <div class="col-md-10" style="padding:0;">
+<div class="row" *ngIf="posts.length > 0 && !isLoading; else noPostsBlock" style="margin:0;" id="main_row_for_cards">
+  <div class="col-md-10 col-xs-10" style="padding:0;" id="main_column_for_cards">
     <div class="card-columns">
       <div *ngFor="let post of posts">
         <div class="card">

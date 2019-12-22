@@ -42,3 +42,36 @@ ul li a:hover {
 .dropdown {
   float: right;
 }
+
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+  .card {
+    margin-top: 20px;
+    width: 80vw;
+    text-align: center;
+  }
+
+  #main_row_for_cards {
+    padding: 0 10%;
+    box-sizing: border-box;
+  }
+
+  #paginator_sec {
+    padding: 0 10%;
+    box-sizing: border-box;
+  }
+
+  mat-paginator:nth-child(1) {
+    padding: 0 15%;
+    box-sizing: border-box;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 767px) {}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+
+@media only screen and (min-width: 1200px) {}
