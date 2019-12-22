@@ -122,8 +122,135 @@ ul li a:hover {
   }
 }
 
-@media only screen and (min-width: 768px) and (max-width: 991px) {}
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  #main_row_for_cards {
+    padding: 0 1%;
+    box-sizing: border-box;
+  }
 
-@media only screen and (min-width: 992px) and (max-width: 1199px) {}
+  #main_column_for_cards {
+    margin-top: 50px;
+    margin: 50px auto;
+    padding: 0;
+  }
 
-@media only screen and (min-width: 1200px) {}
+  .card {
+    text-align: center;
+  }
+
+  #view_button::after {
+    content: '\A';
+  }
+
+  #modify_button::after {
+    content: '\A';
+  }
+
+  mat-action-row {
+    padding: 0;
+    margin: 0;
+  }
+
+  #paginator_sec {
+    padding: 0 25%;
+    box-sizing: border-box;
+  }
+
+  mat-paginator:nth-child(1) {
+    padding: 0 10%;
+    box-sizing: border-box;
+  }
+
+  .dropdown {
+    float: right;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  #main_row_for_cards {
+    padding: 0 1%;
+    box-sizing: border-box;
+  }
+
+  #main_column_for_cards {
+    margin-top: 50px;
+    margin: 50px auto;
+    padding: 0;
+  }
+
+  .card {
+    text-align: center;
+  }
+
+  #view_button::after {
+    content: '\A';
+  }
+
+  #modify_button::after {
+    content: '\A';
+  }
+
+  mat-action-row {
+    padding: 0;
+    margin: 0;
+  }
+
+  #paginator_sec {
+    padding: 0 25%;
+    box-sizing: border-box;
+  }
+
+  mat-paginator:nth-child(1) {
+    padding: 0 10%;
+    box-sizing: border-box;
+  }
+
+  .dropdown {
+    float: right;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  #main_row_for_cards {
+    padding: 0 1%;
+    box-sizing: border-box;
+  }
+
+  #main_column_for_cards {
+    margin-top: 50px;
+    margin: 50px auto;
+    padding: 0;
+  }
+
+  .card {
+    text-align: center;
+  }
+
+  #view_button::after {
+    content: '\A';
+  }
+
+  #modify_button::after {
+    content: '\A';
+  }
+
+  mat-action-row {
+    padding: 0;
+    margin: 0;
+  }
+
+  #paginator_sec {
+    padding: 0 25%;
+    box-sizing: border-box;
+  }
+
+  mat-paginator:nth-child(1) {
+    padding: 0 10%;
+    box-sizing: border-box;
+  }
+
+  .dropdown {
+    float: right;
+  }
+}
