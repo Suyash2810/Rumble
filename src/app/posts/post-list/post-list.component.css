@@ -66,6 +66,20 @@ ul li a:hover {
     padding: 0 15%;
     box-sizing: border-box;
   }
+
+  ul li a {
+    margin: auto;
+    text-align: center;
+  }
+
+  mat-action-row {
+    margin: 0 auto;
+  }
+
+  mat-action-row>button {
+    margin: auto;
+    margin-right: 60px;
+  }
 }
 
 @media only screen and (min-width: 600px) and (max-width: 767px) {}
