@@ -9,7 +9,7 @@
         <mat-error *ngIf="!form.get('title').valid && form.get('title').touched">
           Title is not valid. Enter a valid title.
         </mat-error>
-        <div>
+        <div id="upload_image_button">
           <button mat-stroked-button type="button" (click)="filePicker.click()">Upload Image</button>
           <input type="file" #filePicker (change)="uploadImage($event)">
         </div>
