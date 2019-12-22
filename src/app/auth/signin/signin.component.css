@@ -3,11 +3,71 @@
 }
 
 .mat-card {
-  width: 50%;
   text-align: center;
 }
 
 #sign_in,
 mat-card {
   margin: 3rem auto;
+}
+
+@media only screen and (max-width: 599px) {
+
+  .col-md-12 {
+    padding: 0;
+  }
+
+  mat-card {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+
+  .col-md-12 {
+    padding: 0;
+  }
+
+  mat-card {
+    width: 80%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  .col-md-12 {
+    padding: 0;
+  }
+
+  mat-card {
+    width: 60%;
+    margin: auto;
+  }
+
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .col-md-12 {
+    padding: 0;
+  }
+
+  mat-card {
+    width: 60%;
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+  .col-md-12 {
+    padding: 0;
+  }
+
+  mat-card {
+    width: 60%;
+    margin: auto;
+  }
 }
