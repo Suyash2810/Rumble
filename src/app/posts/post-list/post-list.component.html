@@ -1,7 +1,7 @@
 <mat-spinner *ngIf="isLoading"></mat-spinner>
 
 <div class="row" *ngIf="posts.length > 0 && !isLoading; else noPostsBlock" style="margin:0;" id="main_row_for_cards">
-  <div class="col-md-10 col-xs-10" style="padding:0;" id="main_column_for_cards">
+  <div class="col-md-10 col-xs-12 col-sm-12" style="padding:0;" id="main_column_for_cards">
     <div class="card-columns">
       <div *ngFor="let post of posts">
         <div class="card">
@@ -15,14 +15,15 @@
             <p class="text-center"><code>{{post.username}}</code> --- <code>{{post.createdAt}}</code></p>
             <mat-action-row>
               <div class="dropdown" appDropdown [ngClass]="{view: !loggedIn}" *ngIf="post.creator_id == userId">
-                <button mat-button color="accent" class="dropdown-toggle" data-toggle="dropdown">Modify</button>
+                <button mat-button color="accent" class="dropdown-toggle" data-toggle="dropdown"
+                  id="modify_button">Modify</button>
                 <ul class="dropdown-menu">
                   <li><a color="accent" (click)="onEditCheck(post.id, post.creator_id)">Edit</a>
                   </li>
                   <li><a color="warn" (click)="onDelete(post.id)">Delete</a></li>
                 </ul>
               </div>
-              <button mat-button color="accent" (click)="onViewPost(post.id)">View</button>
+              <button mat-button color="accent" (click)="onViewPost(post.id)" id="view_button">View</button>
             </mat-action-row>
           </div>
         </div>

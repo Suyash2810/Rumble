@@ -39,9 +39,6 @@ ul li a:hover {
 
 }
 
-.dropdown {
-  float: right;
-}
 
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
@@ -80,9 +77,50 @@ ul li a:hover {
     margin: auto;
     margin-right: 60px;
   }
+
+  .dropdown {
+    float: right;
+  }
 }
 
-@media only screen and (min-width: 600px) and (max-width: 767px) {}
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+
+  #main_row_for_cards {
+    padding: 0 3%;
+    box-sizing: border-box;
+  }
+
+  #main_column_for_cards {
+    margin-top: 50px;
+  }
+
+  .card {
+    text-align: center;
+  }
+
+  #view_button::after {
+    content: '\A';
+  }
+
+  #modify_button::after {
+    content: '\A';
+  }
+
+  mat-action-row {
+    padding: 0;
+    margin: 0;
+  }
+
+  #paginator_sec {
+    padding: 0 25%;
+    box-sizing: border-box;
+  }
+
+  mat-paginator:nth-child(1) {
+    padding: 0 15%;
+    box-sizing: border-box;
+  }
+}
 
 @media only screen and (min-width: 768px) and (max-width: 991px) {}
 
