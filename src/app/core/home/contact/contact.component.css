@@ -52,3 +52,38 @@ p.parah {
   font-size: 14px;
   color: #9E9E9E;
 }
+
+@media only screen and (max-width: 599px) {
+
+  .card-header {
+    text-align: center;
+  }
+
+  #contact_submit_form,
+  #contact_list {
+    margin-top: 5%;
+  }
+}
+
+@media only screen and (min-width: 600px) and (max-width: 767px) {
+
+  .card-header {
+    text-align: center;
+  }
+
+  #contact_submit_form,
+  #contact_list {
+    margin-top: 5%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  #contact_submit_form {
+    padding: 0;
+  }
+
+  #contact_list {
+    padding: 0;
+  }
+}

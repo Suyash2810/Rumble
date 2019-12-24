@@ -133,3 +133,17 @@ span.content {
 mat-spinner {
   margin: auto;
 }
+
+@media only screen and (max-width: 600px) {
+
+  #contact_list_main_column {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+
+  #contact_list_main_column {
+    padding: 0;
+  }
+}
