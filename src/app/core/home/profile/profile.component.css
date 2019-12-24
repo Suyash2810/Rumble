@@ -46,3 +46,54 @@ a {
   text-decoration: none;
   color: black;
 }
+
+#profile_component_router_outlet {
+  box-sizing: border-box;
+}
+
+@media only screen and (max-width: 600px) {
+
+  mat-drawer-container {
+    width: 100%;
+  }
+
+  .example-container {
+    width: 90%;
+  }
+
+  #profile_component_router_outlet {
+    margin-bottom: 60px;
+  }
+
+  #side_nav_column_main {
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+
+  #side_nav_column_main {
+    margin: auto;
+    padding: 0 25%;
+  }
+
+  .example-container {
+    margin: auto;
+  }
+
+  #profile_component_router_outlet {
+    margin-top: 30px;
+    margin-bottom: 50px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  mat-drawer-container {
+    width: 100%;
+  }
+
+  .example-container {
+    margin: auto;
+  }
+}

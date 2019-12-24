@@ -28,3 +28,36 @@ button[type="submit"] {
 mat-form-field {
   text-align: center;
 }
+
+@media only screen and (max-width: 600px) {
+
+  mat-card {
+    max-width: 60vw;
+  }
+
+  .card-body {
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+
+  mat-card {
+    max-width: 60vw;
+  }
+
+  .card-body {
+    margin: auto;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  mat-card {
+    max-width: 40vw;
+  }
+
+  .card-body {
+    margin: auto;
+  }
+}
