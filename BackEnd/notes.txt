@@ -10,3 +10,5 @@ Add comments like functionality.
 
 Provide functionality for views on a particular post.
 
+Favorite heart being shown even when not authorized.
+

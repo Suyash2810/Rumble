@@ -16,7 +16,7 @@
       <h6><code>{{post.username}} - {{post.createdAt}}</code></h6>
 
       <div class="row" style="margin-top:70px;">
-        <div class="col-md-8 col-md-offset-2 mx-auto">
+        <div class="col-md-8 col-md-offset-2 mx-auto" id="content_column">
           <p id="content" [innerHTML]="post.content | safeHTML">
             <!-- {{post.content}} -->
           </p>

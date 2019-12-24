@@ -48,3 +48,32 @@ mat-spinner {
   font-size: 25px;
   margin-top: 10px;
 }
+
+@media only screen and (max-width: 600px) {
+
+  #header_image img {
+    height: 70vh;
+  }
+
+  mat-card {
+    width: 90%;
+    margin: 0 auto;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+
+  #header_image img {
+    height: 70vh;
+  }
+
+  mat-card {
+    width: 100vw;
+    margin: 0 auto;
+  }
+
+  #content_column {
+    padding: 0;
+    margin: 0;
+  }
+}
