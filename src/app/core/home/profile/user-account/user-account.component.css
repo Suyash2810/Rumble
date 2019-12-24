@@ -73,3 +73,41 @@ li button[type="button"] {
 #user-account-card-body::-webkit-scrollbar {
   display: none;
 }
+
+@media only screen and (max-width: 600px) {
+
+  #main_column {
+    width: 100%;
+    margin: auto;
+  }
+
+  #side_nav {
+    max-height: 30vh;
+  }
+
+  mat-card {
+    max-height: 30vh;
+  }
+
+  #side_nav_list_group {
+    display: inline;
+  }
+
+  ul {
+    display: inline;
+  }
+
+  ul li {
+    margin: 5vw;
+    padding: 0;
+    display: inline-block;
+  }
+
+  #components_column {
+    padding: 0;
+  }
+
+  .col-xs-12 {
+    padding: 0;
+  }
+}
