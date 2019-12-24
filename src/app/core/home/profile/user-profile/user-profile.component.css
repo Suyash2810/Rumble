@@ -61,3 +61,15 @@ mat-form-field {
     margin: auto;
   }
 }
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  mat-card {
+    max-width: 40vw;
+    margin-bottom: 50px;
+  }
+
+  .card-body {
+    margin: auto;
+  }
+}

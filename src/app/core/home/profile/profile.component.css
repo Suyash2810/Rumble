@@ -97,3 +97,14 @@ a {
     margin: auto;
   }
 }
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  mat-drawer-container {
+    width: 100%;
+  }
+
+  .example-container {
+    margin: auto;
+  }
+}

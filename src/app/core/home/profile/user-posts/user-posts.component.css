@@ -53,3 +53,35 @@ mat-card h4 {
 .card-body::-webkit-scrollbar {
   width: 0 !important;
 }
+
+@media only screen and (max-width: 600px) {
+
+  .card-title {
+    font-size: 16px;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 767px) {
+
+  .card-title {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  .card-title {
+    font-size: 12px;
+  }
+
+  #main_cards_column {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  .col-md-12 {
+    padding: 0;
+  }
+}
