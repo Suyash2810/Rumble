@@ -86,7 +86,7 @@ li button[type="button"] {
   }
 
   mat-card {
-    max-height: 30vh;
+    max-height: 20vh;
   }
 
   #side_nav_list_group {
@@ -99,6 +99,44 @@ li button[type="button"] {
 
   ul li {
     margin: 5vw;
+    padding: 0;
+    display: inline-block;
+  }
+
+  #components_column {
+    padding: 0;
+  }
+
+  .col-xs-12 {
+    padding: 0;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+
+  #main_column {
+    width: 100%;
+    margin: auto;
+  }
+
+  #side_nav {
+    max-height: 40vh;
+  }
+
+  mat-card {
+    max-height: 20vh;
+  }
+
+  #side_nav_list_group {
+    display: inline;
+  }
+
+  ul {
+    display: inline;
+  }
+
+  ul li {
+    margin: 1vw 5vw 0 5vw;
     padding: 0;
     display: inline-block;
   }
