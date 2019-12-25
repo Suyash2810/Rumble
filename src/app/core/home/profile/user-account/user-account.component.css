@@ -149,3 +149,72 @@ li button[type="button"] {
     padding: 0;
   }
 }
+
+@media only screen and (min-width: 769px) and (max-width: 991px) {
+
+  #main_user_account_column {
+    padding: 0;
+  }
+
+  mat-card {
+    height: 50vh;
+    padding: 5px;
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  li.list-group-item {
+    padding: 8px;
+  }
+
+  h5#side_nav_header {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  #main_user_account_column {
+    padding: 0;
+  }
+
+  mat-card {
+    height: 50vh;
+    padding: 5px;
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  li.list-group-item {
+    padding: 8px;
+  }
+
+  h5#side_nav_header {
+    margin-top: 40px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+  #main_user_account_column {
+    padding: 0;
+  }
+
+  mat-card {
+    height: 50vh;
+    padding: 5px;
+    margin: auto;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  li.list-group-item {
+    padding: 8px;
+  }
+
+  h5#side_nav_header {
+    margin-top: 40px;
+  }
+}
