@@ -1,6 +1,6 @@
 <div class="card" id="main_card">
   <div class="row" style="margin:0; padding:0;">
-    <div class="col-md-4">
+    <div class="col-md-4 col-xs-12 col-sm-12">
       <div class="card-header mt-2 p-4" id="form_header">
         <form class="example-form form-inline" (ngSubmit)="onSubmit()" #f="ngForm" id="form_note">
           <mat-form-field class="example-full-width">
@@ -35,12 +35,12 @@
         </form>
       </div>
     </div>
-    <div class="col-md-8">
+    <div class="col-md-8 col-xs-12 col-sm-12" id="main_idea_note_column">
       <div class="card-body" id="card_main_body">
         <div class="row" style="margin:0; padding:0;">
-          <div class="col-md-12">
-            <div class="card" style="min-width:150px;max-width: 250px; margin: 30px 0 0 80px;"
-              *ngFor="let note of notes" appColorBorder [borderColor]="note.color">
+          <div class="col-md-12 col-xs-12 col-sm-12 justify-content-center" id="note_list_column">
+            <div class="card" *ngFor="let note of notes" appColorBorder
+              [borderColor]="note.color" id="idea_card">
               <div class="card-header" id="note_card_header" appColorFill [setColor]="note.color">
                 <button type="button" mat-mini-fab id="delete_noteBtn" (click)="deleteNote(note.id)"
                   matTooltip="Delete Note."></button>
