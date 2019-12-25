@@ -136,11 +136,45 @@
     padding-right: 0;
   }
 
-  #idea_card {
+  #idea_card,
+  #emptyCard {
     max-width: 20vw;
     min-width: 10vw;
     float: right;
     margin-top: 30px;
   }
 
+}
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+  #main_idea_note_column,
+  #note_list_column,
+  #card_main_body {
+    padding-right: 0;
+  }
+
+  #idea_card,
+  #emptyCard {
+    max-width: 20vw;
+    min-width: 10vw;
+    float: right;
+    margin-top: 30px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+
+  #main_idea_note_column,
+  #note_list_column,
+  #card_main_body {
+    padding-right: 0;
+  }
+
+  #idea_card,
+  #emptyCard {
+    width: 25vw;
+    float: right;
+    margin-top: 30px;
+  }
 }

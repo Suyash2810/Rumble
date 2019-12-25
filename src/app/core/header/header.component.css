@@ -28,3 +28,19 @@ ul li {
 .view {
   display: none;
 }
+
+@media only screen and (max-width: 600px) {
+
+  ul li {
+    margin: 0;
+    padding: 0;
+  }
+
+  a {
+    padding: 0;
+  }
+
+  button {
+    padding: 0;
+  }
+}
