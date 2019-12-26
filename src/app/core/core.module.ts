@@ -18,6 +18,7 @@ import { IdeasComponent } from './home/profile/user-account/ideas/ideas.componen
 import { DeleteAccountComponent } from './home/profile/user-account/delete-account/delete-account.component';
 import { ChangeInfoComponent } from './home/profile/user-account/change-info/change-info.component';
 import { DateTimeComponent } from './home/basic/date-time/date-time.component';
+import { LocationComponent } from './home/basic/location/location.component';
 
 @NgModule({
     declarations: [
@@ -35,7 +36,8 @@ import { DateTimeComponent } from './home/basic/date-time/date-time.component';
         IdeasComponent,
         DeleteAccountComponent,
         ChangeInfoComponent,
-        DateTimeComponent
+        DateTimeComponent,
+        LocationComponent
     ],
     imports: [
         SharedModule,
