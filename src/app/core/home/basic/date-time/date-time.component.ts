@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable, timer } from 'rxjs';
+import { take, map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-date-time',
@@ -7,7 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DateTimeComponent implements OnInit {
 
-  constructor() { }
+  date: Date;
+
+  constructor() {
+    setInterval(() => {
+      this.date = new Date();
+    }, 1000);
+  }
 
   ngOnInit() {
   }
