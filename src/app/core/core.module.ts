@@ -17,6 +17,7 @@ import { FavoriteComponent } from './home/profile/user-account/favorite/favorite
 import { IdeasComponent } from './home/profile/user-account/ideas/ideas.component';
 import { DeleteAccountComponent } from './home/profile/user-account/delete-account/delete-account.component';
 import { ChangeInfoComponent } from './home/profile/user-account/change-info/change-info.component';
+import { DateTimeComponent } from './home/basic/date-time/date-time.component';
 
 @NgModule({
     declarations: [
@@ -33,7 +34,8 @@ import { ChangeInfoComponent } from './home/profile/user-account/change-info/cha
         FavoriteComponent,
         IdeasComponent,
         DeleteAccountComponent,
-        ChangeInfoComponent
+        ChangeInfoComponent,
+        DateTimeComponent
     ],
     imports: [
         SharedModule,
