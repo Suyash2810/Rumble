@@ -5,3 +5,7 @@ mat-card {
 .row {
   margin-top: 70px;
 }
+
+mat-card {
+  height: 50vh;
+}

@@ -1,0 +1,23 @@
+.container-fluid {
+  width: 100%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.row {
+  padding: 0;
+  margin: 0 auto;
+}
+
+.col-md-12 {
+  padding: 0;
+  margin: auto;
+  text-align: center;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: white;
+}
