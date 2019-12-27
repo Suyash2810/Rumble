@@ -23,9 +23,9 @@ export class WeatherService {
         this.coordinates.longitude = coords.longitude;
     }
 
-    getWeatherData() {
+    getWeatherData(geoData: {lat: number, long: number}) {
 
-        let url: string = `http://api.openweathermap.org/data/2.5/weather?APPID=yourapikey&lat=&lon=`;
+        let url: string = `http://api.openweathermap.org/data/2.5/weather?APPID=6b33a9cd02a2019da57119c5157a083f&lat=${geoData.lat}&lon=${geoData.long}`;
         this.httpClient.get<any>(url)
             .subscribe(
                 (response) => {

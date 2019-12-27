@@ -8,12 +8,25 @@ import { WeatherService } from './location-weather.service';
 })
 export class LocationComponent implements OnInit {
 
+  geoData: any;
   constructor(private weatherService: WeatherService) { }
 
   ngOnInit() {
 
-    this.weatherService.getWeatherData();
+    if (navigator.geolocation) {
 
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          this.geoData = position.coords;
+          console.log(this.geoData);
+          // this.weatherService.getWeatherData(this.geoData);
+          console.log(position);
+        }
+      )
+    }
+    else {
+      console.log("Geolocation not enabled.");
+    }
   }
 
 }
