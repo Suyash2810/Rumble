@@ -19,10 +19,15 @@ export class LocationComponent implements OnInit {
         (position) => {
           this.geoData = position.coords;
           console.log(this.geoData);
-          // this.weatherService.getWeatherData(this.geoData);
-          console.log(position);
+          let data = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+          }
+          this.weatherService.setCoordinates(data);
+          this.weatherService.getWeatherData();
         }
-      )
+      );
+
     }
     else {
       console.log("Geolocation not enabled.");
