@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { WeatherService } from './location-weather.service';
+import { weather } from './weather-data.model';
+import { MatDialog } from '@angular/material';
+import { ErrorComponent } from 'src/app/error/error.component';
 
 @Component({
   selector: 'app-location',
@@ -9,7 +12,10 @@ import { WeatherService } from './location-weather.service';
 export class LocationComponent implements OnInit {
 
   geoData: any;
-  constructor(private weatherService: WeatherService) { }
+  forecast: weather;
+  isLoading: boolean = true;
+
+  constructor(private weatherService: WeatherService, private dialog: MatDialog) { }
 
   ngOnInit() {
 
@@ -18,7 +24,6 @@ export class LocationComponent implements OnInit {
       navigator.geolocation.getCurrentPosition(
         (position) => {
           this.geoData = position.coords;
-          console.log(this.geoData);
           let data = {
             latitude: position.coords.latitude,
             longitude: position.coords.longitude
@@ -28,9 +33,20 @@ export class LocationComponent implements OnInit {
         }
       );
 
+      this.weatherService.recieveWeatherData()
+        .subscribe(
+          (data) => {
+            this.forecast = data;
+            this.isLoading = false;
+          }
+        )
     }
     else {
-      console.log("Geolocation not enabled.");
+      this.dialog.open(ErrorComponent, {
+        data: {
+          message: 'Geolocation is not supported in your browser.'
+        }
+      });
     }
   }
 

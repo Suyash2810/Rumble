@@ -1,3 +1,2 @@
-<p>
-  location works!
-</p>
+<p *ngIf="isLoading">Fetching weather data. Please wait.</p>
+<p *ngIf="!isLoading">{{forecast.description}}</p>
