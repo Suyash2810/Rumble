@@ -1,0 +1,14 @@
+.fa-cloud,
+.fa-thermometer-quarter {
+  color: whitesmoke;
+}
+
+ul li {
+  list-style-type: none;
+  display: inline-block;
+  margin: 0 3vw;
+}
+
+* {
+  color: white;
+}

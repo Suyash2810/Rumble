@@ -1,2 +1,39 @@
-<p *ngIf="isLoading">Fetching weather data. Please wait.</p>
-<p *ngIf="!isLoading">{{forecast.description}}</p>
+<div class="row">
+  <div class="col-md-12">
+    <p *ngIf="isLoading">Fetching weather data. Please wait.</p>
+    <div class="row" *ngIf="!isLoading">
+      <div class="col-md-4">
+        <i class="fa fa-cloud fa-5x"></i>
+      </div>
+      <div class="col-md-8">
+        <h3>Weather</h3>
+        {{forecast.description | titlecase}}
+        <hr width="30%">
+      </div>
+    </div>
+    <div class="row" *ngIf="!isLoading">
+      <div class="col-md-4">
+        <i class="fa fa-thermometer-quarter fa-5x"></i>
+      </div>
+      <div class="col-md-8">
+        <h4>Temperature: {{forecast.curr_temp}}</h4>
+        <h6>Min: {{forecast.min_temp}} - Max: {{forecast.max_temp}}</h6>
+        <h6>Feels Like {{forecast.feels_like}}</h6>
+        <hr width="30%">
+      </div>
+    </div>
+    <div class="row" *ngIf="!isLoading">
+      <div class="col-md-12">
+        <ul>
+          <li>{{forecast.pressure}}</li>
+          <li>{{forecast.humidity}}</li>
+          <li>{{forecast.visibility}}</li>
+        </ul>
+        <ul>
+          <li>{{forecast.wind}}</li>
+          <li>{{forecast.place}}</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
