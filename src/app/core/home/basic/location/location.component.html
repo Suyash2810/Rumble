@@ -16,9 +16,10 @@
         <i class="fa fa-thermometer-quarter fa-5x"></i>
       </div>
       <div class="col-md-8">
-        <h4>Temperature: {{forecast.curr_temp}}</h4>
-        <h6>Min: {{forecast.min_temp}} - Max: {{forecast.max_temp}}</h6>
-        <h6>Feels Like {{forecast.feels_like}}</h6>
+        <h4>Temperature: {{forecast.curr_temp - 273.15 | number : '1.2-2'}}</h4>
+        <h6>Min: {{forecast.min_temp - 273.15 | number : '1.2-2'}} - Max:
+          {{forecast.max_temp - 273.15 | number : '1.2-2'}}</h6>
+        <h6>Feels Like {{forecast.feels_like - 273.15 | number : '1.2-2'}}</h6>
         <hr width="30%">
       </div>
     </div>
@@ -42,6 +43,9 @@
             </tbody>
           </table>
         </div>
+        <br>
+        <p class="text-center">Wind Speed (m/s) : {{forecast.wind}}</p>
+        <p class="text-center">Place: {{forecast.place}}</p>
       </div>
     </div>
   </div>
