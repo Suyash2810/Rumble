@@ -12,3 +12,15 @@ ul li {
 * {
   color: white;
 }
+
+#sub_column {
+  margin: auto;
+}
+
+table {
+  text-align: center;
+}
+
+th {
+  padding: 1.5vw;
+}

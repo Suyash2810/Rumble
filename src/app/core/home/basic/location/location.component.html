@@ -23,16 +23,25 @@
       </div>
     </div>
     <div class="row" *ngIf="!isLoading">
-      <div class="col-md-12">
-        <ul>
-          <li>{{forecast.pressure}}</li>
-          <li>{{forecast.humidity}}</li>
-          <li>{{forecast.visibility}}</li>
-        </ul>
-        <ul>
-          <li>{{forecast.wind}}</li>
-          <li>{{forecast.place}}</li>
-        </ul>
+      <div class="col-md-12" id="sub_column">
+        <div class="table-responsive">
+          <table class="table-hover">
+            <thead>
+              <tr>
+                <th>Pressure(in mb)</th>
+                <th>Humidity(%)</th>
+                <th>Visibility(in m)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{forecast.pressure}}</td>
+                <td>{{forecast.humidity}}</td>
+                <td>{{forecast.visibility}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
       </div>
     </div>
   </div>

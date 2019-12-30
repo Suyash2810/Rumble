@@ -8,4 +8,9 @@ mat-card {
 
 mat-card {
   height: 50vh;
+  overflow: scroll;
+}
+
+mat-card::-webkit-scrollbar {
+  display: none;
 }
