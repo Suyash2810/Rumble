@@ -25,7 +25,7 @@ export class WeatherService {
 
     getWeatherData() {
 
-        let url: string = `http://api.openweathermap.org/data/2.5/weather?APPID=&lat=${this.coordinates.latitude}&lon=${this.coordinates.longitude}`;
+        let url: string = `http://api.openweathermap.org/data/2.5/weather?APPID=6b33a9cd02a2019da57119c5157a083f&lat=${this.coordinates.latitude}&lon=${this.coordinates.longitude}`;
         this.httpClient.get<any>(url)
             .pipe(
                 map(

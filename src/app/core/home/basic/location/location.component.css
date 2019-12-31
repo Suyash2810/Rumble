@@ -24,3 +24,18 @@ table {
 th {
   padding: 1.5vw;
 }
+
+@media only screen and (max-width: 600px) {
+
+  .col-md-4 {
+    margin: auto;
+    padding: 0 25%;
+    text-align: center;
+  }
+
+  h3,
+  #temp_div,
+  .col-md-8 {
+    text-align: center;
+  }
+}
