@@ -38,4 +38,61 @@ th {
   .col-md-8 {
     text-align: center;
   }
+
+  #temp_div {
+    margin-top: 5%;
+  }
+}
+
+@media only screen and (min-width: 601px) and (max-width: 768px) {
+
+  .col-md-4 {
+    margin: auto;
+    padding: 0 25%;
+    text-align: center;
+  }
+
+  h3,
+  #temp_div,
+  .col-md-8 {
+    text-align: center;
+  }
+
+  #temp_div {
+    margin-top: 5%;
+  }
+
+  .table-responsive {
+    box-sizing: border-box;
+    padding: 0 15%;
+    margin: 0 auto;
+    text-align: center;
+    width: 100%;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+  .fa-cloud,
+  .fa-thermometer-quarter {
+    font-size: 50px;
+  }
+
+  h3,
+  h4 {
+    font-size: 18px;
+  }
+
+  h6 {
+    font-size: 14px;
+  }
+
+  th {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  td {
+    font-size: 12px;
+  }
 }

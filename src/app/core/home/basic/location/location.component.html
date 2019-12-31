@@ -1,21 +1,21 @@
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-12 col-xs-12 col-sm-12">
     <p *ngIf="isLoading">Fetching weather data. Please wait.</p>
     <div class="row" *ngIf="!isLoading">
-      <div class="col-md-4">
+      <div class="col-md-4 col-sm-12 col-xs-12">
         <i class="fa fa-cloud fa-5x"></i>
       </div>
-      <div class="col-md-8">
+      <div class="col-md-8 col-sm-12 col-xs-12">
         <h3>Weather</h3>
         {{forecast.description | titlecase}}
         <hr width="30%">
       </div>
     </div>
     <div class="row" *ngIf="!isLoading">
-      <div class="col-md-4">
+      <div class="col-md-4 col-xs-12 col-sm-12">
         <i class="fa fa-thermometer-quarter fa-5x"></i>
       </div>
-      <div class="col-md-8" id="temp_div">
+      <div class="col-md-8 col-xs-12 col-sm-12" id="temp_div">
         <h4>Temperature: {{forecast.curr_temp - 273.15 | number : '1.2-2'}}</h4>
         <h6>Min: {{forecast.min_temp - 273.15 | number : '1.2-2'}} - Max:
           {{forecast.max_temp - 273.15 | number : '1.2-2'}}</h6>
@@ -24,7 +24,7 @@
       </div>
     </div>
     <div class="row" *ngIf="!isLoading">
-      <div class="col-md-12" id="sub_column">
+      <div class="col-md-12 col-xs-12 col-sm-12" id="sub_column">
         <div class="table-responsive">
           <table class="table-hover">
             <thead>
