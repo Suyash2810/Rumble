@@ -44,3 +44,24 @@ mat-card::-webkit-scrollbar {
     margin-bottom: 30px;
   }
 }
+
+#pattern_svg {
+
+  margin-bottom: -14%;
+}
+
+@media only screen and (width: 1024px) {
+
+  #pattern_svg {
+    margin-bottom: -30%;
+    position: relative;
+    bottom: 0;
+  }
+}
+
+@media only screen and (min-width: 1031px) and (max-width: 1200px) {
+
+  #pattern_svg {
+    margin-bottom: -20%;
+  }
+}
