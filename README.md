@@ -123,14 +123,54 @@ Here the user can perform the account related actions. Handling of personal data
 
 Favorite           |  Notes            
 :-------------------------:|:-------------------------:
-![Contact](./readme_images/favorite_sec.png)  |  ![Contact](./readme_images/note_sec.png)
+![Favorite](./readme_images/favorite_sec.png)  |  ![Notes](./readme_images/note_sec.png)
 
 Update            |  Delete
 |:-------------------------:|:-------------------------:
-![Contact](./readme_images/update_sec.png)  |  ![Contact](./readme_images/delete_sec.png)
+![Update](./readme_images/update_sec.png)  |  ![Delete](./readme_images/delete_sec.png)
 
 #### My Posts
 
 The posts made by the user are displayed here. The user can directly access the posts from this component.
 
-![Contact](./readme_images/my_posts.png)
+![My Posts](./readme_images/my_posts.png)
+
+## Prerequisites
+
+To run the project in local enviroment one will need the following things: 
+
+**Angular CLI** must bee installed in the system. Check [here](https://cli.angular.io/) for downloading. 
+
+**Node Package Manager** to be installed in the system. To install it in the system click [here](https://www.npmjs.com/get-npm). 
+
+**NodeJs** is required. Download from [here](https://nodejs.org/en/download/)
+
+**MongoDB** is required to store all the data used in the app. Download from [here](https://www.mongodb.com/download-center)
+
+Any text editor would work, I prefer **Visual Studio Code**. Download from [here](https://code.visualstudio.com/download)
+
+Now when the above are downloaded successfully, open the project in VSC and using the terminal run the command **npm install**. This will install all the required dependencies. 
+
+## Running the program
+
+First be sure that the mongodb database server is on and listening at localhost:27017.
+To run the app follow the steps given below:
+
+```
+1. Open a terminal
+2. Go the project directory
+3. Run the command 'npm install' to download all the dependencies.
+4. Wait for the download to complete.
+5. Run the command 'nodemon server.js' by opening another terminal in same directory.
+6. Open another terminal in the same directory and run the command 'ng serve'
+7. Open the browser and go to url 'localhost:4200'
+8. The app will open.
+```
+
+## Testing
+
+To test the model files run the command _npm run test-watch_. Approximately 100 tests have been implemented in this project.
+
+## Author
+
+* **Suyash Awasthi** - *Initial work* - [suyash2810](https://github.com/suyash2810)
