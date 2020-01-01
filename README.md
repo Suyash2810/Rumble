@@ -1,27 +1,27 @@
-# MeanApp
+# Rumble
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.3.
+## Introduction
 
-## Development server
+Posteoid is a Single Page Web Application built using Angular and NodeJs with mongodb as the database. It is **simple**, **fast**, **secure** web app for blogging. It has _minimalistic_, _responsive_ and _user-friendly_ interface where users can create as many posts after registering. 
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The app also provides the functionality of editing and deleting the posts by the creator of the post. The posts made are public and anyone can read the posts whereas the comments can be made by logged in users. 
 
-## Code scaffolding
+## Description
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Home
 
-## Build
+The home page welcomes the user and displays date/time, updates in the app and weather details of the place. The [openweathermap](https://openweathermap.org/api) api has been used to fetch weather data.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+![Home](./readme_images/home_page.png)
 
-## Running unit tests
+### Contact
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+The Contact Component is responsible for giving information about the creator of the app. Moreover the other two components help in submitting any queries a user has regarding the app. The queries are displayed in **Contact List Component**. 
 
-## Running end-to-end tests
+![Home](./readme_images/contact_component.png)
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+The queries can also be searched through tags in **Contact List Component** and a user can see their own submissions using slider button and can delete them too.  
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Contact List            |  Search            |  Personal Queries            |  View Query
+:-------------------------:|:-------------------------:|:-------------------------:|:-------------------------:
+![Contact](./readme_images/contact_list1.png)  |  ![Contact](./readme_images/contact_list2.png)  |  ![Contact](./readme_images/contact_list3.png)  |  ![Contact](./readme_images/contact_list4.png)
