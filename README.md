@@ -64,3 +64,73 @@ Appropriate error or success messages are displayed.
 Edit/Delete           |  Edit           |  Edit            
 :-------------------------:|:-------------------------:|:-------------------------:
 ![Sign In](./readme_images/edit_delete.png)  |  ![Register](./readme_images/edit1.png)  |  ![Logged Out](./readme_images/edit2.png)
+
+##### Post View Component and Post Create Component
+
+This is the section where the user can access the entire post. The post can also be favorited by any user using the heart emoji. The post will then be added to the **favorite section** of the respective user.
+
+Post View          |  Post View          |  Post Create                       
+:-------------------------:|:-------------------------:|:-------------------------:
+![Post List](./readme_images/post_view.png)  |  ![Post List](./readme_images/post_view1.png)  |  ![Post Create](./readme_images/new_post.png)
+
+#### Comment Panel 
+
+>Following are the **features** of the Comment Panel.
+
+![Comment](./readme_images/comment_panel.png)
+
+1. Only logged in users can comment on the post.
+2. The comment can also be deleted. Only the respective user can delete the comment. Others will not be allowed.
+3. The user image is automatically loaded from the database in the comment section.
+4. The feature to _disable_ comments has been provided.
+5. **Rich Text Editor** has been provided which can be maximized to screen size as per need.
+6. **Sub Comment Component** has been used to add replies to various comments.
+
+>See the images below.
+
+Disabled Comment Section         |  Sub Reply Component                      
+:-------------------------:|:-------------------------:
+![Comment](./readme_images/disabled_comments.png)  |  ![Comment](./readme_images/sub_comment.png)
+
+>The maximized view of Rich Text Editor is shown below.
+
+![Comment](./readme_images/editor.png)
+
+>The comments can be edited by the user.
+
+![Comment](./readme_images/edit_comment.png)
+
+### Profile
+
+The *Profile Component* displays information particular to the logged in user. It consists of the following components.
+
+#### Profile Image
+
+In this component the user can change the profile picture.
+
+![Comment](./readme_images/profile_image.png)
+
+#### Account Component
+
+Here the user can perform the account related actions. Handling of personal data is done here. 
+
+> There are four components here which the user can navigate through.
+
+1. **Favorite Posts Component**: All the posts favorited by the user are displayed here.
+2. **Notes Component**: The user can create notes and save them as per requirement. 
+3. **Change/Update Component**: To update or change the login information.
+4. **Delete Account Component**: The account can be deleted with all the user data from here.
+
+Favorite           |  Notes            
+:-------------------------:|:-------------------------:
+![Contact](./readme_images/favorite_sec.png)  |  ![Contact](./readme_images/note_sec.png)
+
+Update            |  Delete
+|:-------------------------:|:-------------------------:
+![Contact](./readme_images/update_sec.png)  |  ![Contact](./readme_images/delete_sec.png)
+
+#### My Posts
+
+The posts made by the user are displayed here. The user can directly access the posts from this component.
+
+![Contact](./readme_images/my_posts.png)
