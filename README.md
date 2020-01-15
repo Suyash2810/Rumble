@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Posteoid is a Single Page Web Application built using Angular and NodeJs with mongodb as the database using _mongoose_ module. It is **simple**, **fast**, **secure** web app for blogging. It has _minimalistic_, _responsive_ and _user-friendly_ interface where users can create as many posts after registering. 
+Rumble is a Single Page Web Application built using Angular and NodeJs with mongodb as the database using _mongoose_ module. It is **simple**, **fast**, **secure** web app for blogging. It has _minimalistic_, _responsive_ and _user-friendly_ interface where users can create as many posts after registering. 
 
 The app also provides the functionality of editing and deleting the posts by the creator of the post. The posts made are public and anyone can read the posts whereas the comments can be made by logged in users. 
 

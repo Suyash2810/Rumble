@@ -1,14 +1,6 @@
-Create a confirmation for deletion of a particular post by the user.
-
-Do the testing of the API requests.
-
-Resolve the storing of images uploaded in posts content in text editor.
-
-Add various utilities to the home component
-
 Add comments like functionality.
 
-Provide functionality for views on a particular post.
+Provide functionality for views on a particular post and total number of people who favorited it..
 
 Favorite heart being shown even when not authorized.
 
