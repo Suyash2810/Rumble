@@ -67,7 +67,7 @@ savePostData = (request, response) => {
   let post_id = _.pick(request.body, ['post_id']);
 
   let viewFavdata = new PostData({
-    parent_post_id: post_id
+    parent_post_id: post_id.post_id
   });
 
   viewFavdata.save()
