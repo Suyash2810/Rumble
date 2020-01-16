@@ -87,3 +87,50 @@ savePostData = (request, response) => {
       }
     );
 }
+
+let updateFavoriteData = async (request, response) => {
+
+  let {
+    post_id,
+    change
+  } = _.pick(request.body, ['post_id', 'change']);
+
+  let {
+    favorites
+  } = await PostData.find({
+    parent_post_id: post_id
+  });
+
+  PostData.findOneAndUpdate({
+      parent_post_id: post_id
+    }, {
+      $set: {
+        favorites: favorites + change
+      }
+    }, {
+      new: true
+    })
+    .then(
+      (result) => {
+
+        response.status(200).send({
+          status: "The favorites were updated.",
+          data: result
+        })
+      }
+    )
+    .catch(
+      (error) => {
+        response.status(400).send({
+          error: error
+        });
+      }
+    );
+}
+
+module.exports = {
+  savePostData,
+  getPostData,
+  updatePostData,
+  updateFavoriteData
+}

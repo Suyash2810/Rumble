@@ -44,11 +44,11 @@ export class ViewFavService {
             );
     }
 
-    updateFavorites(post_id: string) {
+    updateFavorites(post_id: string, change: number) {
 
         type responseType = { status: string, data: ViewFav };
 
-        this.httpClient.patch<responseType>("http://localhost:3000/updateFavData", { post_id: post_id })
+        this.httpClient.patch<responseType>("http://localhost:3000/updateFavData", { post_id: post_id, change: change })
             .subscribe(
                 (response) => {
 

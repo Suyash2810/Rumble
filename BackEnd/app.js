@@ -23,6 +23,7 @@ const ContactController = require('./MVC/contactController');
 const ReplyController = require('./MVC/replyController');
 const favoriteController = require('./MVC/favoriteController');
 const NoteController = require('./MVC/NoteController');
+const ViewFavController = require('./MVC/viewFavController');
 
 app.use(body_parser.json());
 app.use(body_parser.urlencoded({
@@ -128,5 +129,16 @@ app.delete('/note/:id', authorization, NoteController.deleteNote);
 app.patch('/updateUserInfo', authorization, UserController.updateUserInfo);
 
 app.delete('/deleteUserAccount', authorization, UserController.deleteUserAccount);
+
+
+// ------------------------------Post Data (Views/Favorites) Requests---------------------------------------//
+
+app.get('/getPostViewData', ViewFavController.getPostData);
+
+app.post('/createViewFavData', ViewFavController.savePostData);
+
+app.patch('/updateViewData', ViewFavController.updatePostData);
+
+app.patch('/updateFavData', ViewFavController.updateFavoriteData);
 
 module.exports = app
