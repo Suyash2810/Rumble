@@ -56,4 +56,17 @@ export class ViewFavService {
                 }
             );
     }
+
+    deleteViewFavData(post_id: string) {
+
+        type responseType = { status: string };
+
+        this.httpClient.delete<responseType>(`http://localhost:3000/deleteViewFavData/${post_id}`)
+            .subscribe(
+                (data) => {
+
+                    console.log(data);
+                }
+            );
+    }
 }

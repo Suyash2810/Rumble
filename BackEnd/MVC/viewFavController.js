@@ -128,9 +128,35 @@ let updateFavoriteData = async (request, response) => {
     );
 }
 
+let deleteViewFavData = (request, response) => {
+
+  let post_id = request.params.post_id;
+
+  PostData.findOneAndDelete({
+      parent_post_id: post_id
+    })
+    .then(
+      (result) => {
+        console.log(result);
+        response.status(200).send({
+          status: "The data has been deleted."
+        });
+      }
+    )
+    .catch(
+      (err) => {
+
+        response.status(400).send({
+          error: err
+        });
+      }
+    );
+}
+
 module.exports = {
   savePostData,
   getPostData,
   updatePostData,
-  updateFavoriteData
+  updateFavoriteData,
+  deleteViewFavData
 }

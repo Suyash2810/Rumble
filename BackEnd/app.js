@@ -141,4 +141,6 @@ app.patch('/updateViewData', ViewFavController.updatePostData);
 
 app.patch('/updateFavData', ViewFavController.updateFavoriteData);
 
+app.delete('deleteViewFavData/:post_id', ViewFavController.deleteViewFavData);
+
 module.exports = app
