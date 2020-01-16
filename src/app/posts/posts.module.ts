@@ -12,6 +12,7 @@ import { SharedModule } from "../shared/shared.module";
 import { PostCommentComponent } from './post-view/post-comment/post-comment.component';
 import { SubReplyCommentsComponent } from './post-view/post-comment/sub-reply-comments/sub-reply-comments.component';
 import { PostCommentEditComponent } from './post-view/post-comment-edit/post-comment-edit.component';
+import { PostViewFavComponent } from './post-view/post-view-fav/post-view-fav.component';
 
 @NgModule({
     declarations: [
@@ -21,7 +22,8 @@ import { PostCommentEditComponent } from './post-view/post-comment-edit/post-com
         PostViewComponent,
         PostCommentComponent,
         SubReplyCommentsComponent,
-        PostCommentEditComponent
+        PostCommentEditComponent,
+        PostViewFavComponent
     ],
     imports: [
         CommonModule,
