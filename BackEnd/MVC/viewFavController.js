@@ -29,14 +29,15 @@ updatePostData = async (request, response) => {
 
   let post_id = _.pick(request.body, ['post_id']);
 
-  let {
-    views
-  } = await PostData.find({
-    parent_post_id: post_id
-  });
+  let
+    views = await PostData.find({
+      parent_post_id: post_id.post_id
+    });
+
+  views = views[0].views;
 
   PostData.findOneAndUpdate({
-      parent_post_id: post_id
+      parent_post_id: post_id.post_id
     }, {
       $set: {
         views: views + 1
