@@ -43,4 +43,17 @@ export class ViewFavService {
                 }
             );
     }
+
+    updateFavorites(post_id: string) {
+
+        type responseType = { status: string, data: ViewFav };
+
+        this.httpClient.patch<responseType>("http://localhost:3000/updateFavData", { post_id: post_id })
+            .subscribe(
+                (response) => {
+
+                    console.log(response);
+                }
+            );
+    }
 }
