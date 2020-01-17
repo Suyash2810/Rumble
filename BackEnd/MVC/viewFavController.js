@@ -161,10 +161,16 @@ let deleteViewFavData = (request, response) => {
     })
     .then(
       (result) => {
-        console.log(result);
-        response.status(200).send({
-          status: "The data has been deleted."
-        });
+        if (result != null) {
+          response.status(200).send({
+            status: "The data has been deleted."
+          });
+        } else {
+          response.status(400).send({
+            err: "The data could not be deleted."
+          });
+        }
+
       }
     )
     .catch(

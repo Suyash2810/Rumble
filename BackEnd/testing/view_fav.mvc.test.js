@@ -356,14 +356,14 @@ describe("View Favorites MVC Testing", () => {
 
       supertest(app)
         .delete(`/deleteViewFavData/${id}`)
-        .expect(200)
+        .expect(400)
         .end(
           (err, result) => {
             if (err) {
               return done(err);
             }
 
-            expect(result.statusCode).to.be.equal(200);
+            expect(result.statusCode).to.be.equal(400);
             done();
           }
         )
