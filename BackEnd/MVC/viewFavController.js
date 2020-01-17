@@ -154,6 +154,7 @@ let updateFavoriteData = async (request, response) => {
 let deleteViewFavData = (request, response) => {
 
   let post_id = request.params.post_id;
+  console.log(post_id);
 
   PostData.findOneAndDelete({
       parent_post_id: post_id

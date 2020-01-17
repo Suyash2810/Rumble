@@ -329,4 +329,44 @@ describe("View Favorites MVC Testing", () => {
         )
     });
   });
+
+  context("DELETE requests", () => {
+
+    it("should delete the data", (done) => {
+
+      supertest(app)
+        .delete(`/deleteViewFavData/${viewFavs[0].parent_post_id}`)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.body.status).to.be.equal('The data has been deleted.');
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        )
+    });
+
+    it("should not delete the data", (done) => {
+
+      let id = new ObjectID().toHexString();
+
+      supertest(app)
+        .delete(`/deleteViewFavData/${id}`)
+        .expect(200)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        )
+    });
+  });
 });
