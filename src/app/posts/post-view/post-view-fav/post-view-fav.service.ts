@@ -12,16 +12,32 @@ export class ViewFavService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getData() {
+    getData(postId: string) {
 
         type responseType = { status: string, data: any };
 
         this.httpClient.get<responseType>('http://localhost:3000/getPostViewData')
             .subscribe(
                 (response) => {
-                    console.log(response);
+
+                    let viewfavs = response.data;
+                    let viewFav = viewfavs.find((vf) => {
+                        return vf.parent_post_id === postId;
+                    });
+
+                    this.viewFav = viewFav;
+                    this.viewFavListener.next(this.viewFav);
                 }
             );
+    }
+
+    getStaticPostData() {
+
+        return this.viewFav;
+    }
+
+    getListenerPostData() {
+        return this.viewFavListener.asObservable();
     }
 
     updateViews(post_id: string) {
