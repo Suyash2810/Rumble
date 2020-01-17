@@ -15,7 +15,8 @@ let viewFavs = [{
   },
   {
     _id: new ObjectID().toHexString(),
-    parent_post_id: id2
+    parent_post_id: id2,
+    favorites: 1
   }
 ];
 

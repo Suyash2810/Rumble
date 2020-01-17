@@ -106,9 +106,21 @@ let updateFavoriteData = async (request, response) => {
     parent_post_id: post_id
   });
 
+  if (change < -1) {
+    response.status(400).send({
+      err: "Invalid data sent."
+    });
+  }
+
+  if (change > 1) {
+    response.status(400).send({
+      err: "Invalid data sent."
+    });
+  }
+
   if (data.length === 0) {
     response.status(400).send({
-      err: "No data was found for current post id."
+      err: "Invalid data sent."
     });
   }
 
