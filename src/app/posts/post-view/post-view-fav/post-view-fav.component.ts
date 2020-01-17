@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ViewFavService } from './post-view-fav.service';
 
 @Component({
   selector: 'app-post-view-fav',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostViewFavComponent implements OnInit {
 
-  constructor() { }
+  constructor(private viewFavService: ViewFavService) { }
 
   ngOnInit() {
+
+    this.viewFavService.getData();
   }
 
 }

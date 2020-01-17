@@ -1,16 +1,20 @@
 import { Injectable } from "@angular/core";
 import { ViewFav } from './post-view-fav.model';
 import { HttpClient } from "@angular/common/http";
+import { Subject } from "rxjs";
 
 @Injectable({ providedIn: 'root' })
 
 export class ViewFavService {
 
+    private viewFav: ViewFav;
+    private viewFavListener = new Subject<ViewFav>();
+
     constructor(private httpClient: HttpClient) { }
 
     getData() {
 
-        type responseType = { status: string, data: ViewFav };
+        type responseType = { status: string, data: any };
 
         this.httpClient.get<responseType>('http://localhost:3000/getPostViewData')
             .subscribe(

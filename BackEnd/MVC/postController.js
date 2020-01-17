@@ -4,6 +4,10 @@ const {
 
 const _ = require('lodash');
 
+const {
+  PostData
+} = require('../models/post_data');
+
 var updatePost = (request, response) => {
 
   let id = request.params.id;
@@ -117,6 +121,23 @@ var savePost = (request, response) => {
 
   post.save().then(
     (result) => {
+
+      postData = new PostData({
+        parent_post_id: result._id
+      });
+
+      postData.save()
+        .then(
+          (result) => {
+            console.log(result);
+          }
+        )
+        .catch(
+          (err) => {
+            console.log(err);
+          }
+        );
+
       response.status(201).send({
         message: "The data was stored successfully",
         post: {
