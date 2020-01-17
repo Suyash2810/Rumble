@@ -145,5 +145,32 @@ describe("View Favorites MVC Testing", () => {
           }
         );
     });
+
+    it("should not update the post data for non existing post data", (done) => {
+
+      let data = {
+        post_id: new ObjectID().toHexString()
+      }
+
+      supertest(app)
+        .patch('/updateViewData')
+        .send(data)
+        .expect(400)
+        .expect(
+          (response) => {
+            expect(response.body.err).to.be.equal('Data could not be retrieved.');
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(400);
+            done();
+          }
+        )
+    });
   });
 });

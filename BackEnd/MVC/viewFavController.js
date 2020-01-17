@@ -34,6 +34,12 @@ updatePostData = async (request, response) => {
       parent_post_id: post_id.post_id
     });
 
+  if (views.length === 0) {
+    response.status(400).send({
+      err: "Data could not be retrieved."
+    });
+  }
+
   views = views[0].views;
 
   PostData.findOneAndUpdate({
