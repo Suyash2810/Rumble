@@ -102,17 +102,21 @@ let updateFavoriteData = async (request, response) => {
     change
   } = _.pick(request.body, ['post_id', 'change']);
 
-  let {
-    favorites
-  } = await PostData.find({
+  let data = await PostData.find({
     parent_post_id: post_id
   });
+
+  if (data.length === 0) {
+    response.status(400).send({
+      err: "No data was found for current post id."
+    });
+  }
 
   PostData.findOneAndUpdate({
       parent_post_id: post_id
     }, {
       $set: {
-        favorites: favorites + change
+        favorites: data[0].favorites + change
       }
     }, {
       new: true

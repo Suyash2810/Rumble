@@ -172,5 +172,57 @@ describe("View Favorites MVC Testing", () => {
           }
         )
     });
+
+    it("should not update the data when post id not sent", (done) => {
+
+      supertest(app)
+        .patch('/updateViewData')
+        .expect(400)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(400);
+            done();
+          }
+        );
+    });
+
+    it("should update increment the favorites", (done) => {
+
+      let data = {
+        post_id: viewFavs[0].parent_post_id,
+        change: 1
+      };
+
+      supertest(app)
+        .patch('/updateFavData')
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+
+            let status = response.body.status;
+            expect(status).to.be.equal('The favorites were updated.');
+            let data = response.body.data;
+            expect(data.favorites).to.be.equal(1);
+            expect(data._id).to.exist;
+            expect(data.views).to.exist;
+            expect(data.parent_post_id).to.be.equal(viewFavs[0].parent_post_id);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
   });
 });
