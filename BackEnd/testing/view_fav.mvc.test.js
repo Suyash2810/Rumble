@@ -93,7 +93,7 @@ describe("View Favorites MVC Testing", () => {
             expect(data[0].parent_post_id).to.be.equal(viewFavs[0].parent_post_id);
             expect(data[1]._id).to.exist;
             expect(data[1].views).to.be.equal(0);
-            expect(data[1].favorites).to.be.equal(0);
+            expect(data[1].favorites).to.be.equal(1);
             expect(data[1].parent_post_id).to.be.equal(viewFavs[1].parent_post_id);
           }
         )
@@ -223,6 +223,110 @@ describe("View Favorites MVC Testing", () => {
             done();
           }
         );
+    });
+
+    it("should update increment the favorites", (done) => {
+
+      let data = {
+        post_id: viewFavs[1].parent_post_id,
+        change: -1
+      };
+
+      supertest(app)
+        .patch('/updateFavData')
+        .send(data)
+        .expect(200)
+        .expect(
+          (response) => {
+
+            let status = response.body.status;
+            expect(status).to.be.equal('The favorites were updated.');
+            let data = response.body.data;
+            expect(data.favorites).to.be.equal(0);
+            expect(data._id).to.exist;
+            expect(data.views).to.exist;
+            expect(data.parent_post_id).to.be.equal(viewFavs[1].parent_post_id);
+          }
+        )
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(200);
+            done();
+          }
+        );
+    });
+
+    it("should not update the data for non existing post id", (done) => {
+
+      let data = {
+        post_id: new ObjectID().toHexString(),
+        change: 1
+      }
+
+      supertest(app)
+        .patch('/updateFavData')
+        .send(data)
+        .expect(400)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(400);
+            done();
+          }
+        )
+    });
+
+    it("should not update the data for invalid increment", (done) => {
+
+      let data = {
+        post_id: viewFavs[0].parent_post_id,
+        change: 2
+      }
+
+      supertest(app)
+        .patch('/updateFavData')
+        .send(data)
+        .expect(400)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(400);
+            done();
+          }
+        )
+    });
+
+    it("should not update the data for invalid decrement", (done) => {
+
+      let data = {
+        post_id: viewFavs[0].parent_post_id,
+        change: -2
+      }
+
+      supertest(app)
+        .patch('/updateFavData')
+        .send(data)
+        .expect(400)
+        .end(
+          (err, result) => {
+            if (err) {
+              return done(err);
+            }
+
+            expect(result.statusCode).to.be.equal(400);
+            done();
+          }
+        )
     });
   });
 });
