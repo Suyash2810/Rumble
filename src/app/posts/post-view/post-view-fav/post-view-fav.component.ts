@@ -29,7 +29,9 @@ export class PostViewFavComponent implements OnInit, OnDestroy {
         (params: Params) => {
           this.postId = params['postID'];
         }
-      )
+      );
+
+    this.viewFavService.updateViews(this.postId);
 
     this.viewFavService.getData(this.postId);
 

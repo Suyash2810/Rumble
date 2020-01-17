@@ -5,6 +5,7 @@ import { Post } from '../post.model';
 import { Subscription } from 'rxjs';
 import { FavoriteService } from 'src/app/core/home/profile/user-account/favorite/favorite.service';
 import { Favorite } from 'src/app/core/home/profile/user-account/favorite/favorite.model';
+import { ViewFavService } from './post-view-fav/post-view-fav.service';
 
 @Component({
   selector: 'app-post-view',
@@ -21,7 +22,10 @@ export class PostViewComponent implements OnInit, OnDestroy {
   favorite: Favorite;
   favSub: Subscription;
 
-  constructor(private postService: PostService, private route: ActivatedRoute, private favoriteService: FavoriteService) { }
+  constructor(private postService: PostService,
+    private route: ActivatedRoute,
+    private favoriteService: FavoriteService,
+    private viewFavService: ViewFavService) { }
 
   ngOnInit() {
 
@@ -55,8 +59,10 @@ export class PostViewComponent implements OnInit, OnDestroy {
     this.toggleFav = !this.toggleFav;
     if (this.toggleFav) {
       this.favoriteService.addFavorite(this.post);
+      this.viewFavService.updateFavorites(this.postId, 1);
     } else {
       this.favoriteService.removeFavorite(this.postId);
+      this.viewFavService.updateFavorites(this.postId, -1);
     }
   }
 
