@@ -6,6 +6,7 @@ import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/auth.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ErrorComponent } from 'src/app/error/error.component';
+import { ViewFavService } from '../post-view/post-view-fav/post-view-fav.service';
 
 @Component({
   selector: 'app-post-list',
@@ -26,7 +27,8 @@ export class PostListComponent implements OnInit, OnDestroy {
   userId: string;
 
   constructor(private postService: PostService, private authService: AuthService,
-    private router: Router, private route: ActivatedRoute, public dialog: MatDialog) { }
+    private router: Router, private route: ActivatedRoute, public dialog: MatDialog,
+    private ViewService: ViewFavService) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -59,6 +61,7 @@ export class PostListComponent implements OnInit, OnDestroy {
       (result) => {
         this.postService.getPosts(this.postPerPage, this.currentIndex);
         console.log(result);
+        this.ViewService.deleteViewFavData(<string>id);
       },
       error => {
         this.dialog.open(ErrorComponent, {
